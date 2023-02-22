@@ -15,12 +15,14 @@
   "scripts": {
     "initialize": "yarn && cp ./api/.env.example ./api/.env && cp ./client/.env.example ./client/.env",
     "clean": "find . -name node_modules -o -name dist -type d | xargs rm -rf",
-    "start:ws": "HOST=localhost PORT=1234 node ./node_modules/y-websocket/bin/server.js",
     "dev:api": "yarn workspace api dev",
-    "build:api": "yarn workspace api build",
-    "start:api": "yarn workspace api start",
     "dev:client": "yarn workspace client dev",
+    "build:api": "yarn workspace api build",
+    "build:all": "yarn build:api && yarn build:client ",
+    "build:all:samedir": "yarn build:all && mkdir -p dist && mv ./api/dist ./dist/api && mv ./client/dist ./dist/client",
     "build:client": "yarn workspace client build",
+    "start:ws": "HOST=localhost PORT=1234 node ./node_modules/y-websocket/bin/server.js",
+    "start:api": "yarn workspace api start",
     "start:client": "yarn workspace client preview"
   }
 }
