@@ -29,7 +29,7 @@ yarn dev:client
 ## Build
 
 ```bash
-yarn dev:api
+yarn build:api
 yarn build:client
 ```
 
