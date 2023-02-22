@@ -1,0 +1,26 @@
+{
+  "name": "express-yjs-tldraw",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "author": {
+    "name": "Quentin Guillemin",
+    "email": "guillemin.quentin@outlook.fr",
+    "url": "https://github.com/Quentin-Guillemin"
+  },
+  "workspaces": [
+    "api",
+    "client"
+  ],
+  "scripts": {
+    "initialize": "yarn && cp ./api/.env.example ./api/.env && cp ./client/.env.example ./client/.env",
+    "clean": "find . -name node_modules -o -name dist -type d | xargs rm -rf",
+    "start:ws": "HOST=localhost PORT=1234 node ./node_modules/y-websocket/bin/server.js",
+    "dev:api": "yarn workspace api dev",
+    "build:api": "yarn workspace api build",
+    "start:api": "yarn workspace api start",
+    "dev:client": "yarn workspace client dev",
+    "build:client": "yarn workspace client build",
+    "start:client": "yarn workspace client preview"
+  }
+}
