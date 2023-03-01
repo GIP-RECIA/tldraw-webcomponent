@@ -37,6 +37,7 @@ function DefaultEditor({ language }: Default) {
 
   const handleMount = (app: TldrawApp) => {
     app.setSetting("language", language);
+    app.setSetting("keepStyleMenuOpen", true);
   };
 
   return (
@@ -53,7 +54,7 @@ function DefaultEditor({ language }: Default) {
 }
 
 function MultiplayerEditor({ roomId, language }: Multiplayer) {
-  const fileSystemEvents = useFileSystem();
+  const { onSaveProjectAs, onSaveProject } = useFileSystem();
   const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets();
   const { ...events } = useMultiplayer(roomId, language);
 
@@ -65,7 +66,8 @@ function MultiplayerEditor({ roomId, language }: Multiplayer) {
       onAssetCreate={onAssetCreate}
       onAssetDelete={onAssetDelete}
       onAssetUpload={onAssetUpload}
-      {...fileSystemEvents}
+      onSaveProjectAs={onSaveProjectAs}
+      onSaveProject={onSaveProject}
       {...events}
     />
   );

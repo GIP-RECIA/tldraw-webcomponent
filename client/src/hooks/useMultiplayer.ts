@@ -17,8 +17,6 @@ import {
   yShapes,
 } from "../utils/y";
 
-// declare const window: Window & { app: TldrawApp };
-
 export function useMultiplayer(roomId: string, language: string) {
   const [app, setApp] = useState<TldrawApp>();
   const [loading, setLoading] = useState(true);
@@ -36,9 +34,9 @@ export function useMultiplayer(roomId: string, language: string) {
   const onMount = useCallback(
     (app: TldrawApp) => {
       app.setSetting("language", language);
+      app.setSetting("keepStyleMenuOpen", true);
       app.loadRoom(roomId);
       app.pause(); // Turn off the app's own undo / redo stack
-      // window.app = app;
       setApp(app);
     },
     [roomId]
@@ -52,7 +50,6 @@ export function useMultiplayer(roomId: string, language: string) {
       bindings: Record<string, TDBinding | undefined>,
       assets: Record<string, TDAsset | undefined>
     ) => {
-      undoManager.stopCapturing();
       doc.transact(() => {
         if (!(yShapes && yBindings && yAssets)) return;
 
