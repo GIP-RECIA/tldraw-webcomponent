@@ -3,11 +3,17 @@ import { useAssets } from "../hooks/useAssets";
 import { useMultiplayer } from "../hooks/useMultiplayer";
 import { initProvider } from "../utils/y";
 import { CustomCursor } from "./Cursor";
+import PropTypes from "prop-types";
 
 interface Props {
   roomId: string | undefined;
   readOnly?: boolean;
 }
+
+Editor.propTypes = {
+  roomId: PropTypes.string,
+  readOnly: PropTypes.string,
+};
 
 const components = {
   Cursor: CustomCursor,
