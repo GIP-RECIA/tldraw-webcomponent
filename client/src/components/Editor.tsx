@@ -1,59 +1,61 @@
-import { Tldraw, TldrawProps, useFileSystem } from "@tldraw/tldraw";
+import { Tldraw, TldrawApp, useFileSystem } from "@tldraw/tldraw";
 import { useAssets } from "../hooks/useAssets";
 import { useMultiplayer } from "../hooks/useMultiplayer";
 import { initProvider } from "../utils/y";
 import { CustomCursor } from "./Cursor";
 import PropTypes from "prop-types";
-
-interface Props {
-  roomId: string | undefined;
-  readOnly?: boolean;
-}
+import { Default, Multiplayer, Settings } from "../types/types";
 
 Editor.propTypes = {
   roomId: PropTypes.string,
   readOnly: PropTypes.string,
+  language: PropTypes.string,
 };
 
 const components = {
   Cursor: CustomCursor,
 };
 
-function Editor({ roomId, readOnly }: Props) {
-  let editor = <DefaultEditor />;
+function Editor({ roomId, readOnly, language }: Settings) {
+  language = language || "en";
+  let editor = <DefaultEditor language={language} />;
   if (roomId) {
     initProvider(roomId);
     editor = readOnly ? (
-      <MultiplayerReadOnlyEditor roomId={roomId} />
+      <MultiplayerReadOnlyEditor roomId={roomId} language={language} />
     ) : (
-      <MultiplayerEditor roomId={roomId} />
+      <MultiplayerEditor roomId={roomId} language={language} />
     );
   }
 
   return editor;
 }
 
-function DefaultEditor({ ...rest }: Partial<TldrawProps>) {
+function DefaultEditor({ language }: Default) {
   const fileSystemEvents = useFileSystem();
   const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets();
+
+  const handleMount = (app: TldrawApp) => {
+    app.setSetting("language", language);
+  };
 
   return (
     <Tldraw
       autofocus
+      onMount={handleMount}
       components={components}
       onAssetCreate={onAssetCreate}
       onAssetDelete={onAssetDelete}
       onAssetUpload={onAssetUpload}
       {...fileSystemEvents}
-      {...rest}
     />
   );
 }
 
-function MultiplayerEditor({ roomId }: Props) {
+function MultiplayerEditor({ roomId, language }: Multiplayer) {
   const fileSystemEvents = useFileSystem();
   const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets();
-  const { ...events } = useMultiplayer(roomId!);
+  const { ...events } = useMultiplayer(roomId, language);
 
   return (
     <Tldraw
@@ -69,9 +71,9 @@ function MultiplayerEditor({ roomId }: Props) {
   );
 }
 
-function MultiplayerReadOnlyEditor({ roomId }: Props) {
+function MultiplayerReadOnlyEditor({ roomId, language }: Multiplayer) {
   const { onSaveProjectAs, onSaveProject } = useFileSystem();
-  const { ...events } = useMultiplayer(roomId!);
+  const { ...events } = useMultiplayer(roomId, language);
 
   return (
     <Tldraw

@@ -19,7 +19,7 @@ import {
 
 // declare const window: Window & { app: TldrawApp };
 
-export function useMultiplayer(roomId: string) {
+export function useMultiplayer(roomId: string, language: string) {
   const [app, setApp] = useState<TldrawApp>();
   const [loading, setLoading] = useState(true);
 
@@ -35,6 +35,7 @@ export function useMultiplayer(roomId: string) {
   // Put the state into the window, for debugging.
   const onMount = useCallback(
     (app: TldrawApp) => {
+      app.setSetting("language", language);
       app.loadRoom(roomId);
       app.pause(); // Turn off the app's own undo / redo stack
       // window.app = app;
