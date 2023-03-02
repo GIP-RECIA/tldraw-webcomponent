@@ -1,7 +1,6 @@
 import { TldrawApp } from "@tldraw/tldraw";
 import axios from "axios";
 import { useCallback } from "react";
-import { yAssets } from "../utils/y";
 
 const { VITE_API_URL } = import.meta.env;
 
@@ -32,14 +31,7 @@ export function useAssets() {
 
   const onAssetDelete = useCallback(
     async (app: TldrawApp, id: string): Promise<boolean> => {
-      let assets = Object.values(Object.fromEntries(yAssets.entries()));
-      let deleteAsset = assets.find((asset) => asset.id === id);
-
-      await axios.delete(
-        `${VITE_API_URL}/files/${deleteAsset.id}.${deleteAsset.src
-          .split(".")
-          .pop()}`
-      );
+      await axios.delete(`${VITE_API_URL}/files/${id}`);
 
       return true;
     },

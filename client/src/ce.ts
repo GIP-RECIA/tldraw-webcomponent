@@ -5,7 +5,7 @@ import reactToWebComponent from "react-to-webcomponent";
 import Editor from "./components/Editor";
 
 customElements.define(
-  "rwc-editor",
+  "tldraw-editor",
   reactToWebComponent(Editor, React, ReactDOM, {
     dashStyleAttributes: true,
     shadow: false,

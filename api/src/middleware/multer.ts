@@ -3,8 +3,9 @@ import { existsSync, mkdirSync } from "fs";
 import { extname } from "path";
 import { NextFunction, Request, Response } from "express";
 
-export const mUpload = (uploadPath: string, identifier: string) => {
-  return (req: Request, res: Response, next: NextFunction) => {
+export const mUpload =
+  (uploadPath: string, identifier: string) =>
+  (req: Request, res: Response, next: NextFunction) => {
     const storage = diskStorage({
       destination: (req, file, cb) => {
         if (!existsSync("./public/")) mkdirSync("./public/");
@@ -21,4 +22,3 @@ export const mUpload = (uploadPath: string, identifier: string) => {
 
     uploadFile(req, res, next);
   };
-};

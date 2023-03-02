@@ -1,10 +1,11 @@
-import { Tldraw, TldrawApp, useFileSystem } from "@tldraw/tldraw";
+import { Tldraw, useFileSystem } from "@tldraw/tldraw";
 import { useAssets } from "../hooks/useAssets";
 import { useMultiplayer } from "../hooks/useMultiplayer";
-import { initProvider } from "../utils/y";
+import { initProvider } from "../utils/y-websocket";
 import { CustomCursor } from "./Cursor";
 import PropTypes from "prop-types";
 import { Default, Multiplayer, Settings } from "../types/types";
+import { useSingleplayer } from "../hooks/useSingleplayer";
 
 Editor.propTypes = {
   roomId: PropTypes.string,
@@ -34,21 +35,17 @@ function Editor({ roomId, readOnly, language }: Settings) {
 function DefaultEditor({ language }: Default) {
   const fileSystemEvents = useFileSystem();
   const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets();
-
-  const handleMount = (app: TldrawApp) => {
-    app.setSetting("language", language);
-    app.setSetting("keepStyleMenuOpen", true);
-  };
+  const { ...events } = useSingleplayer(language);
 
   return (
     <Tldraw
       autofocus
-      onMount={handleMount}
       components={components}
       onAssetCreate={onAssetCreate}
       onAssetDelete={onAssetDelete}
       onAssetUpload={onAssetUpload}
       {...fileSystemEvents}
+      {...events}
     />
   );
 }

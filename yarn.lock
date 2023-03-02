@@ -2235,7 +2235,7 @@ levelup@^4.3.2:
     level-supports "~1.0.0"
     xtend "~4.0.0"
 
-lib0@^0.2.31, lib0@^0.2.42, lib0@^0.2.49, lib0@^0.2.52:
+lib0@^0.2.31, lib0@^0.2.35, lib0@^0.2.42, lib0@^0.2.49, lib0@^0.2.52:
   version "0.2.63"
   resolved "https://registry.yarnpkg.com/lib0/-/lib0-0.2.63.tgz#9fe7c26686fbb4b1578bc0d8ee1d308ad6115d4e"
   integrity sha512-JhUd/JXR4rnWsSP1zup904ACbVFcdRieWoIGwGAtHww4zms0gNyi8EM30Rfftnk+6A10qQMSufjLM0/ncq06xw==
@@ -3224,6 +3224,13 @@ xtend@^4.0.0, xtend@^4.0.2, xtend@~4.0.0:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
   integrity sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==
+
+y-indexeddb@^9.0.9:
+  version "9.0.9"
+  resolved "https://registry.yarnpkg.com/y-indexeddb/-/y-indexeddb-9.0.9.tgz#fd360f6b62ce1b2d4127671fe73b4feb08de70b2"
+  integrity sha512-GcJbiJa2eD5hankj46Hea9z4hbDnDjvh1fT62E5SpZRsv8GcEemw34l1hwI2eknGcv5Ih9JfusT37JLx9q3LFg==
+  dependencies:
+    lib0 "^0.2.35"
 
 y-leveldb@^0.1.0:
   version "0.1.2"

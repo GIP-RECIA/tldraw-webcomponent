@@ -1,23 +1,15 @@
-import type {
-  TDAsset,
-  TDBinding,
-  TDShape,
-  TDUser,
-  TldrawApp,
-} from "@tldraw/tldraw";
+import type { TDAsset, TDBinding, TDShape, TldrawApp } from "@tldraw/tldraw";
 import { useCallback, useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import {
-  awareness,
   doc,
-  provider,
   undoManager,
   yAssets,
   yBindings,
   yShapes,
-} from "../utils/y-websocket";
+} from "../utils/y-indexeddb";
 
-export function useMultiplayer(roomId: string, language: string) {
+export function useSingleplayer(language: string) {
   const [app, setApp] = useState<TldrawApp>();
   const [loading, setLoading] = useState(true);
 
@@ -31,16 +23,12 @@ export function useMultiplayer(roomId: string, language: string) {
   // Callbacks --------------
 
   // Put the state into the window, for debugging.
-  const onMount = useCallback(
-    (app: TldrawApp) => {
-      app.setSetting("language", language);
-      app.setSetting("keepStyleMenuOpen", true);
-      app.loadRoom(roomId);
-      app.pause(); // Turn off the app's own undo / redo stack
-      setApp(app);
-    },
-    [roomId]
-  );
+  const onMount = useCallback((app: TldrawApp) => {
+    app.setSetting("language", language);
+    app.setSetting("keepStyleMenuOpen", true);
+    app.pause(); // Turn off the app's own undo / redo stack
+    setApp(app);
+  }, []);
 
   // Update the live shapes when the app's shapes change.
   const onChangePage = useCallback(
@@ -81,47 +69,10 @@ export function useMultiplayer(roomId: string, language: string) {
     []
   );
 
-  // Handle presence updates when the user's pointer / selection changes
-  const onChangePresence = useCallback((app: TldrawApp, user: TDUser) => {
-    if (!app.room) return;
-    awareness().setLocalStateField("user", user);
-  }, []);
-
   // Document Changes --------
 
   useEffect(() => {
-    const onChangeAwareness = () => {
-      if (!app || !app.room) return;
-
-      const others = Array.from(awareness().getStates().entries())
-        .filter(([key, _]) => key !== awareness().clientID)
-        .map(([_, state]) => state)
-        .filter((user) => user.user !== undefined);
-
-      const ids = others.map((other) => other.user.id as string);
-
-      Object.values(app.room.users).forEach((user) => {
-        if (user && !ids.includes(user.id) && user.id !== app.room?.userId) {
-          app.removeUser(user.id);
-        }
-      });
-
-      app.updateUsers(others.map((other) => other.user).filter(Boolean));
-    };
-
-    awareness().on("change", onChangeAwareness);
-
-    return () => awareness().off("change", onChangeAwareness);
-  }, [app]);
-
-  useEffect(() => {
     if (!app) return;
-
-    function handleDisconnect() {
-      provider().disconnect();
-    }
-
-    window.addEventListener("beforeunload", handleDisconnect);
 
     // Subscribe to changes
     function handleChanges() {
@@ -143,7 +94,6 @@ export function useMultiplayer(roomId: string, language: string) {
     setup();
 
     return () => {
-      window.removeEventListener("beforeunload", handleDisconnect);
       yShapes.unobserveDeep(handleChanges);
     };
   }, [app]);
@@ -182,7 +132,6 @@ export function useMultiplayer(roomId: string, language: string) {
     onUndo,
     onRedo,
     onChangePage,
-    onChangePresence,
     onSessionStart,
     onSessionEnd,
     loading,
