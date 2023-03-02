@@ -28,6 +28,12 @@ yarn clean
 
 ### Development
 
+```bash
+yarn dev
+```
+
+OR
+
 Launch api for image uploading.
 
 ```bash
@@ -70,21 +76,17 @@ yarn start:ws
 
 ## Build
 
+Build all in `./dist`
+
+```bash
+yarn build
+```
+
+OR
+
 Build api and client on there own folder.
 
 ```bash
 yarn build:api
 yarn build:client
-```
-
-OR
-
-```bash
-yarn build:all
-```
-
-Build all in `./dist`
-
-```bash
-yarn build:all:samedir
 ```
