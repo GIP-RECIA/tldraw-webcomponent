@@ -1,13 +1,27 @@
 # Express-Yjs-tldraw
 
-Multiplayer implementation with image upload on [tldraw](https://www.tldraw.com) using [yjs](https://github.com/yjs/yjs) and [express](https://github.com/expressjs/express).
+Tldraw singleplayer and mutliplayer WebComponent.
 
-Based on [nimeshnayaju yjs-tldraw](https://github.com/nimeshnayaju/yjs-tldraw) POC.
+Librairies :
+
+- [tldraw](https://www.tldraw.com)
+- [yjs](https://github.com/yjs/yjs)
+- [express](https://github.com/expressjs/express)
+
+Based on [nimeshnayaju yjs-tldraw](https://github.com/nimeshnayaju/yjs-tldraw) POC for yjs multiplayer.
 
 ## Setup
 
 ```bash
 yarn initialize
+```
+
+---
+
+Remove `node_modules` and `dist` folders.
+
+```bash
+yarn clean
 ```
 
 ## How to use
@@ -26,21 +40,32 @@ Launch client to use tldraw.
 yarn dev:client
 ```
 
-### Multiplayer
-
-Launch WebSocket server then add `/r/<anything>` to your url use multiplayer functionality.
-Each unique url create is own room.
+To use multiplayer functionality, launch WebSocket server then add `/r/<anything>` to your url.
 
 ```bash
 yarn start:ws
 ```
 
-Use to use multiplayer functionality.
+### WebComponent
 
-Remove `node_modules` and `dist` folders.
+|   Prop    | Description                                                                                                                                                      |  Type  | Required | Default |
+| :-------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----: | :------: | :-----: |
+| idb-name  | Name for indexeddb                                                                                                                                               | string |   true   |    -    |
+|  api-url  | API url for file managment                                                                                                                                       | string |   true   |    -    |
+|  ws-url   | WebSocket url                                                                                                                                                    | string |  false   |    -    |
+|  room-id  | Identifier of multiplayer room                                                                                                                                   | string |  false   |    -    |
+| read-only | Disable edition on multiplayer                                                                                                                                   |  bool  |  false   |  false  |
+| language  | Default interface language (check [tldraw translation](https://github.com/tldraw/tldraw/tree/main/packages/tldraw/src/translations) for availables translations) | string |  false   |   en    |
 
-```bash
-yarn clean
+```html
+<tldraw-editor
+  idb-name=""
+  api-url=""
+  ws-url=""
+  room-id=""
+  read-only
+  language=""
+/>
 ```
 
 ## Build

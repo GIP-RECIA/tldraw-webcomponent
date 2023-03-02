@@ -4,12 +4,21 @@ import { useMultiplayer } from "../hooks/useMultiplayer";
 import { initProvider } from "../utils/y-websocket";
 import { CustomCursor } from "./Cursor";
 import PropTypes from "prop-types";
-import { Default, Multiplayer, Settings } from "../types/types";
+import {
+  Multiplayer,
+  MultiplayerReadOnly,
+  Settings,
+  Singleplayer,
+} from "../types/types";
 import { useSingleplayer } from "../hooks/useSingleplayer";
+import { initPersistence } from "../utils/y-indexeddb";
 
 Editor.propTypes = {
+  idbName: PropTypes.string.isRequired,
+  apiUrl: PropTypes.string.isRequired,
+  wsUrl: PropTypes.string,
   roomId: PropTypes.string,
-  readOnly: PropTypes.string,
+  readOnly: PropTypes.bool,
   language: PropTypes.string,
 };
 
@@ -17,30 +26,38 @@ const components = {
   Cursor: CustomCursor,
 };
 
-function Editor({ roomId, readOnly, language }: Settings) {
+function Editor({
+  idbName,
+  apiUrl,
+  wsUrl,
+  roomId,
+  readOnly,
+  language,
+}: Settings) {
   language = language || "en";
-  let editor = <DefaultEditor language={language} />;
-  if (roomId) {
-    initProvider(roomId);
+  initPersistence(idbName);
+  let editor = <SingleplayerEditor apiUrl={apiUrl} language={language} />;
+  if (wsUrl && roomId) {
+    initProvider(wsUrl, roomId);
     editor = readOnly ? (
       <MultiplayerReadOnlyEditor roomId={roomId} language={language} />
     ) : (
-      <MultiplayerEditor roomId={roomId} language={language} />
+      <MultiplayerEditor apiUrl={apiUrl} roomId={roomId} language={language} />
     );
   }
 
   return editor;
 }
 
-function DefaultEditor({ language }: Default) {
+function SingleplayerEditor({ apiUrl, language }: Singleplayer) {
   const fileSystemEvents = useFileSystem();
-  const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets();
+  const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets(apiUrl);
   const { ...events } = useSingleplayer(language);
 
   return (
     <Tldraw
       autofocus
-      components={components}
+      showMultiplayerMenu={false}
       onAssetCreate={onAssetCreate}
       onAssetDelete={onAssetDelete}
       onAssetUpload={onAssetUpload}
@@ -50,9 +67,9 @@ function DefaultEditor({ language }: Default) {
   );
 }
 
-function MultiplayerEditor({ roomId, language }: Multiplayer) {
+function MultiplayerEditor({ apiUrl, roomId, language }: Multiplayer) {
   const { onSaveProjectAs, onSaveProject } = useFileSystem();
-  const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets();
+  const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets(apiUrl);
   const { ...events } = useMultiplayer(roomId, language);
 
   return (
@@ -60,6 +77,7 @@ function MultiplayerEditor({ roomId, language }: Multiplayer) {
       autofocus
       components={components}
       showPages={false}
+      showMultiplayerMenu={false}
       onAssetCreate={onAssetCreate}
       onAssetDelete={onAssetDelete}
       onAssetUpload={onAssetUpload}
@@ -70,7 +88,7 @@ function MultiplayerEditor({ roomId, language }: Multiplayer) {
   );
 }
 
-function MultiplayerReadOnlyEditor({ roomId, language }: Multiplayer) {
+function MultiplayerReadOnlyEditor({ roomId, language }: MultiplayerReadOnly) {
   const { onSaveProjectAs, onSaveProject } = useFileSystem();
   const { ...events } = useMultiplayer(roomId, language);
 
@@ -79,6 +97,7 @@ function MultiplayerReadOnlyEditor({ roomId, language }: Multiplayer) {
       autofocus
       components={components}
       showPages={false}
+      showMultiplayerMenu={false}
       onSaveProjectAs={onSaveProjectAs}
       onSaveProject={onSaveProject}
       readOnly
