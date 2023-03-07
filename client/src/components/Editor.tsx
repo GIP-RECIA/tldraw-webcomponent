@@ -1,3 +1,4 @@
+import { FormEvent, useState } from "react";
 import { Tldraw, useFileSystem } from "@tldraw/tldraw";
 import { CustomCursor } from "./Cursor";
 import { useAssets } from "../hooks/useAssets";
@@ -34,19 +35,56 @@ function Editor({
   readOnly,
   language,
 }: Settings) {
+  const [room, setRoom] = useState(roomId);
+  const [joinRoom, setJoinRoom] = useState(undefined);
+
   language = language || "en";
   initPersistence(idbName);
   let editor = <SingleplayerEditor apiUrl={apiUrl} language={language} />;
-  if (wsUrl && roomId) {
-    initProvider(wsUrl, roomId);
+  if (wsUrl && room) {
+    initProvider(wsUrl, room);
     editor = readOnly ? (
-      <MultiplayerReadOnlyEditor roomId={roomId} language={language} />
+      <MultiplayerReadOnlyEditor roomId={room} language={language} />
     ) : (
-      <MultiplayerEditor apiUrl={apiUrl} roomId={roomId} language={language} />
+      <MultiplayerEditor apiUrl={apiUrl} roomId={room} language={language} />
     );
-  }
+  } else setTimeout(() => destroyProvider(), 500);
 
-  return editor;
+  return (
+    <div>
+      {wsUrl && !room && (
+        <div className="share-container">
+          <input
+            onChange={(e: FormEvent<HTMLInputElement>) =>
+              setJoinRoom(e.target.value)
+            }
+            className="input-join"
+            type="text"
+            placeholder="id of room"
+          ></input>
+          {joinRoom && (
+            <a className="share-item" onClick={() => setRoom(joinRoom)}>
+              Join
+            </a>
+          )}
+        </div>
+      )}
+      {wsUrl && room && (
+        <div className="leave-container">
+          <a
+            className="leave-item"
+            onClick={() => {
+              setJoinRoom(undefined);
+              setRoom(undefined);
+            }}
+          >
+            Leave
+          </a>
+        </div>
+      )}
+      {editor}
+    </div>
+  );
 }
 
 function SingleplayerEditor({ apiUrl, language }: Singleplayer) {
