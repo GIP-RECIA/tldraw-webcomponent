@@ -63,7 +63,11 @@ function Editor({
             placeholder="id of room"
           ></input>
           {joinRoom && (
-            <a className="share-item" onClick={() => setRoom(joinRoom)}>
+            <a
+              className="share-item"
+              onClick={() => setRoom(joinRoom)}
+              title="Join room"
+            >
               Join
             </a>
           )}
@@ -73,10 +77,18 @@ function Editor({
         <div className="leave-container">
           <a
             className="leave-item"
+            onClick={() => navigator.clipboard.writeText(room)}
+            title="Copy room id to clipboard"
+          >
+            {room}
+          </a>
+          <a
+            className="leave-item"
             onClick={() => {
               setJoinRoom(undefined);
               setRoom(undefined);
             }}
+            title="Leave room"
           >
             Leave
           </a>

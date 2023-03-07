@@ -59,7 +59,7 @@ a {
 
 .share-item:hover,
 .leave-item:hover,
-.input-join:hover {
+.input-join:focus {
   background-color: var(--colors-hover);
 }
 
