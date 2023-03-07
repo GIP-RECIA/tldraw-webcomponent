@@ -22,10 +22,10 @@ export function useMultiplayer(roomId: string, language: string) {
   const [loading, setLoading] = useState(true);
 
   const onUndo = useCallback(() => {
-    undoManager.undo();
+    undoManager().undo();
   }, []);
   const onRedo = useCallback(() => {
-    undoManager.redo();
+    undoManager().redo();
   }, []);
 
   // Callbacks --------------
@@ -50,30 +50,30 @@ export function useMultiplayer(roomId: string, language: string) {
       bindings: Record<string, TDBinding | undefined>,
       assets: Record<string, TDAsset | undefined>
     ) => {
-      doc.transact(() => {
-        if (!(yShapes && yBindings && yAssets)) return;
+      doc().transact(() => {
+        if (!(yShapes() && yBindings() && yAssets())) return;
 
         Object.entries(shapes).forEach(([id, shape]) => {
           if (!shape) {
-            yShapes.delete(id);
+            yShapes().delete(id);
           } else {
-            yShapes.set(shape.id, shape);
+            yShapes().set(shape.id, shape);
           }
         });
 
         Object.entries(bindings).forEach(([id, binding]) => {
           if (!binding) {
-            yBindings.delete(id);
+            yBindings().delete(id);
           } else {
-            yBindings.set(binding.id, binding);
+            yBindings().set(binding.id, binding);
           }
         });
 
         Object.entries(assets).forEach(([id, asset]) => {
           if (!asset) {
-            yAssets.delete(id);
+            yAssets().delete(id);
           } else {
-            yAssets.set(asset.id, asset);
+            yAssets().set(asset.id, asset);
           }
         });
       });
@@ -128,14 +128,14 @@ export function useMultiplayer(roomId: string, language: string) {
       if (!app) return;
 
       app.replacePageContent(
-        Object.fromEntries(yShapes.entries()),
-        Object.fromEntries(yBindings.entries()),
-        Object.fromEntries(yAssets.entries())
+        Object.fromEntries(yShapes().entries()),
+        Object.fromEntries(yBindings().entries()),
+        Object.fromEntries(yAssets().entries())
       );
     }
 
     async function setup() {
-      yShapes.observe(handleChanges);
+      yShapes().observe(handleChanges);
       handleChanges();
       setLoading(false);
     }
@@ -144,7 +144,7 @@ export function useMultiplayer(roomId: string, language: string) {
 
     return () => {
       window.removeEventListener("beforeunload", handleDisconnect);
-      yShapes.unobserveDeep(handleChanges);
+      yShapes().unobserveDeep(handleChanges);
     };
   }, [app]);
 
@@ -156,20 +156,20 @@ export function useMultiplayer(roomId: string, language: string) {
     "ctrl+shift+l;,⌘+shift+l",
     () => {
       if (window.confirm("Reset the document?")) {
-        undoManager.stopCapturing();
-        doc.transact(() => {
-          if (!(yShapes && yBindings && yAssets)) return;
+        undoManager().stopCapturing();
+        doc().transact(() => {
+          if (!(yShapes() && yBindings() && yAssets())) return;
 
-          yShapes.forEach((shape) => {
-            yShapes.delete(shape.id);
+          yShapes().forEach((shape) => {
+            yShapes().delete(shape.id);
           });
 
-          yBindings.forEach((shape) => {
-            yBindings.delete(shape.id);
+          yBindings().forEach((shape) => {
+            yBindings().delete(shape.id);
           });
 
-          yAssets.forEach((shape) => {
-            yAssets.delete(shape.id);
+          yAssets().forEach((shape) => {
+            yAssets().delete(shape.id);
           });
         });
       }

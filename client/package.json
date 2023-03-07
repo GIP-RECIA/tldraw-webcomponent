@@ -20,11 +20,11 @@
     "react-dom": "^18.2.0",
     "y-indexeddb": "^9.0.9",
     "y-presence": "^0.2.3",
-    "y-websocket": "^1.4.5",
-    "yjs": "^13.5.47"
+    "y-websocket": "^1.4.6",
+    "yjs": "^13.5.48"
   },
   "devDependencies": {
-    "@types/node": "^18.14.2",
+    "@types/node": "^18.14.6",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",

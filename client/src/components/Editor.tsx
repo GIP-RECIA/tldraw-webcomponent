@@ -1,8 +1,10 @@
 import { Tldraw, useFileSystem } from "@tldraw/tldraw";
+import { CustomCursor } from "./Cursor";
 import { useAssets } from "../hooks/useAssets";
 import { useMultiplayer } from "../hooks/useMultiplayer";
-import { initProvider } from "../utils/y-websocket";
-import { CustomCursor } from "./Cursor";
+import { useSingleplayer } from "../hooks/useSingleplayer";
+import { initPersistence } from "../utils/y-indexeddb";
+import { destroyProvider, initProvider } from "../utils/y-websocket";
 import PropTypes from "prop-types";
 import {
   Multiplayer,
@@ -10,8 +12,6 @@ import {
   Settings,
   Singleplayer,
 } from "../types/types";
-import { useSingleplayer } from "../hooks/useSingleplayer";
-import { initPersistence } from "../utils/y-indexeddb";
 
 Editor.propTypes = {
   idbName: PropTypes.string.isRequired,
