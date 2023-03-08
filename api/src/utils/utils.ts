@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-export const process = async (call: any, req: Request, res: Response) => {
+const process = async (call: any, req: Request, res: Response) => {
   let status: number = 200;
   let body: object = {};
 
@@ -16,3 +16,5 @@ export const process = async (call: any, req: Request, res: Response) => {
 
   return res.status(status).json(body);
 };
+
+export { process };

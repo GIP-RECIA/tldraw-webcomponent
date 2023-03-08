@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { readdirSync, unlinkSync } from "fs";
 import { process } from "../utils/utils";
 
-export const uploadFile = async (req: Request, res: Response) =>
+const uploadFile = async (req: Request, res: Response) =>
   process(
     async (req: Request, res: Response) => {
       if (req.file) {
@@ -16,7 +16,7 @@ export const uploadFile = async (req: Request, res: Response) =>
     res
   );
 
-export const deleteFile = (req: Request, res: Response) =>
+const deleteFile = (req: Request, res: Response) =>
   process(
     (req: Request, res: Response) => {
       let file = readdirSync("public/uploads").find(
@@ -27,3 +27,5 @@ export const deleteFile = (req: Request, res: Response) =>
     req,
     res
   );
+
+export { uploadFile, deleteFile };

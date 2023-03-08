@@ -9,8 +9,6 @@
     "strictNullChecks": true,
     "resolveJsonModule": true,
     "skipDefaultLibCheck": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "outDir": "dist",
     "strictPropertyInitialization": false
   },

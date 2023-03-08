@@ -3,7 +3,7 @@ import { existsSync, mkdirSync } from "fs";
 import { extname } from "path";
 import { NextFunction, Request, Response } from "express";
 
-export const mUpload =
+const mUpload =
   (uploadPath: string, identifier: string) =>
   (req: Request, res: Response, next: NextFunction) => {
     const storage = diskStorage({
@@ -22,3 +22,5 @@ export const mUpload =
 
     uploadFile(req, res, next);
   };
+
+export { mUpload };
