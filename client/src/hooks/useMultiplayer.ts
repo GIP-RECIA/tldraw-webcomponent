@@ -9,6 +9,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import * as Y from "yjs";
 import { WebsocketProvider } from "y-websocket";
+import { getDocData } from "../utils/yjs";
 
 export function useMultiplayer(
   doc: Y.Doc,
@@ -20,12 +21,7 @@ export function useMultiplayer(
   const [loading, setLoading] = useState(true);
 
   const awareness = provider.awareness;
-
-  const yShapes: Y.Map<TDShape> = doc.getMap("shapes");
-  const yBindings: Y.Map<TDBinding> = doc.getMap("bindings");
-  const yAssets: Y.Map<TDAsset> = doc.getMap("assets");
-
-  const undoManager = new Y.UndoManager([yShapes, yBindings, yAssets]);
+  const { yShapes, yBindings, yAssets, undoManager } = getDocData(doc);
 
   const onUndo = useCallback(() => {
     undoManager.undo();

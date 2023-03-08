@@ -4,7 +4,7 @@ import { CustomCursor } from "./Cursor";
 import { useAssets } from "../hooks/useAssets";
 import { useMultiplayer } from "../hooks/useMultiplayer";
 import { useSingleplayer } from "../hooks/useSingleplayer";
-import { doc as localDoc, initPersistence } from "../utils/y-indexeddb";
+import { cloneDoc, initPersistence, initProvider, newDoc } from "../utils/yjs";
 import { v4 as uuidv4, validate as uuidValidate } from "uuid";
 import PropTypes from "prop-types";
 import {
@@ -21,8 +21,6 @@ import {
   faUsers,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import * as Y from "yjs";
-import { WebsocketProvider } from "y-websocket";
 
 Editor.propTypes = {
   idbName: PropTypes.string.isRequired,
@@ -39,6 +37,8 @@ Editor.propTypes = {
 const components = {
   Cursor: CustomCursor,
 };
+
+const localDoc = newDoc();
 
 function Editor({
   idbName,
@@ -57,12 +57,14 @@ function Editor({
   const [useLocalDoc, setUseLocalDoc] = useState(false);
 
   language = language || "en";
-  initPersistence(idbName);
-  let editor = <SingleplayerEditor apiUrl={apiUrl} language={language} />;
+  initPersistence(idbName, localDoc);
+  let editor = (
+    <SingleplayerEditor apiUrl={apiUrl} doc={localDoc} language={language} />
+  );
   if (wsUrl && room) {
-    const doc = new Y.Doc();
-    useLocalDoc && Y.applyUpdate(doc, Y.encodeStateAsUpdate(localDoc));
-    const provider = new WebsocketProvider(wsUrl, room, doc, { connect: true });
+    let doc = newDoc();
+    if (useLocalDoc) doc = cloneDoc(localDoc);
+    const provider = initProvider(wsUrl, room, doc);
     editor = readOnly ? (
       <MultiplayerReadOnlyEditor
         doc={doc}
@@ -177,10 +179,10 @@ function Editor({
   );
 }
 
-function SingleplayerEditor({ apiUrl, language }: Singleplayer) {
+function SingleplayerEditor({ apiUrl, doc, language }: Singleplayer) {
   const fileSystemEvents = useFileSystem();
   const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets(apiUrl);
-  const { ...events } = useSingleplayer(language);
+  const { ...events } = useSingleplayer(doc, language);
 
   return (
     <Tldraw

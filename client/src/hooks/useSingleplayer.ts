@@ -1,17 +1,14 @@
 import type { TDAsset, TDBinding, TDShape, TldrawApp } from "@tldraw/tldraw";
 import { useCallback, useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
-import {
-  doc,
-  undoManager,
-  yAssets,
-  yBindings,
-  yShapes,
-} from "../utils/y-indexeddb";
+import * as Y from "yjs";
+import { getDocData } from "../utils/yjs";
 
-export function useSingleplayer(language: string) {
+export function useSingleplayer(doc: Y.Doc, language: string) {
   const [app, setApp] = useState<TldrawApp>();
   const [loading, setLoading] = useState(true);
+
+  const { yShapes, yBindings, yAssets, undoManager } = getDocData(doc);
 
   const onUndo = useCallback(() => {
     undoManager.undo();

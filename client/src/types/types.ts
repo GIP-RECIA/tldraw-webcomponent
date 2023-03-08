@@ -15,6 +15,7 @@ export type Settings = {
 
 export type Singleplayer = {
   apiUrl: string;
+  doc: Y.Doc;
   language: string;
 };
 
