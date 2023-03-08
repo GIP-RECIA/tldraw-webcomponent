@@ -1,4 +1,3 @@
-import Editor from "./components/Editor";
 import "./App.scss";
 
 const { VITE_API_URL, VITE_IDB_NAME, VITE_LANGUAGE, VITE_WS_URL } = import.meta
@@ -10,11 +9,11 @@ export default function App() {
 
   return (
     <div className="tldraw">
-      <Editor
-        idbName={VITE_IDB_NAME}
-        apiUrl={VITE_API_URL}
-        wsUrl={VITE_WS_URL}
-        roomId={roomId}
+      <tldraw-editor
+        idb-name={VITE_IDB_NAME}
+        api-url={VITE_API_URL}
+        ws-url={VITE_WS_URL}
+        room-id={roomId}
         language={VITE_LANGUAGE}
       />
     </div>
