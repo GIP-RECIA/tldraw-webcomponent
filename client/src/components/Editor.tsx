@@ -5,7 +5,6 @@ import { useAssets } from "../hooks/useAssets";
 import { useMultiplayer } from "../hooks/useMultiplayer";
 import { useSingleplayer } from "../hooks/useSingleplayer";
 import { doc as localDoc, initPersistence } from "../utils/y-indexeddb";
-import { destroyProvider, initProvider } from "../utils/y-websocket";
 import { v4 as uuidv4, validate as uuidValidate } from "uuid";
 import PropTypes from "prop-types";
 import {
@@ -22,6 +21,8 @@ import {
   faUsers,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import * as Y from "yjs";
+import { WebsocketProvider } from "y-websocket";
 
 Editor.propTypes = {
   idbName: PropTypes.string.isRequired,
@@ -59,15 +60,26 @@ function Editor({
   initPersistence(idbName);
   let editor = <SingleplayerEditor apiUrl={apiUrl} language={language} />;
   if (wsUrl && room) {
-    useLocalDoc
-      ? initProvider(wsUrl, room, localDoc)
-      : initProvider(wsUrl, room);
+    const doc = new Y.Doc();
+    useLocalDoc && Y.applyUpdate(doc, Y.encodeStateAsUpdate(localDoc));
+    const provider = new WebsocketProvider(wsUrl, room, doc, { connect: true });
     editor = readOnly ? (
-      <MultiplayerReadOnlyEditor roomId={room} language={language} />
+      <MultiplayerReadOnlyEditor
+        doc={doc}
+        provider={provider}
+        roomId={room}
+        language={language}
+      />
     ) : (
-      <MultiplayerEditor apiUrl={apiUrl} roomId={room} language={language} />
+      <MultiplayerEditor
+        apiUrl={apiUrl}
+        doc={doc}
+        provider={provider}
+        roomId={room}
+        language={language}
+      />
     );
-  } else setTimeout(() => destroyProvider(), 500);
+  }
 
   const resetStates = () => {
     setRoom(undefined);
@@ -183,10 +195,16 @@ function SingleplayerEditor({ apiUrl, language }: Singleplayer) {
   );
 }
 
-function MultiplayerEditor({ apiUrl, roomId, language }: Multiplayer) {
+function MultiplayerEditor({
+  apiUrl,
+  doc,
+  provider,
+  roomId,
+  language,
+}: Multiplayer) {
   const { onSaveProjectAs, onSaveProject } = useFileSystem();
   const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets(apiUrl);
-  const { ...events } = useMultiplayer(roomId, language);
+  const { ...events } = useMultiplayer(doc, provider, roomId, language);
 
   return (
     <Tldraw
@@ -204,9 +222,14 @@ function MultiplayerEditor({ apiUrl, roomId, language }: Multiplayer) {
   );
 }
 
-function MultiplayerReadOnlyEditor({ roomId, language }: MultiplayerReadOnly) {
+function MultiplayerReadOnlyEditor({
+  doc,
+  provider,
+  roomId,
+  language,
+}: MultiplayerReadOnly) {
   const { onSaveProjectAs, onSaveProject } = useFileSystem();
-  const { ...events } = useMultiplayer(roomId, language);
+  const { ...events } = useMultiplayer(doc, provider, roomId, language);
 
   return (
     <Tldraw

@@ -7,25 +7,31 @@ import type {
 } from "@tldraw/tldraw";
 import { useCallback, useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
-import {
-  awareness,
-  doc,
-  provider,
-  undoManager,
-  yAssets,
-  yBindings,
-  yShapes,
-} from "../utils/y-websocket";
+import * as Y from "yjs";
+import { WebsocketProvider } from "y-websocket";
 
-export function useMultiplayer(roomId: string, language: string) {
+export function useMultiplayer(
+  doc: Y.Doc,
+  provider: WebsocketProvider,
+  roomId: string,
+  language: string
+) {
   const [app, setApp] = useState<TldrawApp>();
   const [loading, setLoading] = useState(true);
 
+  const awareness = provider.awareness;
+
+  const yShapes: Y.Map<TDShape> = doc.getMap("shapes");
+  const yBindings: Y.Map<TDBinding> = doc.getMap("bindings");
+  const yAssets: Y.Map<TDAsset> = doc.getMap("assets");
+
+  const undoManager = new Y.UndoManager([yShapes, yBindings, yAssets]);
+
   const onUndo = useCallback(() => {
-    undoManager().undo();
+    undoManager.undo();
   }, []);
   const onRedo = useCallback(() => {
-    undoManager().redo();
+    undoManager.redo();
   }, []);
 
   // Callbacks --------------
@@ -50,30 +56,30 @@ export function useMultiplayer(roomId: string, language: string) {
       bindings: Record<string, TDBinding | undefined>,
       assets: Record<string, TDAsset | undefined>
     ) => {
-      doc().transact(() => {
-        if (!(yShapes() && yBindings() && yAssets())) return;
+      doc.transact(() => {
+        if (!(yShapes && yBindings && yAssets)) return;
 
         Object.entries(shapes).forEach(([id, shape]) => {
           if (!shape) {
-            yShapes().delete(id);
+            yShapes.delete(id);
           } else {
-            yShapes().set(shape.id, shape);
+            yShapes.set(shape.id, shape);
           }
         });
 
         Object.entries(bindings).forEach(([id, binding]) => {
           if (!binding) {
-            yBindings().delete(id);
+            yBindings.delete(id);
           } else {
-            yBindings().set(binding.id, binding);
+            yBindings.set(binding.id, binding);
           }
         });
 
         Object.entries(assets).forEach(([id, asset]) => {
           if (!asset) {
-            yAssets().delete(id);
+            yAssets.delete(id);
           } else {
-            yAssets().set(asset.id, asset);
+            yAssets.set(asset.id, asset);
           }
         });
       });
@@ -84,7 +90,7 @@ export function useMultiplayer(roomId: string, language: string) {
   // Handle presence updates when the user's pointer / selection changes
   const onChangePresence = useCallback((app: TldrawApp, user: TDUser) => {
     if (!app.room) return;
-    awareness().setLocalStateField("user", user);
+    awareness.setLocalStateField("user", user);
   }, []);
 
   // Document Changes --------
@@ -93,8 +99,8 @@ export function useMultiplayer(roomId: string, language: string) {
     const onChangeAwareness = () => {
       if (!app || !app.room) return;
 
-      const others = Array.from(awareness().getStates().entries())
-        .filter(([key, _]) => key !== awareness().clientID)
+      const others = Array.from(awareness.getStates().entries())
+        .filter(([key, _]) => key !== awareness.clientID)
         .map(([_, state]) => state)
         .filter((user) => user.user !== undefined);
 
@@ -109,16 +115,16 @@ export function useMultiplayer(roomId: string, language: string) {
       app.updateUsers(others.map((other) => other.user).filter(Boolean));
     };
 
-    awareness().on("change", onChangeAwareness);
+    awareness.on("change", onChangeAwareness);
 
-    return () => awareness().off("change", onChangeAwareness);
+    return () => awareness.off("change", onChangeAwareness);
   }, [app]);
 
   useEffect(() => {
     if (!app) return;
 
     function handleDisconnect() {
-      provider().disconnect();
+      provider.disconnect();
     }
 
     window.addEventListener("beforeunload", handleDisconnect);
@@ -128,14 +134,14 @@ export function useMultiplayer(roomId: string, language: string) {
       if (!app) return;
 
       app.replacePageContent(
-        Object.fromEntries(yShapes().entries()),
-        Object.fromEntries(yBindings().entries()),
-        Object.fromEntries(yAssets().entries())
+        Object.fromEntries(yShapes.entries()),
+        Object.fromEntries(yBindings.entries()),
+        Object.fromEntries(yAssets.entries())
       );
     }
 
     async function setup() {
-      yShapes().observe(handleChanges);
+      yShapes.observe(handleChanges);
       handleChanges();
       setLoading(false);
     }
@@ -144,7 +150,7 @@ export function useMultiplayer(roomId: string, language: string) {
 
     return () => {
       window.removeEventListener("beforeunload", handleDisconnect);
-      yShapes().unobserveDeep(handleChanges);
+      yShapes.unobserveDeep(handleChanges);
     };
   }, [app]);
 
@@ -156,20 +162,20 @@ export function useMultiplayer(roomId: string, language: string) {
     "ctrl+shift+l;,⌘+shift+l",
     () => {
       if (window.confirm("Reset the document?")) {
-        undoManager().stopCapturing();
-        doc().transact(() => {
-          if (!(yShapes() && yBindings() && yAssets())) return;
+        undoManager.stopCapturing();
+        doc.transact(() => {
+          if (!(yShapes && yBindings && yAssets)) return;
 
-          yShapes().forEach((shape) => {
-            yShapes().delete(shape.id);
+          yShapes.forEach((shape) => {
+            yShapes.delete(shape.id);
           });
 
-          yBindings().forEach((shape) => {
-            yBindings().delete(shape.id);
+          yBindings.forEach((shape) => {
+            yBindings.delete(shape.id);
           });
 
-          yAssets().forEach((shape) => {
-            yAssets().delete(shape.id);
+          yAssets.forEach((shape) => {
+            yAssets.delete(shape.id);
           });
         });
       }
