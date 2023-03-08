@@ -18,7 +18,8 @@ const provider = (): WebsocketProvider => {
 };
 
 const initProvider = (wsUrl: string, roomId: string, doc?: Y.Doc) => {
-  _doc = doc ? doc : new Y.Doc();
+  _doc = new Y.Doc();
+  if (doc) Y.applyUpdate(_doc, Y.encodeStateAsUpdate(doc));
   _provider = new WebsocketProvider(wsUrl, roomId, _doc, {
     connect: true,
   });
