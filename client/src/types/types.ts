@@ -5,6 +5,9 @@ export type Settings = {
   roomId?: string;
   readOnly?: boolean;
   language?: string;
+  cantJoin?: boolean;
+  cantLeave?: boolean;
+  cantShare?: boolean;
 };
 
 export type Singleplayer = {

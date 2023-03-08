@@ -17,8 +17,8 @@ const provider = (): WebsocketProvider => {
   return _provider;
 };
 
-const initProvider = (wsUrl: string, roomId: string) => {
-  _doc = new Y.Doc();
+const initProvider = (wsUrl: string, roomId: string, doc?: Y.Doc) => {
+  _doc = doc ? doc : new Y.Doc();
   _provider = new WebsocketProvider(wsUrl, roomId, _doc, {
     connect: true,
   });

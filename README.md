@@ -54,14 +54,17 @@ yarn start:ws
 
 ### WebComponent
 
-|   Prop    | Description                                                                                                                                                      |  Type  | Required | Default |
-| :-------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----: | :------: | :-----: |
-| idb-name  | Name for indexeddb                                                                                                                                               | string |   true   |    -    |
-|  api-url  | API url for file managment                                                                                                                                       | string |   true   |    -    |
-|  ws-url   | WebSocket url                                                                                                                                                    | string |  false   |    -    |
-|  room-id  | Identifier of multiplayer room                                                                                                                                   | string |  false   |    -    |
-| read-only | Disable edition on multiplayer                                                                                                                                   |  bool  |  false   |  false  |
-| language  | Default interface language (check [tldraw translation](https://github.com/tldraw/tldraw/tree/main/packages/tldraw/src/translations) for availables translations) | string |  false   |   en    |
+|    Prop    | Description                                                                                                                                                      |  Type  | Required | Default |
+| :--------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----: | :------: | :-----: |
+|  idb-name  | Name for indexeddb                                                                                                                                               | string |   true   |    -    |
+|  api-url   | API url for file managment                                                                                                                                       | string |   true   |    -    |
+|   ws-url   | WebSocket url                                                                                                                                                    | string |  false   |    -    |
+|  room-id   | Identifier of multiplayer room                                                                                                                                   | string |  false   |    -    |
+|  language  | Default interface language (check [tldraw translation](https://github.com/tldraw/tldraw/tree/main/packages/tldraw/src/translations) for availables translations) | string |  false   |   en    |
+| read-only  | Disable edition on multiplayer                                                                                                                                   |  bool  |  false   |  false  |
+| cant-join  | Disallow users to join a room                                                                                                                                    |  bool  |  false   |  false  |
+| cant-leave | Disallow users to leave a room                                                                                                                                   |  bool  |  false   |  false  |
+| cant-share | Disallow users to share a romm                                                                                                                                   |  bool  |  false   |  false  |
 
 ```html
 <tldraw-editor
@@ -69,8 +72,11 @@ yarn start:ws
   api-url=""
   ws-url=""
   room-id=""
-  read-only
   language=""
+  read-only
+  cant-join
+  cant-share
+  cant-leave
 />
 ```
 

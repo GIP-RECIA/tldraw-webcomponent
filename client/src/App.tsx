@@ -1,5 +1,5 @@
 import Editor from "./components/Editor";
-import "./App.css";
+import "./App.scss";
 
 const { VITE_API_URL, VITE_IDB_NAME, VITE_LANGUAGE, VITE_WS_URL } = import.meta
   .env;

@@ -25,28 +25,37 @@ a {
   height: 100%;
 }
 
+$border-radius: 9px;
+$margin: 1px;
+$padding: 9px;
+$height: 40px;
+$left-share: 110px;
+$left-leave: 50px;
+
 .share-container,
 .leave-container {
   z-index: 2;
   position: absolute;
-  left: 110px;
+  left: $left-share;
   display: flex;
   box-shadow: var(--shadows-panel);
-  border-bottom-right-radius: 9px;
-  border-bottom-left-radius: 9px;
+  border-bottom-right-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
   background-color: var(--colors-panelContrast);
 }
 
 .leave-container {
-  left: 50px;
+  left: $left-leave;
 }
 
 .share-item,
 .leave-item {
-  width: 60px;
-  height: 40px;
-  border-radius: 9px;
-  margin: 1px;
+  width: fit-content;
+  min-width: $height;
+  height: $height;
+  border-radius: $border-radius;
+  margin: $margin;
+  padding: $padding;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -66,9 +75,9 @@ a {
 .input-join {
   border: none;
   outline: none;
-  width: 100px;
-  height: 40px;
-  margin: 1px;
-  border-radius: 9px;
+  width: 280px;
+  height: $height;
+  margin: $margin;
+  border-radius: $border-radius;
   text-align: center;
 }
