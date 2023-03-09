@@ -26,7 +26,6 @@ a {
 }
 
 $border-radius: 9px;
-$margin: 1px;
 $padding: 9px;
 $height: 40px;
 $left: 50px;
@@ -39,7 +38,8 @@ $left: 50px;
   box-shadow: var(--shadows-panel);
   border-bottom-right-radius: $border-radius;
   border-bottom-left-radius: $border-radius;
-  background-color: var(--colors-panelContrast);
+  background-color: var(--colors-panel);
+  border: 1px solid var(--colors-panelContrast);
 }
 
 .item {
@@ -47,7 +47,6 @@ $left: 50px;
   min-width: $height;
   height: $height;
   border-radius: $border-radius;
-  margin: $margin;
   padding: $padding;
   cursor: pointer;
   display: flex;
