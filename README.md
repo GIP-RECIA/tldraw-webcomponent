@@ -5,8 +5,8 @@ Tldraw singleplayer and mutliplayer WebComponent.
 Librairies :
 
 - [tldraw](https://www.tldraw.com)
-- [yjs](https://github.com/yjs/yjs)
-- [express](https://github.com/expressjs/express)
+- [Yjs](https://github.com/yjs/yjs)
+- [Express](https://github.com/expressjs/express)
 
 Based on [nimeshnayaju yjs-tldraw](https://github.com/nimeshnayaju/yjs-tldraw) POC for yjs multiplayer.
 
@@ -46,7 +46,7 @@ Launch client to use tldraw.
 yarn dev:client
 ```
 
-To use multiplayer functionality, launch WebSocket server then add `/r/<anything>` to your url.
+To use multiplayer functionality.
 
 ```bash
 yarn start:ws
@@ -54,17 +54,17 @@ yarn start:ws
 
 ### WebComponent
 
-|    Prop    | Description                                                                                                                                                      |  Type  | Required | Default |
-| :--------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----: | :------: | :-----: |
-|  idb-name  | Name for indexeddb                                                                                                                                               | string |   true   |    -    |
-|  api-url   | API url for file managment                                                                                                                                       | string |   true   |    -    |
-|   ws-url   | WebSocket url                                                                                                                                                    | string |  false   |    -    |
-|  room-id   | Identifier of multiplayer room                                                                                                                                   | string |  false   |    -    |
-|  language  | Default interface language (check [tldraw translation](https://github.com/tldraw/tldraw/tree/main/packages/tldraw/src/translations) for availables translations) | string |  false   |   en    |
-| read-only  | Disable edition on multiplayer                                                                                                                                   |  bool  |  false   |  false  |
-| cant-join  | Disallow users to join a room                                                                                                                                    |  bool  |  false   |  false  |
-| cant-leave | Disallow users to leave a room                                                                                                                                   |  bool  |  false   |  false  |
-| cant-share | Disallow users to share a romm                                                                                                                                   |  bool  |  false   |  false  |
+|  Property   |   Type    | Required | Default | Description                                                                                                                                                      |
+| :---------: | :-------: | :------: | :-----: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `idb-name`  | `string`  |  `true`  |         | Name for indexeddb                                                                                                                                               |
+|  `api-url`  | `string`  |  `true`  |         | API url for file managment                                                                                                                                       |
+|  `ws-url`   | `string`  | `false`  |         | [Yjs](https://github.com/yjs/yjs) WebSocket server url                                                                                                           |
+|  `room-id`  | `string`  | `false`  |         | Identifier of multiplayer room                                                                                                                                   |
+| `language`  | `string`  | `false`  |  `en`   | Default interface language (check [tldraw translation](https://github.com/tldraw/tldraw/tree/main/packages/tldraw/src/translations) for availables translations) |
+| `read-only` | `boolean` | `false`  | `false` | Disable edition on multiplayer                                                                                                                                   |
+|  `no-join`  | `boolean` | `false`  | `false` | Disallow joining room                                                                                                                                            |
+| `no-leave`  | `boolean` | `false`  | `false` | Disallow leaving room                                                                                                                                            |
+| `no-share`  | `boolean` | `false`  | `false` | Disallow sharing romm                                                                                                                                            |
 
 ```html
 <tldraw-editor
@@ -74,9 +74,9 @@ yarn start:ws
   room-id=""
   language=""
   read-only
-  cant-join
-  cant-share
-  cant-leave
+  no-join
+  no-share
+  no-leave
 />
 ```
 

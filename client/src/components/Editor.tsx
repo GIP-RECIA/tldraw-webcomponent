@@ -29,9 +29,9 @@ Editor.propTypes = {
   roomId: PropTypes.string,
   language: PropTypes.string,
   readOnly: PropTypes.bool,
-  cantJoin: PropTypes.bool,
-  cantLeave: PropTypes.bool,
-  cantShare: PropTypes.bool,
+  noJoin: PropTypes.bool,
+  noLeave: PropTypes.bool,
+  noShare: PropTypes.bool,
 };
 
 const components = {
@@ -47,9 +47,9 @@ function Editor({
   roomId,
   language,
   readOnly,
-  cantJoin,
-  cantLeave,
-  cantShare,
+  noJoin,
+  noLeave,
+  noShare,
 }: Settings) {
   const [room, setRoom] = useState(roomId);
   const [joinRoom, setJoinRoom] = useState(undefined);
@@ -61,7 +61,7 @@ function Editor({
   let editor = (
     <SingleplayerEditor apiUrl={apiUrl} doc={localDoc} language={language} />
   );
-  if (wsUrl && room) {
+  if (wsUrl && room && uuidValidate(room)) {
     let doc = newDoc();
     if (useLocalDoc) doc = cloneDoc(localDoc);
     const provider = initProvider(wsUrl, room, doc);
@@ -94,7 +94,7 @@ function Editor({
     <div>
       {wsUrl && !room && (
         <div className="share-container">
-          {!cantShare && !readOnly && (
+          {!noShare && !readOnly && (
             <a
               className="share-item"
               onClick={() => setRoom(uuidv4())}
@@ -103,7 +103,7 @@ function Editor({
               <FontAwesomeIcon icon={faUsers} />
             </a>
           )}
-          {!cantShare && !readOnly && (
+          {!noShare && !readOnly && (
             <a
               className="share-item"
               onClick={() => {
@@ -115,7 +115,7 @@ function Editor({
               <FontAwesomeIcon icon={faShareNodes} />
             </a>
           )}
-          {!cantJoin && !wantJoinRoom && (
+          {!noJoin && !wantJoinRoom && (
             <a
               className="share-item"
               onClick={() => setWantJoinRoom(true)}
@@ -124,7 +124,7 @@ function Editor({
               <FontAwesomeIcon icon={faArrowRightToBracket} />
             </a>
           )}
-          {!cantJoin && wantJoinRoom && (
+          {!noJoin && wantJoinRoom && (
             <input
               onChange={(e: FormEvent<HTMLInputElement>) =>
                 setJoinRoom(e.target.value)
@@ -136,7 +136,7 @@ function Editor({
               autoFocus
             ></input>
           )}
-          {!cantJoin && wantJoinRoom && (
+          {!noJoin && wantJoinRoom && (
             <a
               className="share-item"
               onClick={resetStates}
@@ -145,7 +145,7 @@ function Editor({
               <FontAwesomeIcon icon={faXmark} />
             </a>
           )}
-          {!cantJoin && joinRoom && uuidValidate(joinRoom) && (
+          {!noJoin && joinRoom && uuidValidate(joinRoom) && (
             <a
               className="share-item"
               onClick={() => setRoom(joinRoom)}
@@ -158,7 +158,7 @@ function Editor({
       )}
       {wsUrl && room && (
         <div className="leave-container">
-          {!cantShare && (
+          {!noShare && (
             <a
               className="leave-item"
               onClick={() => navigator.clipboard.writeText(room)}
@@ -167,7 +167,7 @@ function Editor({
               {room}
             </a>
           )}
-          {!cantLeave && (
+          {!noLeave && (
             <a className="leave-item" onClick={resetStates} title="Leave room">
               <FontAwesomeIcon icon={faArrowRightFromBracket} />
             </a>

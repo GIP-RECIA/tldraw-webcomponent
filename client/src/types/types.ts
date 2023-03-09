@@ -8,9 +8,9 @@ export type Settings = {
   roomId?: string;
   readOnly?: boolean;
   language?: string;
-  cantJoin?: boolean;
-  cantLeave?: boolean;
-  cantShare?: boolean;
+  noJoin?: boolean;
+  noLeave?: boolean;
+  noShare?: boolean;
 };
 
 export type Singleplayer = {
