@@ -59,7 +59,12 @@ function Editor({
   language = language || "en";
   initPersistence(idbName, localDoc);
   let editor = (
-    <SingleplayerEditor apiUrl={apiUrl} doc={localDoc} language={language} />
+    <SingleplayerEditor
+      apiUrl={apiUrl}
+      doc={localDoc}
+      language={language}
+      readOnly={wantJoinRoom}
+    />
   );
   if (wsUrl && room && uuidValidate(room)) {
     let doc = newDoc();
@@ -83,6 +88,10 @@ function Editor({
     );
   }
 
+  const joinRoomHandler = () => {
+    if (joinRoom && uuidValidate(joinRoom)) setRoom(joinRoom);
+  };
+
   const resetStates = () => {
     setRoom(undefined);
     setJoinRoom(undefined);
@@ -93,19 +102,19 @@ function Editor({
   return (
     <div>
       {wsUrl && !room && (
-        <div className="share-container">
-          {!noShare && !readOnly && (
+        <div className="container">
+          {!noShare && !readOnly && !wantJoinRoom && (
             <a
-              className="share-item"
+              className="item"
               onClick={() => setRoom(uuidv4())}
               title="Generate a room"
             >
               <FontAwesomeIcon icon={faUsers} />
             </a>
           )}
-          {!noShare && !readOnly && (
+          {!noShare && !readOnly && !wantJoinRoom && (
             <a
-              className="share-item"
+              className="item"
               onClick={() => {
                 setUseLocalDoc(true);
                 setRoom(uuidv4());
@@ -117,7 +126,7 @@ function Editor({
           )}
           {!noJoin && !wantJoinRoom && (
             <a
-              className="share-item"
+              className="item"
               onClick={() => setWantJoinRoom(true)}
               title="Join room"
             >
@@ -126,10 +135,11 @@ function Editor({
           )}
           {!noJoin && wantJoinRoom && (
             <input
-              onChange={(e: FormEvent<HTMLInputElement>) =>
-                setJoinRoom(e.target.value)
-              }
-              className="input-join"
+              className="item input-join"
+              onChange={(e: FormEvent<HTMLInputElement>) => {
+                setJoinRoom(e.target.value);
+              }}
+              onKeyUp={(e) => e.key === "Enter" && joinRoomHandler()}
               type="text"
               placeholder="id of room to join..."
               maxLength={uuidv4().length}
@@ -138,7 +148,7 @@ function Editor({
           )}
           {!noJoin && wantJoinRoom && (
             <a
-              className="share-item"
+              className="item"
               onClick={resetStates}
               title="Close joining room input"
             >
@@ -146,21 +156,17 @@ function Editor({
             </a>
           )}
           {!noJoin && joinRoom && uuidValidate(joinRoom) && (
-            <a
-              className="share-item"
-              onClick={() => setRoom(joinRoom)}
-              title="Join room"
-            >
+            <a className="item" onClick={joinRoomHandler} title="Join room">
               <FontAwesomeIcon icon={faArrowRightToBracket} />
             </a>
           )}
         </div>
       )}
       {wsUrl && room && (
-        <div className="leave-container">
+        <div className="container">
           {!noShare && (
             <a
-              className="leave-item"
+              className="item"
               onClick={() => navigator.clipboard.writeText(room)}
               title="Copy room id to clipboard"
             >
@@ -168,7 +174,7 @@ function Editor({
             </a>
           )}
           {!noLeave && (
-            <a className="leave-item" onClick={resetStates} title="Leave room">
+            <a className="item" onClick={resetStates} title="Leave room">
               <FontAwesomeIcon icon={faArrowRightFromBracket} />
             </a>
           )}
@@ -179,7 +185,7 @@ function Editor({
   );
 }
 
-function SingleplayerEditor({ apiUrl, doc, language }: Singleplayer) {
+function SingleplayerEditor({ apiUrl, doc, language, readOnly }: Singleplayer) {
   const fileSystemEvents = useFileSystem();
   const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets(apiUrl);
   const { ...events } = useSingleplayer(doc, language);
@@ -187,10 +193,12 @@ function SingleplayerEditor({ apiUrl, doc, language }: Singleplayer) {
   return (
     <Tldraw
       autofocus
+      showPages={false}
       showMultiplayerMenu={false}
       onAssetCreate={onAssetCreate}
       onAssetDelete={onAssetDelete}
       onAssetUpload={onAssetUpload}
+      readOnly={readOnly}
       {...fileSystemEvents}
       {...events}
     />

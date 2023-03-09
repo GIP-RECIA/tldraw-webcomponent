@@ -17,6 +17,7 @@ export type Singleplayer = {
   apiUrl: string;
   doc: Y.Doc;
   language: string;
+  readOnly: boolean;
 };
 
 export type Multiplayer = {

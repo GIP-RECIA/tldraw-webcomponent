@@ -29,14 +29,12 @@ $border-radius: 9px;
 $margin: 1px;
 $padding: 9px;
 $height: 40px;
-$left-share: 110px;
-$left-leave: 50px;
+$left: 50px;
 
-.share-container,
-.leave-container {
+.container {
   z-index: 2;
   position: absolute;
-  left: $left-share;
+  left: $left;
   display: flex;
   box-shadow: var(--shadows-panel);
   border-bottom-right-radius: $border-radius;
@@ -44,12 +42,7 @@ $left-leave: 50px;
   background-color: var(--colors-panelContrast);
 }
 
-.leave-container {
-  left: $left-leave;
-}
-
-.share-item,
-.leave-item {
+.item {
   width: fit-content;
   min-width: $height;
   height: $height;
@@ -66,8 +59,7 @@ $left-leave: 50px;
   user-select: none;
 }
 
-.share-item:hover,
-.leave-item:hover,
+.item:hover,
 .input-join:focus {
   background-color: var(--colors-hover);
 }
@@ -76,8 +68,5 @@ $left-leave: 50px;
   border: none;
   outline: none;
   width: 280px;
-  height: $height;
-  margin: $margin;
-  border-radius: $border-radius;
   text-align: center;
 }
