@@ -10,6 +10,19 @@ Librairies :
 
 Based on [nimeshnayaju yjs-tldraw](https://github.com/nimeshnayaju/yjs-tldraw) POC for yjs multiplayer.
 
+## Features
+
+- Open `.tldr` files
+- Browser save
+- File upload
+- Generate multiplayer empty room
+- Share current page in a multiplayer room
+- Join a room
+
+## Roadmap
+
+- [ ] Page managemnt on multiplayer room
+
 ## Setup
 
 ```bash
