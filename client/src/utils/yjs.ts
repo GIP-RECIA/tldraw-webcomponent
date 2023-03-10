@@ -1,10 +1,6 @@
 import * as Y from "yjs";
 import type { TDAsset, TDBinding, TDShape, TldrawApp } from "@tldraw/tldraw";
-import { IndexeddbPersistence } from "y-indexeddb";
 import { WebsocketProvider } from "y-websocket";
-
-const initPersistence = (idbName: string, doc: Y.Doc): IndexeddbPersistence =>
-  new IndexeddbPersistence(idbName, doc);
 
 const initProvider = (
   wsUrl: string,
@@ -62,11 +58,4 @@ const updateDoc = (doc: Y.Doc, app: TldrawApp) => {
   });
 };
 
-export {
-  initPersistence,
-  initProvider,
-  newDoc,
-  cloneDoc,
-  getDocData,
-  updateDoc,
-};
+export { initProvider, newDoc, cloneDoc, getDocData, updateDoc };
