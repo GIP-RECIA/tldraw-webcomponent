@@ -15,6 +15,7 @@ export type Settings = {
 
 export type Singleplayer = {
   apiUrl: string;
+  idbName: string;
   doc: Y.Doc;
   language: string;
   readOnly: boolean;
@@ -26,11 +27,5 @@ export type Multiplayer = {
   provider: WebsocketProvider;
   roomId: string;
   language: string;
-};
-
-export type MultiplayerReadOnly = {
-  doc: Y.Doc;
-  provider: WebsocketProvider;
-  roomId: string;
-  language: string;
+  readOnly: boolean;
 };

@@ -1,18 +1,12 @@
-import { FormEvent, useState } from "react";
-import { Tldraw, useFileSystem } from "@tldraw/tldraw";
+import { FormEvent, useCallback, useState } from "react";
+import { Tldraw, TldrawApp, useFileSystem } from "@tldraw/tldraw";
 import { CustomCursor } from "./Cursor";
 import { useAssets } from "../hooks/useAssets";
 import { useMultiplayer } from "../hooks/useMultiplayer";
-import { useSingleplayer } from "../hooks/useSingleplayer";
-import { cloneDoc, initPersistence, initProvider, newDoc } from "../utils/yjs";
+import { cloneDoc, initProvider, newDoc } from "../utils/yjs";
 import { v4 as uuidv4, validate as uuidValidate } from "uuid";
 import PropTypes from "prop-types";
-import {
-  Multiplayer,
-  MultiplayerReadOnly,
-  Settings,
-  Singleplayer,
-} from "../types/types";
+import { Multiplayer, Settings, Singleplayer } from "../types/types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRightFromBracket,
@@ -57,10 +51,11 @@ function Editor({
   const [useLocalDoc, setUseLocalDoc] = useState(false);
 
   language = language || "en";
-  initPersistence(idbName, localDoc);
+  readOnly = readOnly || false;
   let editor = (
     <SingleplayerEditor
       apiUrl={apiUrl}
+      idbName={idbName}
       doc={localDoc}
       language={language}
       readOnly={wantJoinRoom}
@@ -70,20 +65,14 @@ function Editor({
     let doc = newDoc();
     if (useLocalDoc) doc = cloneDoc(localDoc);
     const provider = initProvider(wsUrl, room, doc);
-    editor = readOnly ? (
-      <MultiplayerReadOnlyEditor
-        doc={doc}
-        provider={provider}
-        roomId={room}
-        language={language}
-      />
-    ) : (
+    editor = (
       <MultiplayerEditor
         apiUrl={apiUrl}
         doc={doc}
         provider={provider}
         roomId={room}
         language={language}
+        readOnly={readOnly}
       />
     );
   }
@@ -185,22 +174,32 @@ function Editor({
   );
 }
 
-function SingleplayerEditor({ apiUrl, doc, language, readOnly }: Singleplayer) {
+function SingleplayerEditor({
+  apiUrl,
+  idbName,
+  doc,
+  language,
+  readOnly,
+}: Singleplayer) {
   const fileSystemEvents = useFileSystem();
   const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets(apiUrl);
-  const { ...events } = useSingleplayer(doc, language);
+
+  const onMount = useCallback((app: TldrawApp) => {
+    app.setSetting("language", language);
+    app.setSetting("keepStyleMenuOpen", true);
+  }, []);
 
   return (
     <Tldraw
       autofocus
-      showPages={false}
+      id={idbName}
+      onMount={onMount}
       showMultiplayerMenu={false}
       onAssetCreate={onAssetCreate}
       onAssetDelete={onAssetDelete}
       onAssetUpload={onAssetUpload}
       readOnly={readOnly}
       {...fileSystemEvents}
-      {...events}
     />
   );
 }
@@ -211,6 +210,7 @@ function MultiplayerEditor({
   provider,
   roomId,
   language,
+  readOnly,
 }: Multiplayer) {
   const { onSaveProjectAs, onSaveProject } = useFileSystem();
   const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets(apiUrl);
@@ -222,34 +222,12 @@ function MultiplayerEditor({
       components={components}
       showPages={false}
       showMultiplayerMenu={false}
-      onAssetCreate={onAssetCreate}
+      onAssetCreate={readOnly ? undefined : onAssetCreate}
       onAssetDelete={onAssetDelete}
       onAssetUpload={onAssetUpload}
       onSaveProjectAs={onSaveProjectAs}
       onSaveProject={onSaveProject}
-      {...events}
-    />
-  );
-}
-
-function MultiplayerReadOnlyEditor({
-  doc,
-  provider,
-  roomId,
-  language,
-}: MultiplayerReadOnly) {
-  const { onSaveProjectAs, onSaveProject } = useFileSystem();
-  const { ...events } = useMultiplayer(doc, provider, roomId, language);
-
-  return (
-    <Tldraw
-      autofocus
-      components={components}
-      showPages={false}
-      showMultiplayerMenu={false}
-      onSaveProjectAs={onSaveProjectAs}
-      onSaveProject={onSaveProject}
-      readOnly
+      readOnly={readOnly}
       {...events}
     />
   );
