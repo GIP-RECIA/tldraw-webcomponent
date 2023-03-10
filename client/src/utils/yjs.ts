@@ -1,5 +1,5 @@
 import * as Y from "yjs";
-import type { TDAsset, TDBinding, TDShape } from "@tldraw/tldraw";
+import type { TDAsset, TDBinding, TDShape, TldrawApp } from "@tldraw/tldraw";
 import { IndexeddbPersistence } from "y-indexeddb";
 import { WebsocketProvider } from "y-websocket";
 
@@ -37,4 +37,36 @@ const getDocData = (doc: Y.Doc) => {
   };
 };
 
-export { initPersistence, initProvider, newDoc, cloneDoc, getDocData };
+const updateDoc = (doc: Y.Doc, app: TldrawApp) => {
+  const { currentPageId } = app.state.appState;
+  const { assets } = app.document;
+  const { shapes, bindings } = app.document.pages[currentPageId];
+  const { yShapes, yBindings, yAssets } = getDocData(doc);
+
+  doc.transact(() => {
+    if (!(yShapes && yBindings && yAssets)) return;
+
+    yShapes.clear();
+    yBindings.clear();
+    yAssets.clear();
+
+    Object.entries(shapes).forEach(([id, shape]) => {
+      yShapes.set(shape.id, shape);
+    });
+    Object.entries(bindings).forEach(([id, binding]) => {
+      yBindings.set(binding.id, binding);
+    });
+    Object.entries(assets).forEach(([id, asset]) => {
+      yAssets.set(asset.id, asset);
+    });
+  });
+};
+
+export {
+  initPersistence,
+  initProvider,
+  newDoc,
+  cloneDoc,
+  getDocData,
+  updateDoc,
+};

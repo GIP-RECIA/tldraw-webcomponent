@@ -3,7 +3,7 @@ import { Tldraw, TldrawApp, useFileSystem } from "@tldraw/tldraw";
 import { CustomCursor } from "./Cursor";
 import { useAssets } from "../hooks/useAssets";
 import { useMultiplayer } from "../hooks/useMultiplayer";
-import { cloneDoc, initProvider, newDoc } from "../utils/yjs";
+import { cloneDoc, initProvider, newDoc, updateDoc } from "../utils/yjs";
 import { v4 as uuidv4, validate as uuidValidate } from "uuid";
 import PropTypes from "prop-types";
 import { Multiplayer, Settings, Singleplayer } from "../types/types";
@@ -184,10 +184,10 @@ function SingleplayerEditor({
   const fileSystemEvents = useFileSystem();
   const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets(apiUrl);
 
-  const onMount = useCallback((app: TldrawApp) => {
+  const onMount = (app: TldrawApp) => {
     app.setSetting("language", language);
     app.setSetting("keepStyleMenuOpen", true);
-  }, []);
+  };
 
   return (
     <Tldraw
@@ -199,6 +199,7 @@ function SingleplayerEditor({
       onAssetDelete={onAssetDelete}
       onAssetUpload={onAssetUpload}
       readOnly={readOnly}
+      onChange={(app: TldrawApp) => updateDoc(localDoc, app)}
       {...fileSystemEvents}
     />
   );
