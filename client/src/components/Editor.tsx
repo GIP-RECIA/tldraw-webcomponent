@@ -1,12 +1,7 @@
-import { FormEvent, useCallback, useState } from "react";
-import { Tldraw, TldrawApp, useFileSystem } from "@tldraw/tldraw";
-import { CustomCursor } from "./Cursor";
-import { useAssets } from "../hooks/useAssets";
-import { useMultiplayer } from "../hooks/useMultiplayer";
-import { cloneDoc, initProvider, newDoc, updateDoc } from "../utils/yjs";
+import { FormEvent, useState } from "react";
+import { cloneDoc, initProvider, newDoc } from "../utils/yjs";
 import { v4 as uuidv4, validate as uuidValidate } from "uuid";
 import PropTypes from "prop-types";
-import { Multiplayer, Settings, Singleplayer } from "../types/types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRightFromBracket,
@@ -15,6 +10,20 @@ import {
   faUsers,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import MultiplayerEditor from "./MultiplayerEditor";
+import SingleplayerEditor from "./SingleplayerEditor";
+
+type Settings = {
+  idbName: string;
+  apiUrl: string;
+  wsUrl?: string;
+  roomId?: string;
+  readOnly?: boolean;
+  language?: string;
+  noJoin?: boolean;
+  noLeave?: boolean;
+  noShare?: boolean;
+};
 
 Editor.propTypes = {
   idbName: PropTypes.string.isRequired,
@@ -26,10 +35,6 @@ Editor.propTypes = {
   noJoin: PropTypes.bool,
   noLeave: PropTypes.bool,
   noShare: PropTypes.bool,
-};
-
-const components = {
-  Cursor: CustomCursor,
 };
 
 const localDoc = newDoc();
@@ -171,66 +176,6 @@ function Editor({
       )}
       {editor}
     </div>
-  );
-}
-
-function SingleplayerEditor({
-  apiUrl,
-  idbName,
-  doc,
-  language,
-  readOnly,
-}: Singleplayer) {
-  const fileSystemEvents = useFileSystem();
-  const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets(apiUrl);
-
-  const onMount = (app: TldrawApp) => {
-    app.setSetting("language", language);
-    app.setSetting("keepStyleMenuOpen", true);
-  };
-
-  return (
-    <Tldraw
-      autofocus
-      id={idbName}
-      onMount={onMount}
-      showMultiplayerMenu={false}
-      onAssetCreate={onAssetCreate}
-      onAssetDelete={onAssetDelete}
-      onAssetUpload={onAssetUpload}
-      readOnly={readOnly}
-      onChange={(app: TldrawApp) => updateDoc(localDoc, app)}
-      {...fileSystemEvents}
-    />
-  );
-}
-
-function MultiplayerEditor({
-  apiUrl,
-  doc,
-  provider,
-  roomId,
-  language,
-  readOnly,
-}: Multiplayer) {
-  const { onSaveProjectAs, onSaveProject } = useFileSystem();
-  const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets(apiUrl);
-  const { ...events } = useMultiplayer(doc, provider, roomId, language);
-
-  return (
-    <Tldraw
-      autofocus
-      components={components}
-      showPages={false}
-      showMultiplayerMenu={false}
-      onAssetCreate={readOnly ? undefined : onAssetCreate}
-      onAssetDelete={onAssetDelete}
-      onAssetUpload={onAssetUpload}
-      onSaveProjectAs={onSaveProjectAs}
-      onSaveProject={onSaveProject}
-      readOnly={readOnly}
-      {...events}
-    />
   );
 }
 
