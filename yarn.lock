@@ -1218,10 +1218,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.14.2.tgz#c076ed1d7b6095078ad3cf21dfeea951842778b1"
   integrity sha512-1uEQxww3DaghA0RxqHx0O0ppVlo43pJhepY51OxuQIKHpjbnYLA7vcdwioNPzIqmC2u3I/dmylcqjlh0e7AyUA==
 
-"@types/node@^18.14.6":
-  version "18.14.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.14.6.tgz#ae1973dd2b1eeb1825695bb11ebfb746d27e3e93"
-  integrity sha512-93+VvleD3mXwlLI/xASjw0FzKcwzl3OdTCzm1LaRfqgS21gfFtK3zDXM5Op9TeeMsJVOaJ2VRDpT9q4Y3d0AvA==
+"@types/node@^18.15.0":
+  version "18.15.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.15.0.tgz#286a65e3fdffd691e170541e6ecb0410b16a38be"
+  integrity sha512-z6nr0TTEOBGkzLGmbypWOGnpSpSIBorEhC4L+4HeQ2iezKCi4f77kyslRwvHeNitymGQ+oFyIWGP96l/DPSV9w==
 
 "@types/prop-types@*":
   version "15.7.5"
@@ -2357,7 +2357,7 @@ levelup@^4.3.2:
     level-supports "~1.0.0"
     xtend "~4.0.0"
 
-lib0@^0.2.31, lib0@^0.2.35, lib0@^0.2.42, lib0@^0.2.49, lib0@^0.2.52:
+lib0@^0.2.31, lib0@^0.2.42, lib0@^0.2.49, lib0@^0.2.52:
   version "0.2.63"
   resolved "https://registry.yarnpkg.com/lib0/-/lib0-0.2.63.tgz#9fe7c26686fbb4b1578bc0d8ee1d308ad6115d4e"
   integrity sha512-JhUd/JXR4rnWsSP1zup904ACbVFcdRieWoIGwGAtHww4zms0gNyi8EM30Rfftnk+6A10qQMSufjLM0/ncq06xw==
@@ -3427,13 +3427,6 @@ xtend@^4.0.0, xtend@^4.0.2, xtend@~4.0.0:
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
   integrity sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==
 
-y-indexeddb@^9.0.9:
-  version "9.0.9"
-  resolved "https://registry.yarnpkg.com/y-indexeddb/-/y-indexeddb-9.0.9.tgz#fd360f6b62ce1b2d4127671fe73b4feb08de70b2"
-  integrity sha512-GcJbiJa2eD5hankj46Hea9z4hbDnDjvh1fT62E5SpZRsv8GcEemw34l1hwI2eknGcv5Ih9JfusT37JLx9q3LFg==
-  dependencies:
-    lib0 "^0.2.35"
-
 y-leveldb@^0.1.0:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/y-leveldb/-/y-leveldb-0.1.2.tgz#43f6c5004b6891b57926d8a1e0eb0c883003e34b"
@@ -3501,10 +3494,10 @@ yargs@^17.3.1:
     y18n "^5.0.5"
     yargs-parser "^21.1.1"
 
-yjs@^13.5.48:
-  version "13.5.48"
-  resolved "https://registry.yarnpkg.com/yjs/-/yjs-13.5.48.tgz#d4b4b9ae974dc3180cced761c2f36988948e71be"
-  integrity sha512-RFUqe1UQa1iKfQ9wZkZQP33iEBBSTz6sW3S5CWzHEe0JVksOi8AzspSTvQk5VskoJj4HzMUYgaNcPrE0MqJ8xQ==
+yjs@^13.5.49:
+  version "13.5.49"
+  resolved "https://registry.yarnpkg.com/yjs/-/yjs-13.5.49.tgz#09978e912b877aaae0b069d4df22179fa858edec"
+  integrity sha512-qfQGf8ninOMpOgHkZxLXQOVeLiE9bWiZbwWTkMptFRlNzq9n6Zg3u8XtDFXWf9kv0gXhW4KHEBmHXoGYFEOT3w==
   dependencies:
     lib0 "^0.2.49"
 
