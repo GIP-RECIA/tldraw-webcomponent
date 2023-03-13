@@ -15,7 +15,6 @@ export default function App() {
         ws-url={VITE_WS_URL}
         room-id={roomId}
         language={VITE_LANGUAGE}
-        // read-only
       />
     </div>
   );

@@ -26,15 +26,13 @@ a {
 }
 
 $border-radius: 9px;
-$padding: 9px;
 $height: 40px;
-$left: 110px;
 
 .container {
   pointer-events: all;
   z-index: 2;
   position: absolute;
-  left: $left;
+  left: 100px;
   display: flex;
   box-shadow: var(--shadows-panel);
   border-bottom-right-radius: $border-radius;
@@ -48,7 +46,7 @@ $left: 110px;
   min-width: $height;
   height: $height;
   border-radius: $border-radius;
-  padding: $padding;
+  padding: 9px;
   cursor: pointer;
   display: flex;
   align-items: center;

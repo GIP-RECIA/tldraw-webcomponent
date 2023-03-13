@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { cloneDoc, initProvider, newDoc } from "../utils/yjs";
 import { v4 as uuidv4, validate as uuidValidate } from "uuid";
 import PropTypes from "prop-types";
@@ -50,10 +50,10 @@ function Editor({
   noLeave,
   noShare,
 }: Settings) {
-  const [room, setRoom] = useState(roomId);
-  const [joinRoom, setJoinRoom] = useState(undefined);
-  const [wantJoinRoom, setWantJoinRoom] = useState(false);
-  const [useLocalDoc, setUseLocalDoc] = useState(false);
+  const [room, setRoom] = useState<string | undefined>(roomId);
+  const [joinRoom, setJoinRoom] = useState<string | undefined>(undefined);
+  const [wantJoinRoom, setWantJoinRoom] = useState<boolean>(false);
+  const [useLocalDoc, setUseLocalDoc] = useState<boolean>(false);
 
   language = language || "en";
   readOnly = readOnly || false;
@@ -130,9 +130,9 @@ function Editor({
           {!noJoin && wantJoinRoom && (
             <input
               className="item input-join"
-              onChange={(e: FormEvent<HTMLInputElement>) => {
-                setJoinRoom(e.target.value);
-              }}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setJoinRoom(e.target.value)
+              }
               onKeyUp={(e) => e.key === "Enter" && joinRoomHandler()}
               type="text"
               placeholder="id of room to join..."
