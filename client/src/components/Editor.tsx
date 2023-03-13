@@ -12,14 +12,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import MultiplayerEditor from "./MultiplayerEditor";
 import SingleplayerEditor from "./SingleplayerEditor";
+import "../assets/scss/editor.scss";
 
 type Settings = {
   idbName: string;
   apiUrl: string;
   wsUrl?: string;
   roomId?: string;
-  readOnly?: boolean;
   language?: string;
+  readOnly?: boolean;
   noJoin?: boolean;
   noLeave?: boolean;
   noShare?: boolean;
@@ -57,6 +58,7 @@ function Editor({
 
   language = language || "en";
   readOnly = readOnly || false;
+
   let editor = (
     <SingleplayerEditor
       apiUrl={apiUrl}
@@ -66,6 +68,7 @@ function Editor({
       readOnly={wantJoinRoom}
     />
   );
+
   if (wsUrl && room && uuidValidate(room)) {
     let doc = newDoc();
     if (useLocalDoc) doc = cloneDoc(localDoc);

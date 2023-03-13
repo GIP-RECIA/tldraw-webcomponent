@@ -86,10 +86,10 @@ yarn start:ws
   ws-url=""
   room-id=""
   language=""
-  read-only
-  no-join
-  no-share
-  no-leave
+  read-only="true"
+  no-join="true"
+  no-share="true"
+  no-leave="true"
 />
 ```
 

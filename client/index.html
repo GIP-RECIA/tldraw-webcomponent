@@ -10,7 +10,14 @@
     <title>tldraw</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div class="tldraw">
+      <tldraw-editor
+        idb-name="my-tldraw-editor"
+        api-url="http://localhost:8080"
+        ws-url="ws://localhost:1234/ws"
+        language="fr"
+      />
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
