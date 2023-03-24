@@ -99,10 +99,10 @@ function Editor({
   return (
     <div>
       {wsUrl && !room && (
-        <div className="container">
+        <div className="sharing-container">
           {!noShare && !readOnly && !wantJoinRoom && (
             <a
-              className="item"
+              className="sharing-item"
               onClick={() => setRoom(uuidv4())}
               title="Generate a room"
             >
@@ -111,7 +111,7 @@ function Editor({
           )}
           {!noShare && !readOnly && !wantJoinRoom && (
             <a
-              className="item"
+              className="sharing-item"
               onClick={() => {
                 setUseLocalDoc(true);
                 setRoom(uuidv4());
@@ -123,7 +123,7 @@ function Editor({
           )}
           {!noJoin && !wantJoinRoom && (
             <a
-              className="item"
+              className="sharing-item"
               onClick={() => setWantJoinRoom(true)}
               title="Join room"
             >
@@ -132,7 +132,7 @@ function Editor({
           )}
           {!noJoin && wantJoinRoom && (
             <input
-              className="item input-join"
+              className="sharing-item input-join"
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 setJoinRoom(e.target.value)
               }
@@ -145,7 +145,7 @@ function Editor({
           )}
           {!noJoin && wantJoinRoom && (
             <a
-              className="item"
+              className="sharing-item"
               onClick={resetStates}
               title="Close joining room input"
             >
@@ -153,17 +153,21 @@ function Editor({
             </a>
           )}
           {!noJoin && joinRoom && uuidValidate(joinRoom) && (
-            <a className="item" onClick={joinRoomHandler} title="Join room">
+            <a
+              className="sharing-item"
+              onClick={joinRoomHandler}
+              title="Join room"
+            >
               <FontAwesomeIcon icon={faArrowRightToBracket} />
             </a>
           )}
         </div>
       )}
       {wsUrl && room && (
-        <div className="container">
+        <div className="sharing-container">
           {!noShare && (
             <a
-              className="item"
+              className="sharing-item"
               onClick={() => navigator.clipboard.writeText(room)}
               title="Copy room id to clipboard"
             >
@@ -171,7 +175,11 @@ function Editor({
             </a>
           )}
           {!noLeave && (
-            <a className="item" onClick={resetStates} title="Leave room">
+            <a
+              className="sharing-item"
+              onClick={resetStates}
+              title="Leave room"
+            >
               <FontAwesomeIcon icon={faArrowRightFromBracket} />
             </a>
           )}

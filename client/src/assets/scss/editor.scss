@@ -1,43 +1,45 @@
 $border-radius: 9px;
 $height: 40px;
 
-.container {
-  pointer-events: all;
-  z-index: 2;
-  position: absolute;
-  left: 110px;
-  display: flex;
-  box-shadow: var(--shadows-panel);
-  border-bottom-right-radius: $border-radius;
-  border-bottom-left-radius: $border-radius;
-  background-color: var(--colors-panel);
-  border: 1px solid var(--colors-panelContrast);
-}
+tldraw-editor {
+  .sharing-container {
+    pointer-events: all;
+    z-index: 2;
+    position: absolute;
+    left: 110px;
+    display: flex;
+    box-shadow: var(--shadows-panel);
+    border-bottom-right-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+    background-color: var(--colors-panel);
+    border: 1px solid var(--colors-panelContrast);
 
-.item {
-  width: fit-content;
-  min-width: $height;
-  height: $height;
-  border-radius: $border-radius;
-  padding: 9px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: var(--fontSizes-1);
-  font-family: var(--fonts-ui);
-  color: var(--colors-text);
-  user-select: none;
-}
+    .sharing-item {
+      width: fit-content;
+      min-width: $height;
+      height: $height;
+      border-radius: $border-radius;
+      padding: 9px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--fontSizes-1);
+      font-family: var(--fonts-ui);
+      color: var(--colors-text);
+      user-select: none;
+    }
 
-.item:hover,
-.input-join:focus {
-  background-color: var(--colors-hover);
-}
+    .sharing-item:hover,
+    .input-join:focus {
+      background-color: var(--colors-hover);
+    }
 
-.input-join {
-  border: none;
-  outline: none;
-  width: 280px;
-  text-align: center;
+    .input-join {
+      border: none;
+      outline: none;
+      width: 280px;
+      text-align: center;
+    }
+  }
 }
