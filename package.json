@@ -26,6 +26,6 @@
     "start:client": "yarn workspace client preview"
   },
   "devDependencies": {
-    "concurrently": "^7.6.0"
+    "concurrently": "^8.0.1"
   }
 }
