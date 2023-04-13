@@ -1360,7 +1360,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tldraw/core@npm:^1.22.0":
+"@tldraw/core@npm:^1.23.2":
   version: 1.23.2
   resolution: "@tldraw/core@npm:1.23.2"
   dependencies:
@@ -1375,7 +1375,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tldraw/intersect@npm:^1.9.0, @tldraw/intersect@npm:^1.9.2":
+"@tldraw/intersect@npm:^1.9.2":
   version: 1.9.2
   resolution: "@tldraw/intersect@npm:1.9.2"
   dependencies:
@@ -1384,9 +1384,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tldraw/tldraw@npm:1.28.0":
-  version: 1.28.0
-  resolution: "@tldraw/tldraw@npm:1.28.0"
+"@tldraw/tldraw@npm:1.29.2":
+  version: 1.29.2
+  resolution: "@tldraw/tldraw@npm:1.29.2"
   dependencies:
     "@fontsource/caveat-brush": ^4.5.9
     "@fontsource/crimson-pro": ^4.5.10
@@ -1401,9 +1401,9 @@ __metadata:
     "@radix-ui/react-popover": ^1.0.0
     "@radix-ui/react-tooltip": ^1.0.0
     "@stitches/react": ^1.2.8
-    "@tldraw/core": ^1.22.0
-    "@tldraw/intersect": ^1.9.0
-    "@tldraw/vec": ^1.9.0
+    "@tldraw/core": ^1.23.2
+    "@tldraw/intersect": ^1.9.2
+    "@tldraw/vec": ^1.9.2
     browser-fs-access: ^0.31.0
     idb-keyval: ^6.2.0
     perfect-freehand: ^1.2.0
@@ -1415,11 +1415,11 @@ __metadata:
   peerDependencies:
     react: ">=16.8"
     react-dom: ">=16.8"
-  checksum: 79d2e7eb2898bab05e1aa2b89832926492b55ad1ef6cf6600f19f5d595fad43e428ad9ae49d79d0106fd686762050f2c4165882029142548c3745734d2436a82
+  checksum: 43165a044d23f7ea3d5154faaf73c47f5e06b0345ee3aa35ec39ec49a2b85ea9518ec73caf1544f7622df0cf05469ea1b12f9672d71f9f40d9edff1a0fda50a5
   languageName: node
   linkType: hard
 
-"@tldraw/vec@npm:^1.9.0, @tldraw/vec@npm:^1.9.2":
+"@tldraw/vec@npm:^1.9.2":
   version: 1.9.2
   resolution: "@tldraw/vec@npm:1.9.2"
   checksum: 2a1100b1871c00618bb25819c86f42b2bf601933249dbf1b70c43ccc2033f478529f4006ed570b7b355f48cf0fc7b90d432027450048454c1185f4f4f2047c8c
@@ -1586,14 +1586,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^18.0.34":
-  version: 18.0.34
-  resolution: "@types/react@npm:18.0.34"
+"@types/react@npm:^18.0.35":
+  version: 18.0.35
+  resolution: "@types/react@npm:18.0.35"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 60d2766e7644ec480075bbb154bf8fb8476089466b643662ef59964e27cae2d8c71fd9c717a4dfa9627c3e050fa2ae866d10d16f66b4509058d1bfe2a564b18c
+  checksum: e65670397216e037b150a509ec08189140b4c20b82b612ac00b2a7133202be2d1def1e7ee69617b2df06ab4c00c43c4ee23e84788ad661aea9664da2f27c518a
   languageName: node
   linkType: hard
 
@@ -2129,9 +2129,9 @@ __metadata:
     "@fortawesome/fontawesome-svg-core": ^6.4.0
     "@fortawesome/free-solid-svg-icons": ^6.4.0
     "@fortawesome/react-fontawesome": ^0.2.0
-    "@tldraw/tldraw": 1.28.0
+    "@tldraw/tldraw": 1.29.2
     "@types/node": ^18.15.11
-    "@types/react": ^18.0.34
+    "@types/react": ^18.0.35
     "@types/react-dom": ^18.0.11
     "@types/uuid": ^9.0.1
     "@vitejs/plugin-react": ^3.1.0
@@ -2141,7 +2141,7 @@ __metadata:
     react-dom: ^18.2.0
     react-hotkeys-hook: ^4.3.8
     react-to-webcomponent: ^1.7.5
-    sass: ^1.61.0
+    sass: ^1.62.0
     typescript: ^5.0.4
     uuid: ^9.0.0
     vite: ^4.2.1
@@ -4519,16 +4519,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.61.0":
-  version: 1.61.0
-  resolution: "sass@npm:1.61.0"
+"sass@npm:^1.62.0":
+  version: 1.62.0
+  resolution: "sass@npm:1.62.0"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
     immutable: ^4.0.0
     source-map-js: ">=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: 31bfb3719f1bb1299bec7b8918bcbca77efa7328b8030cc8e665ed55a02bc5498a3e543b4eb0d06d55ceda8b2f5b2b3176f0678854a8277cb19a59addf65533f
+  checksum: d5f606aa25afdf3ed9f316602811a40cf3b29f64cb70ea02f4198ae4288f9687de6fcef9f4fd2d58e06c28282d859aa249bdbf7d7d97a3a6a582eeaa8e5607fa
   languageName: node
   linkType: hard
 
