@@ -21,7 +21,9 @@ Based on [nimeshnayaju yjs-tldraw](https://github.com/nimeshnayaju/yjs-tldraw) P
 
 ## Roadmap
 
-- [ ] Page managemnt on multiplayer room
+- [ ] Export on Nextcloud
+- [ ] Save on Nextcloud
+- [ ] tldraw v2
 
 ## Setup
 
