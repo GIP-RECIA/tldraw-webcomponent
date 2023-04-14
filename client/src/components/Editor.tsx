@@ -13,10 +13,12 @@ import {
 import MultiplayerEditor from "./MultiplayerEditor";
 import SingleplayerEditor from "./SingleplayerEditor";
 import "../assets/scss/editor.scss";
+import { ToastContainer } from "react-toastify";
 
 type Settings = {
   idbName: string;
   apiUrl: string;
+  nextcloudUrl?: string;
   wsUrl?: string;
   roomId?: string;
   language?: string;
@@ -29,6 +31,7 @@ type Settings = {
 Editor.propTypes = {
   idbName: PropTypes.string.isRequired,
   apiUrl: PropTypes.string.isRequired,
+  nextcloudUrl: PropTypes.string,
   wsUrl: PropTypes.string,
   roomId: PropTypes.string,
   language: PropTypes.string,
@@ -44,6 +47,7 @@ function Editor({
   idbName,
   apiUrl,
   wsUrl,
+  nextcloudUrl,
   roomId,
   language,
   readOnly,
@@ -62,6 +66,7 @@ function Editor({
   let editor = (
     <SingleplayerEditor
       apiUrl={apiUrl}
+      nextcloudUrl={nextcloudUrl}
       idbName={idbName}
       doc={localDoc}
       language={language}
@@ -98,6 +103,7 @@ function Editor({
 
   return (
     <div>
+      <ToastContainer />
       {wsUrl && !room && (
         <div className="sharing-container">
           {!noShare && !readOnly && !wantJoinRoom && (

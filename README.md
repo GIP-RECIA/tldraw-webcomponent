@@ -67,23 +67,25 @@ yarn start:ws
 
 ### WebComponent
 
-|  Property   |   Type    | Required | Default | Description                                                                                                                                                      |
-| :---------: | :-------: | :------: | :-----: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `idb-name`  | `string`  |  `true`  |         | Name for indexeddb                                                                                                                                               |
-|  `api-url`  | `string`  |  `true`  |         | API url for file managment                                                                                                                                       |
-|  `ws-url`   | `string`  | `false`  |         | [Yjs](https://github.com/yjs/yjs) WebSocket server url                                                                                                           |
-|  `room-id`  | `string`  | `false`  |         | Identifier of multiplayer room                                                                                                                                   |
-| `language`  | `string`  | `false`  |  `en`   | Default interface language (check [tldraw translation](https://github.com/tldraw/tldraw/tree/main/packages/tldraw/src/translations) for availables translations) |
-| `read-only` | `boolean` | `false`  | `false` | Disable edition on multiplayer                                                                                                                                   |
-|  `no-join`  | `boolean` | `false`  | `false` | Disallow joining room                                                                                                                                            |
-| `no-leave`  | `boolean` | `false`  | `false` | Disallow leaving room                                                                                                                                            |
-| `no-share`  | `boolean` | `false`  | `false` | Disallow sharing romm                                                                                                                                            |
+|    Property     |   Type    | Required | Default | Description                                                                                                                                                      |
+| :-------------: | :-------: | :------: | :-----: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|   `idb-name`    | `string`  |  `true`  |         | Name for indexeddb                                                                                                                                               |
+|    `api-url`    | `string`  |  `true`  |         | API url for file managment                                                                                                                                       |
+|    `ws-url`     | `string`  | `false`  |         | [Yjs](https://github.com/yjs/yjs) WebSocket server url                                                                                                           |
+| `nextcloud-url` | `string`  | `false`  |         | Nextcloud server url                                                                                                                                             |
+|    `room-id`    | `string`  | `false`  |         | Identifier of multiplayer room                                                                                                                                   |
+|   `language`    | `string`  | `false`  |  `en`   | Default interface language (check [tldraw translation](https://github.com/tldraw/tldraw/tree/main/packages/tldraw/src/translations) for availables translations) |
+|   `read-only`   | `boolean` | `false`  | `false` | Disable edition on multiplayer                                                                                                                                   |
+|    `no-join`    | `boolean` | `false`  | `false` | Disallow joining room                                                                                                                                            |
+|   `no-leave`    | `boolean` | `false`  | `false` | Disallow leaving room                                                                                                                                            |
+|   `no-share`    | `boolean` | `false`  | `false` | Disallow sharing romm                                                                                                                                            |
 
 ```html
 <tldraw-editor
   idb-name=""
   api-url=""
   ws-url=""
+  nextcloud-url=""
   room-id=""
   language=""
   read-only="true"
