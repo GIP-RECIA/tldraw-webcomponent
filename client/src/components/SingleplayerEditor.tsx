@@ -21,9 +21,9 @@ function SingleplayerEditor({
   language,
   readOnly,
 }: Singleplayer) {
-  const fileSystemEvents = useFileSystem();
+  const { onNewProject, onOpenProject, onOpenMedia } = useFileSystem();
   const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets(apiUrl);
-  const { onExport } = useSave(nextcloudUrl ? nextcloudUrl : "");
+  const { onSaveProject, onExport } = useSave(nextcloudUrl ? nextcloudUrl : "");
 
   const onMount = (app: TldrawApp) => {
     app.setSetting("language", language);
@@ -39,10 +39,13 @@ function SingleplayerEditor({
       onAssetCreate={onAssetCreate}
       onAssetDelete={onAssetDelete}
       onAssetUpload={onAssetUpload}
+      onSaveProject={nextcloudUrl ? onSaveProject : undefined}
       onExport={nextcloudUrl ? onExport : undefined}
       readOnly={readOnly}
       onChange={(app: TldrawApp) => updateDoc(doc, app)}
-      {...fileSystemEvents}
+      onNewProject={onNewProject}
+      onOpenProject={onOpenProject}
+      onOpenMedia={onOpenMedia}
     />
   );
 }
