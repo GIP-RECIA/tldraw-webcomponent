@@ -1,4 +1,4 @@
-# Express-Yjs-tldraw
+# tldraw WebComponent
 
 Tldraw singleplayer and mutliplayer WebComponent.
 

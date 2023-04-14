@@ -32,8 +32,8 @@ type Settings = {
 Editor.propTypes = {
   idbName: PropTypes.string.isRequired,
   apiUrl: PropTypes.string.isRequired,
-  nextcloudUrl: PropTypes.string,
   wsUrl: PropTypes.string,
+  nextcloudUrl: PropTypes.string,
   roomId: PropTypes.string,
   language: PropTypes.string,
   readOnly: PropTypes.bool,
