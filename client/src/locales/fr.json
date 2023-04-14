@@ -15,7 +15,8 @@
     },
     "toast": {
       "success": "\"{{fileName}}\" as été {{state}} dans votre Nextcloud",
-      "error": "Connectez vous à votre Nextcloud et réessayez"
+      "error": "Connectez vous à votre Nextcloud et réessayez",
+      "unknown": "Une erreur inconnue est survenue"
     }
   }
 }

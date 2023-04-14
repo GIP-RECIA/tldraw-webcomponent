@@ -61,11 +61,18 @@ export function useSave(nextcloudUrl: string) {
             theme: "colored",
           }
         );
-      } catch (ignore) {
-        toast.error(t("nextcloud.toast.error"), {
-          theme: "colored",
-          onClose: () => window.open(`${nextcloudUrl}/`, "_blank"),
-        });
+      } catch (error: any) {
+        if (error.response.status === 401) {
+          toast.error(t("nextcloud.toast.error"), {
+            theme: "colored",
+            onClose: () => window.open(`${nextcloudUrl}/`, "_blank"),
+          });
+        } else {
+          toast.error(t("nextcloud.toast.unknown"), {
+            theme: "colored",
+            autoClose: false,
+          });
+        }
       }
     },
     []

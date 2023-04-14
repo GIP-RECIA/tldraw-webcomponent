@@ -113,7 +113,7 @@ function Editor({
             <a
               className="sharing-item"
               onClick={() => setRoom(uuidv4())}
-              title={t("sharingItem.generateRoom")}
+              title={t("sharingItem.generateRoom") as string}
             >
               <FontAwesomeIcon icon={faUsers} />
             </a>
@@ -125,7 +125,7 @@ function Editor({
                 setUseLocalDoc(true);
                 setRoom(uuidv4());
               }}
-              title={t("sharingItem.shareCurrentPage")}
+              title={t("sharingItem.shareCurrentPage") as string}
             >
               <FontAwesomeIcon icon={faShareNodes} />
             </a>
@@ -134,7 +134,7 @@ function Editor({
             <a
               className="sharing-item"
               onClick={() => setWantJoinRoom(true)}
-              title={t("sharingItem.joinRoom")}
+              title={t("sharingItem.joinRoom") as string}
             >
               <FontAwesomeIcon icon={faArrowRightToBracket} />
             </a>
@@ -147,7 +147,7 @@ function Editor({
               }
               onKeyUp={(e) => e.key === "Enter" && joinRoomHandler()}
               type="text"
-              placeholder={t("sharingItem.joinRoomPlaceholder")}
+              placeholder={t("sharingItem.joinRoomPlaceholder") as string}
               maxLength={uuidv4().length}
               autoFocus
             ></input>
@@ -156,7 +156,7 @@ function Editor({
             <a
               className="sharing-item"
               onClick={resetStates}
-              title={t("sharingItem.closeJoinRoom")}
+              title={t("sharingItem.closeJoinRoom") as string}
             >
               <FontAwesomeIcon icon={faXmark} />
             </a>
@@ -165,7 +165,7 @@ function Editor({
             <a
               className="sharing-item"
               onClick={joinRoomHandler}
-              title={t("sharingItem.joinRoom")}
+              title={t("sharingItem.joinRoom") as string}
             >
               <FontAwesomeIcon icon={faArrowRightToBracket} />
             </a>
@@ -178,7 +178,7 @@ function Editor({
             <a
               className="sharing-item"
               onClick={() => navigator.clipboard.writeText(room)}
-              title={t("sharingItem.roomId")}
+              title={t("sharingItem.roomId") as string}
             >
               {room}
             </a>
@@ -187,7 +187,7 @@ function Editor({
             <a
               className="sharing-item"
               onClick={resetStates}
-              title={t("sharingItem.leaveRoom")}
+              title={t("sharingItem.leaveRoom") as string}
             >
               <FontAwesomeIcon icon={faArrowRightFromBracket} />
             </a>

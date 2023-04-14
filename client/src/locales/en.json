@@ -15,7 +15,8 @@
     },
     "toast": {
       "success": "\"{{fileName}}\" has been {{state}} on your Nextcloud",
-      "error": "Loggin to your Nextcloud and retry"
+      "error": "Loggin to your Nextcloud and retry",
+      "unknown": "Unknown error occurred"
     }
   }
 }
