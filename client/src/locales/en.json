@@ -1,0 +1,21 @@
+{
+  "sharingItem": {
+    "generateRoom": "Generate a room",
+    "shareCurrentPage": "Share current page",
+    "joinRoom": "Join room",
+    "joinRoomPlaceholder": "id of room...",
+    "closeJoinRoom": "Close joining room mode",
+    "roomId": "Copy room id to clipboard",
+    "leaveRoom": "Leave room"
+  },
+  "nextcloud": {
+    "stateMessage": {
+      "Created": "created",
+      "Updated": "updated"
+    },
+    "toast": {
+      "success": "\"{{fileName}}\" has been {{state}} on your Nextcloud",
+      "error": "Loggin to your Nextcloud and retry"
+    }
+  }
+}

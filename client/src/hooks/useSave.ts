@@ -3,8 +3,11 @@ import { useCallback } from "react";
 import { saveOnNextcloud } from "../services/serviceNextcloud";
 import { DialogState } from "@tldraw/tldraw/dist/hooks";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 export function useSave(nextcloudUrl: string) {
+  const { t } = useTranslation();
+
   const onSaveProject = useCallback((app: TldrawApp): void => {}, []);
 
   const onSaveProjectAs = useCallback((app: TldrawApp): void => {}, []);
@@ -40,20 +43,26 @@ export function useSave(nextcloudUrl: string) {
 
       try {
         let response = await saveOnNextcloud(nextcloudUrl, file, info.type);
-        let message;
+        let state;
         switch (response.status) {
           case 201:
-            message = "created";
+            state = t("nextcloud.stateMessage.created");
             break;
           case 204:
-            message = "updated";
+            state = t("nextcloud.stateMessage.updated");
             break;
         }
-        toast.success(`"${file.name}" has been ${message} on your Nextcloud`, {
-          theme: "colored",
-        });
+        toast.success(
+          t("nextcloud.toast.success", {
+            fileName: `${file.name}.${info.type}`,
+            state: state,
+          }),
+          {
+            theme: "colored",
+          }
+        );
       } catch (ignore) {
-        toast.error("Loggin to your Nextcloud and retry", {
+        toast.error(t("nextcloud.toast.error"), {
           theme: "colored",
           onClose: () => window.open(`${nextcloudUrl}/`, "_blank"),
         });

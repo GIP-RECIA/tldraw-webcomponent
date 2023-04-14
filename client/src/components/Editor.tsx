@@ -14,6 +14,7 @@ import MultiplayerEditor from "./MultiplayerEditor";
 import SingleplayerEditor from "./SingleplayerEditor";
 import "../assets/scss/editor.scss";
 import { ToastContainer } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 type Settings = {
   idbName: string;
@@ -55,6 +56,8 @@ function Editor({
   noLeave,
   noShare,
 }: Settings) {
+  const { t } = useTranslation();
+
   const [room, setRoom] = useState<string | undefined>(roomId);
   const [joinRoom, setJoinRoom] = useState<string | undefined>(undefined);
   const [wantJoinRoom, setWantJoinRoom] = useState<boolean>(false);
@@ -110,7 +113,7 @@ function Editor({
             <a
               className="sharing-item"
               onClick={() => setRoom(uuidv4())}
-              title="Generate a room"
+              title={t("sharingItem.generateRoom")}
             >
               <FontAwesomeIcon icon={faUsers} />
             </a>
@@ -122,7 +125,7 @@ function Editor({
                 setUseLocalDoc(true);
                 setRoom(uuidv4());
               }}
-              title="Share current document"
+              title={t("sharingItem.shareCurrentPage")}
             >
               <FontAwesomeIcon icon={faShareNodes} />
             </a>
@@ -131,7 +134,7 @@ function Editor({
             <a
               className="sharing-item"
               onClick={() => setWantJoinRoom(true)}
-              title="Join room"
+              title={t("sharingItem.joinRoom")}
             >
               <FontAwesomeIcon icon={faArrowRightToBracket} />
             </a>
@@ -144,7 +147,7 @@ function Editor({
               }
               onKeyUp={(e) => e.key === "Enter" && joinRoomHandler()}
               type="text"
-              placeholder="id of room to join..."
+              placeholder={t("sharingItem.joinRoomPlaceholder")}
               maxLength={uuidv4().length}
               autoFocus
             ></input>
@@ -153,7 +156,7 @@ function Editor({
             <a
               className="sharing-item"
               onClick={resetStates}
-              title="Close joining room input"
+              title={t("sharingItem.closeJoinRoom")}
             >
               <FontAwesomeIcon icon={faXmark} />
             </a>
@@ -162,7 +165,7 @@ function Editor({
             <a
               className="sharing-item"
               onClick={joinRoomHandler}
-              title="Join room"
+              title={t("sharingItem.joinRoom")}
             >
               <FontAwesomeIcon icon={faArrowRightToBracket} />
             </a>
@@ -175,7 +178,7 @@ function Editor({
             <a
               className="sharing-item"
               onClick={() => navigator.clipboard.writeText(room)}
-              title="Copy room id to clipboard"
+              title={t("sharingItem.roomId")}
             >
               {room}
             </a>
@@ -184,7 +187,7 @@ function Editor({
             <a
               className="sharing-item"
               onClick={resetStates}
-              title="Leave room"
+              title={t("sharingItem.leaveRoom")}
             >
               <FontAwesomeIcon icon={faArrowRightFromBracket} />
             </a>
