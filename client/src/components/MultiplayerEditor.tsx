@@ -7,7 +7,8 @@ import { CustomCursor } from "./Cursor";
 import { useSave } from "../hooks/useSave";
 
 type Multiplayer = {
-  apiUrl: string;
+  uploadApi: string | undefined;
+  userApi: string | undefined;
   nextcloudUrl: string | undefined;
   saveOnNextcloudState: boolean;
   doc: Y.Doc;
@@ -22,7 +23,8 @@ const components = {
 };
 
 function MultiplayerEditor({
-  apiUrl,
+  uploadApi,
+  userApi,
   nextcloudUrl,
   saveOnNextcloudState,
   doc,
@@ -32,15 +34,21 @@ function MultiplayerEditor({
   readOnly,
 }: Multiplayer) {
   const { onSaveProjectAs, onSaveProject } = useFileSystem();
-  const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets(apiUrl);
+  const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets(uploadApi);
   const {
     onSaveProject: ncOnSaveProject,
     onSaveProjectAs: ncOnSaveProjectAs,
     onExport,
-  } = useSave(nextcloudUrl ? nextcloudUrl : "");
-  const { ...events } = useMultiplayer(doc, provider, roomId, language);
+  } = useSave(nextcloudUrl, userApi);
+  const { ...events } = useMultiplayer(
+    doc,
+    provider,
+    roomId,
+    userApi,
+    language
+  );
 
-  const canSaveOnNectcloud = nextcloudUrl && saveOnNextcloudState;
+  const canSaveOnNectcloud = nextcloudUrl && saveOnNextcloudState && userApi;
 
   return (
     <Tldraw
@@ -48,9 +56,11 @@ function MultiplayerEditor({
       components={components}
       showPages={false}
       showMultiplayerMenu={false}
-      onAssetCreate={readOnly ? undefined : onAssetCreate}
-      onAssetDelete={onAssetDelete}
-      onAssetUpload={onAssetUpload}
+      onAssetCreate={
+        readOnly ? undefined : uploadApi ? onAssetCreate : undefined
+      }
+      onAssetDelete={uploadApi ? onAssetDelete : undefined}
+      onAssetUpload={uploadApi ? onAssetUpload : undefined}
       onSaveProject={canSaveOnNectcloud ? ncOnSaveProject : onSaveProject}
       // onSaveProjectAs={canSaveOnNectcloud ? ncOnSaveProjectAs : onSaveProjectAs}
       onExport={canSaveOnNectcloud ? onExport : undefined}

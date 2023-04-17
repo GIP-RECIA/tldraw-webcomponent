@@ -2,7 +2,7 @@ import { TldrawApp } from "@tldraw/tldraw";
 import axios from "axios";
 import { useCallback } from "react";
 
-export function useAssets(apiUrl: string) {
+export function useAssets(apiUrl: string | undefined) {
   const onAssetCreate = useCallback(
     async (app: TldrawApp, file: File, id: string): Promise<string | false> => {
       let body = new FormData();

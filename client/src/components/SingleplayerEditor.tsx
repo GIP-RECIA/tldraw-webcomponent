@@ -5,7 +5,8 @@ import { updateDoc } from "../utils/yjs";
 import * as Y from "yjs";
 
 type Singleplayer = {
-  apiUrl: string;
+  uploadApi: string | undefined;
+  userApi: string | undefined;
   nextcloudUrl: string | undefined;
   saveOnNextcloudState: boolean;
   idbName: string;
@@ -15,7 +16,8 @@ type Singleplayer = {
 };
 
 function SingleplayerEditor({
-  apiUrl,
+  uploadApi,
+  userApi,
   nextcloudUrl,
   saveOnNextcloudState,
   idbName,
@@ -30,14 +32,14 @@ function SingleplayerEditor({
     onOpenProject,
     onOpenMedia,
   } = useFileSystem();
-  const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets(apiUrl);
+  const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets(uploadApi);
   const {
     onSaveProject: ncOnSaveProject,
     onSaveProjectAs: ncOnSaveProjectAs,
     onExport,
-  } = useSave(nextcloudUrl ? nextcloudUrl : "");
+  } = useSave(nextcloudUrl, userApi);
 
-  const canSaveOnNectcloud = nextcloudUrl && saveOnNextcloudState;
+  const canSaveOnNectcloud = nextcloudUrl && saveOnNextcloudState && userApi;
 
   const onMount = (app: TldrawApp) => {
     app.setSetting("language", language);
@@ -50,9 +52,9 @@ function SingleplayerEditor({
       id={idbName}
       onMount={onMount}
       showMultiplayerMenu={false}
-      onAssetCreate={onAssetCreate}
-      onAssetDelete={onAssetDelete}
-      onAssetUpload={onAssetUpload}
+      onAssetCreate={uploadApi ? onAssetCreate : undefined}
+      onAssetDelete={uploadApi ? onAssetDelete : undefined}
+      onAssetUpload={uploadApi ? onAssetUpload : undefined}
       onSaveProject={canSaveOnNectcloud ? ncOnSaveProject : onSaveProject}
       // onSaveProjectAs={canSaveOnNectcloud ? ncOnSaveProjectAs : onSaveProjectAs}
       onExport={canSaveOnNectcloud ? onExport : undefined}

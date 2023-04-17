@@ -13,17 +13,18 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import MultiplayerEditor from "./MultiplayerEditor";
 import SingleplayerEditor from "./SingleplayerEditor";
-import "../assets/scss/editor.scss";
 import { ToastContainer } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import "../assets/scss/editor.scss";
 
 type Settings = {
   idbName: string;
-  apiUrl: string;
+  uploadApi?: string;
+  wsUrl?: string;
+  userApi?: string;
   nextcloudUrl?: string;
   nextcloudSave?: boolean;
   nextcloudSaveHide?: boolean;
-  wsUrl?: string;
   roomId?: string;
   language?: string;
   readOnly?: boolean;
@@ -34,8 +35,9 @@ type Settings = {
 
 Editor.propTypes = {
   idbName: PropTypes.string.isRequired,
-  apiUrl: PropTypes.string.isRequired,
+  uploadApi: PropTypes.string,
   wsUrl: PropTypes.string,
+  userApi: PropTypes.string,
   nextcloudUrl: PropTypes.string,
   nextcloudSave: PropTypes.bool,
   nextcloudSaveHide: PropTypes.bool,
@@ -51,8 +53,9 @@ const localDoc = newDoc();
 
 function Editor({
   idbName,
-  apiUrl,
+  uploadApi,
   wsUrl,
+  userApi,
   nextcloudUrl,
   nextcloudSave,
   nextcloudSaveHide,
@@ -79,7 +82,8 @@ function Editor({
 
   let editor = (
     <SingleplayerEditor
-      apiUrl={apiUrl}
+      uploadApi={uploadApi}
+      userApi={userApi}
       nextcloudUrl={nextcloudUrl}
       saveOnNextcloudState={saveOnNextcloudState}
       idbName={idbName}
@@ -95,7 +99,8 @@ function Editor({
     const provider = initProvider(wsUrl, room, doc);
     editor = (
       <MultiplayerEditor
-        apiUrl={apiUrl}
+        uploadApi={uploadApi}
+        userApi={userApi}
         nextcloudUrl={nextcloudUrl}
         saveOnNextcloudState={saveOnNextcloudState}
         doc={doc}
@@ -122,7 +127,7 @@ function Editor({
     <div>
       <ToastContainer />
       <div className="sharing-container">
-        {nextcloudUrl && !nextcloudSaveHide && !wantJoinRoom && (
+        {nextcloudUrl && !nextcloudSaveHide && userApi && !wantJoinRoom && (
           <a
             className={`sharing-item${saveOnNextcloudState ? "-enabled" : ""}`}
             onClick={() => setSaveOnNextcloudState(!saveOnNextcloudState)}

@@ -1,16 +1,24 @@
 import { TDExport, TldrawApp } from "@tldraw/tldraw";
 import { useCallback } from "react";
-import { saveOnNextcloud } from "../services/serviceNextcloud";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { toImageFile, toTLDRFile } from "../utils/tldraw";
+import { saveOnNextcloud } from "../services/serviceNextcloud";
+import { getUserID } from "../services/serviceUser";
 
-export function useSave(nextcloudUrl: string) {
+export function useSave(
+  nextcloudUrl: string | undefined,
+  userApi: string | undefined
+) {
   const { t } = useTranslation();
 
-  const handleSave = async (nextcloudUrl: string, file: File, type: string) => {
+  const handleSave = async (file: File, type: string) => {
+    if (!nextcloudUrl || !userApi) {
+      throw new Error(t("nextcloud.toast.unconfigured") as string);
+    }
     try {
-      let response = await saveOnNextcloud(nextcloudUrl, file, type);
+      const userID = await getUserID(userApi);
+      const response = await saveOnNextcloud(nextcloudUrl, userID, file, type);
       let state;
       switch (response.status) {
         case 201:
@@ -30,34 +38,39 @@ export function useSave(nextcloudUrl: string) {
         }
       );
     } catch (error: any) {
-      if (error.response.status === 401) {
+      if (error.response?.status === 401) {
         toast.error(t("nextcloud.toast.error"), {
           theme: "colored",
           onClose: () => window.open(`${nextcloudUrl}/`, "_blank"),
+        });
+      } else if (error.message == "guest") {
+        toast.error(t("nextcloud.toast.guest"), {
+          theme: "colored",
         });
       } else {
         toast.error(t("nextcloud.toast.unknown"), {
           theme: "colored",
           autoClose: false,
         });
+        console.error(error);
       }
     }
   };
 
   const onSaveProject = useCallback(async (app: TldrawApp): Promise<void> => {
     const file = toTLDRFile(app);
-    handleSave(nextcloudUrl, file, "tldr");
+    handleSave(file, "tldr");
   }, []);
 
   const onSaveProjectAs = useCallback(async (app: TldrawApp): Promise<void> => {
     const file = toTLDRFile(app);
-    handleSave(nextcloudUrl, file, "tldr");
+    handleSave(file, "tldr");
   }, []);
 
   const onExport = useCallback(
     async (app: TldrawApp, info: TDExport): Promise<void> => {
       const file = toImageFile(app, info);
-      handleSave(nextcloudUrl, file, info.type);
+      handleSave(file, info.type);
     },
     []
   );

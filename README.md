@@ -13,16 +13,16 @@ Based on [nimeshnayaju yjs-tldraw](https://github.com/nimeshnayaju/yjs-tldraw) P
 ## Features
 
 - Open `.tldr` files
-- Browser save
-- File upload
-- Generate multiplayer empty room
-- Share current page in a multiplayer room
-- Join a room
+- Realtime save on browser
+- File upload on browser or with api
+- Multiplayer
+  - Generate an empty room
+  - Share current page in room
+  - Join a room
+- Export and save on Nextcloud
 
 ## Roadmap
 
-- [ ] Export on Nextcloud
-- [ ] Save on Nextcloud
 - [ ] tldraw v2
 
 ## Setup
@@ -69,26 +69,30 @@ yarn start:ws
 
 ### WebComponent
 
-|       Property        |   Type    | Required | Default | Description                                                                                                                                                      |
-| :-------------------: | :-------: | :------: | :-----: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|      `idb-name`       | `string`  |  `true`  |         | Name for indexeddb                                                                                                                                               |
-|       `api-url`       | `string`  |  `true`  |         | API url for file managment                                                                                                                                       |
-|       `ws-url`        | `string`  | `false`  |         | [Yjs](https://github.com/yjs/yjs) WebSocket server url                                                                                                           |
-|    `nextcloud-url`    | `string`  | `false`  |         | Nextcloud server url                                                                                                                                             |
-|   `nextcloud-save`    | `boolean` | `false`  | `false` | Enable Nextcloud save by default                                                                                                                                 |
-| `nextcloud-save-hide` | `boolean` | `false`  | `false` | Remove Nexcloud save icon                                                                                                                                        |
-|       `room-id`       | `string`  | `false`  |         | Identifier of multiplayer room                                                                                                                                   |
-|      `language`       | `string`  | `false`  |  `en`   | Default interface language (check [tldraw translation](https://github.com/tldraw/tldraw/tree/main/packages/tldraw/src/translations) for availables translations) |
-|      `read-only`      | `boolean` | `false`  | `false` | Disable edition on multiplayer                                                                                                                                   |
-|       `no-join`       | `boolean` | `false`  | `false` | Disallow joining room by removing icon                                                                                                                           |
-|      `no-leave`       | `boolean` | `false`  | `false` | Disallow leaving room by removing icon                                                                                                                           |
-|      `no-share`       | `boolean` | `false`  | `false` | Disallow sharing romm by removing icon                                                                                                                           |
+|       Property        |   Type    | Required | Default | Description                                                                                                                                                                 |
+| :-------------------: | :-------: | :------: | :-----: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|      `idb-name`       | `string`  |  `true`  |         | Name for indexeddb                                                                                                                                                          |
+|     `upload-api`      | `string`  | `false`  |         | API url for file managment (by default, save in local storage)                                                                                                              |
+|       `ws-url`        | `string`  | `false`  |         | [Yjs](https://github.com/yjs/yjs) WebSocket server url                                                                                                                      |
+|      `user-api`       | `string`  | `false`  |         | API url with `@uportal/open-id-connect` to get user info or Nextcloud WEBDAV info after `/remote.php/dav/files/` (Use for Nextcloud save and get usernames for multiplayer) |
+|    `nextcloud-url`    | `string`  | `false`  |         | Nextcloud server url                                                                                                                                                        |
+|   `nextcloud-save`    | `boolean` | `false`  | `false` | Enable Nextcloud save by default                                                                                                                                            |
+| `nextcloud-save-hide` | `boolean` | `false`  | `false` | Remove Nexcloud save icon                                                                                                                                                   |
+|       `room-id`       | `string`  | `false`  |         | Identifier of multiplayer room                                                                                                                                              |
+|      `language`       | `string`  | `false`  |  `en`   | Default interface language (check [tldraw translation](https://github.com/tldraw/tldraw/tree/main/packages/tldraw/src/translations) for availables translations)            |
+|      `read-only`      | `boolean` | `false`  | `false` | Disable edition on multiplayer                                                                                                                                              |
+|       `no-join`       | `boolean` | `false`  | `false` | Disallow joining room by removing icon                                                                                                                                      |
+|      `no-leave`       | `boolean` | `false`  | `false` | Disallow leaving room by removing icon                                                                                                                                      |
+|      `no-share`       | `boolean` | `false`  | `false` | Disallow sharing romm by removing icon                                                                                                                                      |
+
+/!\ DONT USE `/` AT END OF URLs
 
 ```html
 <tldraw-editor
   idb-name=""
-  api-url=""
+  upload-api=""
   ws-url=""
+  user-api=""
   nextcloud-url=""
   nextcloud-save="true"
   nextcloud-save-hide="true"

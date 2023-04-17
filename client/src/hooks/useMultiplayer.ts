@@ -10,11 +10,13 @@ import { useHotkeys } from "react-hotkeys-hook";
 import * as Y from "yjs";
 import { WebsocketProvider } from "y-websocket";
 import { getDocData } from "../utils/yjs";
+import { getUserName } from "../services/serviceUser";
 
 export function useMultiplayer(
   doc: Y.Doc,
   provider: WebsocketProvider,
   roomId: string,
+  userApi: string | undefined,
   language: string
 ) {
   const [app, setApp] = useState<TldrawApp>();
@@ -34,12 +36,16 @@ export function useMultiplayer(
 
   // Put the state into the window, for debugging.
   const onMount = useCallback(
-    (app: TldrawApp) => {
+    async (app: TldrawApp) => {
       app.setSetting("language", language);
       app.setSetting("keepStyleMenuOpen", true);
       app.loadRoom(roomId);
       app.document.name = roomId;
       app.pause(); // Turn off the app's own undo / redo stack
+      if (app.currentUser) {
+        const name = await getUserName(userApi);
+        app.currentUser.metadata = { name: name };
+      }
       setApp(app);
     },
     [roomId]

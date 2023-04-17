@@ -18,7 +18,7 @@ tldraw-editor {
       display: flex;
     }
 
-    a.sharing-item {
+    .sharing-item {
       width: fit-content;
       min-width: $height;
       height: $height;
@@ -58,7 +58,7 @@ tldraw-editor {
       text-align: center;
     }
 
-    a.sharing-item:hover,
+    .sharing-item:hover,
     input.input-join:focus {
       background-color: var(--colors-hover);
     }

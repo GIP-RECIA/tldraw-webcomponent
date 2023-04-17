@@ -1628,6 +1628,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@uportal/open-id-connect@npm:^1.38.1":
+  version: 1.38.1
+  resolution: "@uportal/open-id-connect@npm:1.38.1"
+  dependencies:
+    jwt-decode: ^3.0.0
+  checksum: 42e6ee6b41b4d505bf21ffec32e18316393eee3757e0078eb62256fcc4a1bae6a09f5da8ad1f3dc9bc4b37d674e63e2720230221e8536c120bbe13344c91f976
+  languageName: node
+  linkType: hard
+
 "@use-gesture/core@npm:10.2.25":
   version: 10.2.25
   resolution: "@use-gesture/core@npm:10.2.25"
@@ -2142,6 +2151,7 @@ __metadata:
     "@types/react": ^18.0.35
     "@types/react-dom": ^18.0.11
     "@types/uuid": ^9.0.1
+    "@uportal/open-id-connect": ^1.38.1
     "@vitejs/plugin-react": ^3.1.0
     axios: ^1.3.5
     i18next: ^22.4.14
@@ -2155,6 +2165,7 @@ __metadata:
     react-i18next: ^12.2.0
     react-to-webcomponent: ^1.7.6
     react-toastify: ^9.1.2
+    regenerator-runtime: ^0.13.11
     sass: ^1.62.0
     typescript: ^5.0.4
     uuid: ^9.0.0
@@ -3371,6 +3382,13 @@ __metadata:
   bin:
     json5: lib/cli.js
   checksum: 2a7436a93393830bce797d4626275152e37e877b265e94ca69c99e3d20c2b9dab021279146a39cdb700e71b2dd32a4cebd1514cd57cee102b1af906ce5040349
+  languageName: node
+  linkType: hard
+
+"jwt-decode@npm:^3.0.0":
+  version: 3.1.2
+  resolution: "jwt-decode@npm:3.1.2"
+  checksum: 20a4b072d44ce3479f42d0d2c8d3dabeb353081ba4982e40b83a779f2459a70be26441be6c160bfc8c3c6eadf9f6380a036fbb06ac5406b5674e35d8c4205eeb
   languageName: node
   linkType: hard
 

@@ -56,7 +56,7 @@ export const CustomCursor: CursorComponent = ({ color, metadata }) => {
           borderRadius: 4,
         }}
       >
-        {metadata?.name || "Anonymous"}
+        {metadata?.name}
       </div>
     </div>
   );
