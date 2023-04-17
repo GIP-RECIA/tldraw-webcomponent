@@ -25,7 +25,7 @@
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hotkeys-hook": "^4.3.8",
+    "react-hotkeys-hook": "^4.4.0",
     "react-i18next": "^12.2.0",
     "react-toastify": "^9.1.2",
     "sass": "^1.62.0",
@@ -42,7 +42,7 @@
     "@types/uuid": "^9.0.1",
     "@vitejs/plugin-react": "^3.1.0",
     "prop-types": "^15.8.1",
-    "react-to-webcomponent": "^1.7.5",
+    "react-to-webcomponent": "^1.7.6",
     "typescript": "^5.0.4",
     "vite": "^4.2.1"
   }

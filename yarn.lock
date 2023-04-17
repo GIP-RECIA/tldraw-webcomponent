@@ -2151,9 +2151,9 @@ __metadata:
     prop-types: ^15.8.1
     react: ^18.2.0
     react-dom: ^18.2.0
-    react-hotkeys-hook: ^4.3.8
+    react-hotkeys-hook: ^4.4.0
     react-i18next: ^12.2.0
-    react-to-webcomponent: ^1.7.5
+    react-to-webcomponent: ^1.7.6
     react-toastify: ^9.1.2
     sass: ^1.62.0
     typescript: ^5.0.4
@@ -4297,13 +4297,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hotkeys-hook@npm:^4.3.8":
-  version: 4.3.8
-  resolution: "react-hotkeys-hook@npm:4.3.8"
+"react-hotkeys-hook@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "react-hotkeys-hook@npm:4.4.0"
   peerDependencies:
     react: ">=16.8.1"
     react-dom: ">=16.8.1"
-  checksum: cc034274def7d6f044e8efebcc0bfdc8747a5eb7bbe4e65e6179de3894509e380b70ea0b70c3eef740f0099d77cb555a7828fa7c8cab2f72fcee1171b2040a9b
+  checksum: 1c39bbcbb29bea15fec225facee27fb2b24bc84b385f4492d0eebdafa70a2eb0835454d9ba14d81eb9930cf469600b86e21113cd0899e15d8d5163b26819c5dd
   languageName: node
   linkType: hard
 
@@ -4434,10 +4434,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-to-webcomponent@npm:^1.7.5":
-  version: 1.7.5
-  resolution: "react-to-webcomponent@npm:1.7.5"
-  checksum: 375b6ae7c552cf74e95cbb758cfe782cc69b38e8d99207bd7046b485fc672f36b068824757d9c58ade16ce64b860bf7cf2ac06d6fa1d5d87d92cc7758d87f32d
+"react-to-webcomponent@npm:^1.7.6":
+  version: 1.7.6
+  resolution: "react-to-webcomponent@npm:1.7.6"
+  checksum: 7ccf0db32fb5d32623c95c13ff47b51c6c3eac032579a91c90f43bd4bf9c881fca4d4d05b61a9cf1a794abdaf3bdd85d6248af4e6d45a2aed95afaf9c2281f0c
   languageName: node
   linkType: hard
 
