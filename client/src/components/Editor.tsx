@@ -84,6 +84,7 @@ function Editor({
     editor = (
       <MultiplayerEditor
         apiUrl={apiUrl}
+        nextcloudUrl={nextcloudUrl}
         doc={doc}
         provider={provider}
         roomId={room}

@@ -38,6 +38,7 @@ export function useMultiplayer(
       app.setSetting("language", language);
       app.setSetting("keepStyleMenuOpen", true);
       app.loadRoom(roomId);
+      app.document.name = roomId;
       app.pause(); // Turn off the app's own undo / redo stack
       setApp(app);
     },
