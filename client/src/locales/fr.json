@@ -1,5 +1,6 @@
 {
   "sharingItem": {
+    "nextcloudSave": "Sauvegarde sur Nextcloud",
     "generateRoom": "Créer une salle",
     "shareCurrentPage": "Partager la page",
     "joinRoom": "Rejoindre une salle",

@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRightFromBracket,
   faArrowRightToBracket,
+  faCloud,
   faShareNodes,
   faUsers,
   faXmark,
@@ -20,6 +21,8 @@ type Settings = {
   idbName: string;
   apiUrl: string;
   nextcloudUrl?: string;
+  nextcloudSave?: boolean;
+  nextcloudSaveHide?: boolean;
   wsUrl?: string;
   roomId?: string;
   language?: string;
@@ -34,6 +37,8 @@ Editor.propTypes = {
   apiUrl: PropTypes.string.isRequired,
   wsUrl: PropTypes.string,
   nextcloudUrl: PropTypes.string,
+  nextcloudSave: PropTypes.bool,
+  nextcloudSaveHide: PropTypes.bool,
   roomId: PropTypes.string,
   language: PropTypes.string,
   readOnly: PropTypes.bool,
@@ -49,6 +54,8 @@ function Editor({
   apiUrl,
   wsUrl,
   nextcloudUrl,
+  nextcloudSave,
+  nextcloudSaveHide,
   roomId,
   language,
   readOnly,
@@ -58,18 +65,23 @@ function Editor({
 }: Settings) {
   const { t } = useTranslation();
 
-  const [room, setRoom] = useState<string | undefined>(roomId);
-  const [joinRoom, setJoinRoom] = useState<string | undefined>(undefined);
-  const [wantJoinRoom, setWantJoinRoom] = useState<boolean>(false);
-  const [useLocalDoc, setUseLocalDoc] = useState<boolean>(false);
-
+  nextcloudSave = nextcloudSave || false;
   language = language || "en";
   readOnly = readOnly || false;
+
+  const [room, setRoom] = useState<string | undefined>(roomId);
+  const [joinRoom, setJoinRoom] = useState<string | undefined>(undefined);
+  const [saveOnNextcloudState, setSaveOnNextcloudState] = useState<boolean>(
+    (nextcloudUrl ? true : false) && nextcloudSave
+  );
+  const [wantJoinRoom, setWantJoinRoom] = useState<boolean>(false);
+  const [useLocalDoc, setUseLocalDoc] = useState<boolean>(false);
 
   let editor = (
     <SingleplayerEditor
       apiUrl={apiUrl}
       nextcloudUrl={nextcloudUrl}
+      saveOnNextcloudState={saveOnNextcloudState}
       idbName={idbName}
       doc={localDoc}
       language={language}
@@ -85,6 +97,7 @@ function Editor({
       <MultiplayerEditor
         apiUrl={apiUrl}
         nextcloudUrl={nextcloudUrl}
+        saveOnNextcloudState={saveOnNextcloudState}
         doc={doc}
         provider={provider}
         roomId={room}
@@ -108,93 +121,104 @@ function Editor({
   return (
     <div>
       <ToastContainer />
-      {wsUrl && !room && (
-        <div className="sharing-container">
-          {!noShare && !readOnly && !wantJoinRoom && (
-            <a
-              className="sharing-item"
-              onClick={() => setRoom(uuidv4())}
-              title={t("sharingItem.generateRoom") as string}
-            >
-              <FontAwesomeIcon icon={faUsers} />
-            </a>
-          )}
-          {!noShare && !readOnly && !wantJoinRoom && (
-            <a
-              className="sharing-item"
-              onClick={() => {
-                setUseLocalDoc(true);
-                setRoom(uuidv4());
-              }}
-              title={t("sharingItem.shareCurrentPage") as string}
-            >
-              <FontAwesomeIcon icon={faShareNodes} />
-            </a>
-          )}
-          {!noJoin && !wantJoinRoom && (
-            <a
-              className="sharing-item"
-              onClick={() => setWantJoinRoom(true)}
-              title={t("sharingItem.joinRoom") as string}
-            >
-              <FontAwesomeIcon icon={faArrowRightToBracket} />
-            </a>
-          )}
-          {!noJoin && wantJoinRoom && (
-            <input
-              className="sharing-item input-join"
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setJoinRoom(e.target.value)
-              }
-              onKeyUp={(e) => e.key === "Enter" && joinRoomHandler()}
-              type="text"
-              placeholder={t("sharingItem.joinRoomPlaceholder") as string}
-              maxLength={uuidv4().length}
-              autoFocus
-            ></input>
-          )}
-          {!noJoin && wantJoinRoom && (
-            <a
-              className="sharing-item"
-              onClick={resetStates}
-              title={t("sharingItem.closeJoinRoom") as string}
-            >
-              <FontAwesomeIcon icon={faXmark} />
-            </a>
-          )}
-          {!noJoin && joinRoom && uuidValidate(joinRoom) && (
-            <a
-              className="sharing-item"
-              onClick={joinRoomHandler}
-              title={t("sharingItem.joinRoom") as string}
-            >
-              <FontAwesomeIcon icon={faArrowRightToBracket} />
-            </a>
-          )}
-        </div>
-      )}
-      {wsUrl && room && (
-        <div className="sharing-container">
-          {!noShare && (
-            <a
-              className="sharing-item"
-              onClick={() => navigator.clipboard.writeText(room)}
-              title={t("sharingItem.roomId") as string}
-            >
-              {room}
-            </a>
-          )}
-          {!noLeave && (
-            <a
-              className="sharing-item"
-              onClick={resetStates}
-              title={t("sharingItem.leaveRoom") as string}
-            >
-              <FontAwesomeIcon icon={faArrowRightFromBracket} />
-            </a>
-          )}
-        </div>
-      )}
+      <div className="sharing-container">
+        {nextcloudUrl && !nextcloudSaveHide && !wantJoinRoom && (
+          <a
+            className={`sharing-item${saveOnNextcloudState ? "-enabled" : ""}`}
+            onClick={() => setSaveOnNextcloudState(!saveOnNextcloudState)}
+            title={t("sharingItem.nextcloudSave") as string}
+          >
+            <FontAwesomeIcon icon={faCloud} />
+          </a>
+        )}
+        {wsUrl && !room && (
+          <div>
+            {!noShare && !readOnly && !wantJoinRoom && (
+              <a
+                className="sharing-item"
+                onClick={() => setRoom(uuidv4())}
+                title={t("sharingItem.generateRoom") as string}
+              >
+                <FontAwesomeIcon icon={faUsers} />
+              </a>
+            )}
+            {!noShare && !readOnly && !wantJoinRoom && (
+              <a
+                className="sharing-item"
+                onClick={() => {
+                  setUseLocalDoc(true);
+                  setRoom(uuidv4());
+                }}
+                title={t("sharingItem.shareCurrentPage") as string}
+              >
+                <FontAwesomeIcon icon={faShareNodes} />
+              </a>
+            )}
+            {!noJoin && !wantJoinRoom && (
+              <a
+                className="sharing-item"
+                onClick={() => setWantJoinRoom(true)}
+                title={t("sharingItem.joinRoom") as string}
+              >
+                <FontAwesomeIcon icon={faArrowRightToBracket} />
+              </a>
+            )}
+            {!noJoin && wantJoinRoom && (
+              <input
+                className="sharing-item input-join"
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setJoinRoom(e.target.value)
+                }
+                onKeyUp={(e) => e.key === "Enter" && joinRoomHandler()}
+                type="text"
+                placeholder={t("sharingItem.joinRoomPlaceholder") as string}
+                maxLength={uuidv4().length}
+                autoFocus
+              ></input>
+            )}
+            {!noJoin && wantJoinRoom && (
+              <a
+                className="sharing-item"
+                onClick={resetStates}
+                title={t("sharingItem.closeJoinRoom") as string}
+              >
+                <FontAwesomeIcon icon={faXmark} />
+              </a>
+            )}
+            {!noJoin && joinRoom && uuidValidate(joinRoom) && (
+              <a
+                className="sharing-item"
+                onClick={joinRoomHandler}
+                title={t("sharingItem.joinRoom") as string}
+              >
+                <FontAwesomeIcon icon={faArrowRightToBracket} />
+              </a>
+            )}
+          </div>
+        )}
+        {wsUrl && room && (
+          <div>
+            {!noShare && (
+              <a
+                className="sharing-item"
+                onClick={() => navigator.clipboard.writeText(room)}
+                title={t("sharingItem.roomId") as string}
+              >
+                {room}
+              </a>
+            )}
+            {!noLeave && (
+              <a
+                className="sharing-item"
+                onClick={resetStates}
+                title={t("sharingItem.leaveRoom") as string}
+              >
+                <FontAwesomeIcon icon={faArrowRightFromBracket} />
+              </a>
+            )}
+          </div>
+        )}
+      </div>
       {editor}
     </div>
   );

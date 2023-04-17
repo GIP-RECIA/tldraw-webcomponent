@@ -2,7 +2,7 @@ $border-radius: 9px;
 $height: 40px;
 
 tldraw-editor {
-  .sharing-container {
+  div.sharing-container {
     pointer-events: all;
     z-index: 2;
     position: absolute;
@@ -14,7 +14,11 @@ tldraw-editor {
     background-color: var(--colors-panel);
     border: 1px solid var(--colors-panelContrast);
 
-    .sharing-item {
+    div {
+      display: flex;
+    }
+
+    a.sharing-item {
       width: fit-content;
       min-width: $height;
       height: $height;
@@ -30,16 +34,33 @@ tldraw-editor {
       user-select: none;
     }
 
-    .sharing-item:hover,
-    .input-join:focus {
-      background-color: var(--colors-hover);
+    a.sharing-item-enabled {
+      width: fit-content;
+      min-width: $height;
+      height: $height;
+      border-radius: $border-radius;
+      padding: 9px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--fontSizes-1);
+      font-family: var(--fonts-ui);
+      color: white;
+      background-color: var(--colors-selected);
+      user-select: none;
     }
 
-    .input-join {
+    input.input-join {
       border: none;
       outline: none;
       width: 280px;
       text-align: center;
+    }
+
+    a.sharing-item:hover,
+    input.input-join:focus {
+      background-color: var(--colors-hover);
     }
   }
 }

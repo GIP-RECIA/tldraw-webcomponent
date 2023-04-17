@@ -7,6 +7,7 @@ import * as Y from "yjs";
 type Singleplayer = {
   apiUrl: string;
   nextcloudUrl: string | undefined;
+  saveOnNextcloudState: boolean;
   idbName: string;
   doc: Y.Doc;
   language: string;
@@ -16,6 +17,7 @@ type Singleplayer = {
 function SingleplayerEditor({
   apiUrl,
   nextcloudUrl,
+  saveOnNextcloudState,
   idbName,
   doc,
   language,
@@ -35,6 +37,8 @@ function SingleplayerEditor({
     onExport,
   } = useSave(nextcloudUrl ? nextcloudUrl : "");
 
+  const canSaveOnNectcloud = nextcloudUrl && saveOnNextcloudState;
+
   const onMount = (app: TldrawApp) => {
     app.setSetting("language", language);
     app.setSetting("keepStyleMenuOpen", true);
@@ -49,9 +53,9 @@ function SingleplayerEditor({
       onAssetCreate={onAssetCreate}
       onAssetDelete={onAssetDelete}
       onAssetUpload={onAssetUpload}
-      onSaveProject={nextcloudUrl ? ncOnSaveProject : onSaveProject}
-      onSaveProjectAs={nextcloudUrl ? ncOnSaveProjectAs : onSaveProjectAs}
-      onExport={nextcloudUrl ? onExport : undefined}
+      onSaveProject={canSaveOnNectcloud ? ncOnSaveProject : onSaveProject}
+      // onSaveProjectAs={canSaveOnNectcloud ? ncOnSaveProjectAs : onSaveProjectAs}
+      onExport={canSaveOnNectcloud ? onExport : undefined}
       readOnly={readOnly}
       onChange={(app: TldrawApp) => updateDoc(doc, app)}
       onNewProject={onNewProject}

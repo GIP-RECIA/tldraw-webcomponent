@@ -9,6 +9,7 @@ import { useSave } from "../hooks/useSave";
 type Multiplayer = {
   apiUrl: string;
   nextcloudUrl: string | undefined;
+  saveOnNextcloudState: boolean;
   doc: Y.Doc;
   provider: WebsocketProvider;
   roomId: string;
@@ -23,6 +24,7 @@ const components = {
 function MultiplayerEditor({
   apiUrl,
   nextcloudUrl,
+  saveOnNextcloudState,
   doc,
   provider,
   roomId,
@@ -38,6 +40,8 @@ function MultiplayerEditor({
   } = useSave(nextcloudUrl ? nextcloudUrl : "");
   const { ...events } = useMultiplayer(doc, provider, roomId, language);
 
+  const canSaveOnNectcloud = nextcloudUrl && saveOnNextcloudState;
+
   return (
     <Tldraw
       autofocus
@@ -47,9 +51,9 @@ function MultiplayerEditor({
       onAssetCreate={readOnly ? undefined : onAssetCreate}
       onAssetDelete={onAssetDelete}
       onAssetUpload={onAssetUpload}
-      onSaveProject={nextcloudUrl ? ncOnSaveProject : onSaveProject}
-      onSaveProjectAs={nextcloudUrl ? ncOnSaveProjectAs : onSaveProjectAs}
-      onExport={nextcloudUrl ? onExport : undefined}
+      onSaveProject={canSaveOnNectcloud ? ncOnSaveProject : onSaveProject}
+      // onSaveProjectAs={canSaveOnNectcloud ? ncOnSaveProjectAs : onSaveProjectAs}
+      onExport={canSaveOnNectcloud ? onExport : undefined}
       readOnly={readOnly}
       {...events}
     />
