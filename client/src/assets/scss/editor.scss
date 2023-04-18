@@ -13,12 +13,14 @@ tldraw-editor {
     border-bottom-left-radius: $border-radius;
     background-color: var(--colors-panel);
     border: 1px solid var(--colors-panelContrast);
+    border-top: 0px;
 
     div {
       display: flex;
     }
 
-    .sharing-item {
+    button.sharing-item,
+    input.sharing-item {
       width: fit-content;
       min-width: $height;
       height: $height;
@@ -31,10 +33,13 @@ tldraw-editor {
       font-size: var(--fontSizes-1);
       font-family: var(--fonts-ui);
       color: var(--colors-text);
+      background: none;
+      outline: none;
+      border: 1px solid var(--colors-panel);
       user-select: none;
     }
 
-    a.sharing-item-enabled {
+    button.sharing-item-enabled {
       width: fit-content;
       min-width: $height;
       height: $height;
@@ -48,18 +53,27 @@ tldraw-editor {
       font-family: var(--fonts-ui);
       color: white;
       background-color: var(--colors-selected);
+      outline: none;
+      border: 1px solid var(--colors-panel);
       user-select: none;
     }
 
     input.input-join {
-      border: none;
-      outline: none;
       width: 280px;
       text-align: center;
+      outline: none;
+      border: 1px solid var(--colors-panel);
     }
 
-    .sharing-item:hover,
+    button.sharing-item:hover,
+    input.sharing-item:hover,
+    button.sharing-item:focus,
     input.input-join:focus {
+      background-color: var(--colors-hover);
+    }
+
+    button.sharing-item-enabled:focus {
+      color: var(--colors-selected);
       background-color: var(--colors-hover);
     }
   }
