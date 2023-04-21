@@ -23,7 +23,7 @@
     },
     "modal": {
       "title": "What did you want to do?",
-      "save": "Save on Nextcloud",
+      "save": "Export on Nextcloud",
       "download": "Download",
       "cancel": "Cancel"
     }
