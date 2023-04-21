@@ -19,7 +19,7 @@
       "error": "Connectez vous à votre Nextcloud et réessayez",
       "unknown": "Une erreur inconnue est survenue",
       "unconfigured": "Nextcloud n'est pas configuré",
-      "guest": "Votre session cas as expirée"
+      "guest": "Votre session cas a expirée"
     }
   }
 }
