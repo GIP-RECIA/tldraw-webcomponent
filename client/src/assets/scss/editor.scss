@@ -3,9 +3,8 @@ $height: 40px;
 
 tldraw-editor {
   div.sharing-container {
-    pointer-events: all;
-    z-index: 2;
     position: absolute;
+    z-index: 2;
     left: 110px;
     display: flex;
     box-shadow: var(--shadows-panel);
@@ -14,6 +13,7 @@ tldraw-editor {
     background-color: var(--colors-panel);
     border: 1px solid var(--colors-panelContrast);
     border-top: 0px;
+    pointer-events: all;
 
     div {
       display: flex;

@@ -20,6 +20,12 @@
       "unknown": "Une erreur inconnue est survenue",
       "unconfigured": "Nextcloud n'est pas configuré",
       "guest": "Votre session cas a expirée"
+    },
+    "modal": {
+      "title": "Que voulez-vous faire ?",
+      "save": "Sauvegarder sur Nextcloud",
+      "download": "Télécharger",
+      "cancel": "Annuler"
     }
   }
 }

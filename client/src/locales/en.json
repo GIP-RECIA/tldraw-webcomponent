@@ -20,6 +20,12 @@
       "unknown": "Unknown error occurred",
       "unconfigured": "Nextcloud is unconfigured",
       "guest": "Your cas session has expired"
+    },
+    "modal": {
+      "title": "What did you want to do?",
+      "save": "Save on Nextcloud",
+      "download": "Download",
+      "cancel": "Cancel"
     }
   }
 }
