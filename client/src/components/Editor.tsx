@@ -1,21 +1,24 @@
-import { ChangeEvent, useState } from "react";
+import "../assets/scss/editor.scss";
+import { useSave } from "../hooks/useSave";
+import { donwloadImageFile } from "../utils/tldraw";
 import { cloneDoc, initProvider, newDoc } from "../utils/yjs";
-import { v4 as uuidv4, validate as uuidValidate } from "uuid";
-import PropTypes from "prop-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import MultiplayerEditor from "./MultiplayerEditor";
+import NextcloudModal from "./NextcloudModal";
+import SingleplayerEditor from "./SingleplayerEditor";
 import {
   faArrowRightFromBracket,
   faArrowRightToBracket,
-  faCloud,
   faShareNodes,
   faUsers,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import MultiplayerEditor from "./MultiplayerEditor";
-import SingleplayerEditor from "./SingleplayerEditor";
-import { ToastContainer } from "react-toastify";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { TDExport, TldrawApp, useFileSystem } from "@tldraw/tldraw";
+import PropTypes from "prop-types";
+import { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
-import "../assets/scss/editor.scss";
+import { ToastContainer } from "react-toastify";
+import { v4 as uuidv4, validate as uuidValidate } from "uuid";
 
 type Settings = {
   idbName: string;
@@ -61,6 +64,11 @@ function Editor({
   noShare,
 }: Settings) {
   const { t } = useTranslation();
+  const { onSaveProject } = useFileSystem();
+  const { onSaveProject: ncOnSaveProject, onExport } = useSave(
+    nextcloudUrl,
+    userApi
+  );
 
   language = language || "en";
   readOnly = readOnly || false;
@@ -69,16 +77,57 @@ function Editor({
   const [joinRoom, setJoinRoom] = useState<string | undefined>(undefined);
   const [wantJoinRoom, setWantJoinRoom] = useState<boolean>(false);
   const [useLocalDoc, setUseLocalDoc] = useState<boolean>(false);
+  const [nextcloudModal, setNextcloudModal] = useState<any>(undefined);
+
+  const handleSave = (app: TldrawApp) => {
+    if (nextcloudModal) return;
+    setNextcloudModal(
+      <NextcloudModal
+        document={app.document}
+        onNextcloud={() => {
+          ncOnSaveProject(app);
+          resetNextcloudModal();
+        }}
+        onDownload={() => {
+          onSaveProject(app);
+          resetNextcloudModal();
+        }}
+        onCancel={resetNextcloudModal}
+      />
+    );
+  };
+
+  const handleExport = async (app: TldrawApp, info: TDExport) => {
+    if (nextcloudModal) return;
+    setNextcloudModal(
+      <NextcloudModal
+        document={app.document}
+        onNextcloud={() => {
+          onExport(app, info);
+          resetNextcloudModal();
+        }}
+        onDownload={() => {
+          donwloadImageFile(app, info);
+          resetNextcloudModal();
+        }}
+        onCancel={resetNextcloudModal}
+      />
+    );
+  };
+
+  const resetNextcloudModal = () => {
+    setNextcloudModal(undefined);
+  };
 
   let editor = (
     <SingleplayerEditor
       uploadApi={uploadApi}
-      userApi={userApi}
-      nextcloudUrl={nextcloudUrl}
       idbName={idbName}
       doc={localDoc}
       language={language}
       readOnly={wantJoinRoom}
+      onSaveProject={handleSave}
+      onExport={handleExport}
     />
   );
 
@@ -90,12 +139,13 @@ function Editor({
       <MultiplayerEditor
         uploadApi={uploadApi}
         userApi={userApi}
-        nextcloudUrl={nextcloudUrl}
         doc={doc}
         provider={provider}
         roomId={room}
         language={language}
         readOnly={readOnly}
+        onSaveProject={handleSave}
+        onExport={handleExport}
       />
     );
   }
@@ -114,6 +164,7 @@ function Editor({
   return (
     <div>
       <ToastContainer />
+      {nextcloudModal}
       <div className="sharing-container">
         {wsUrl && !room && (
           <div>

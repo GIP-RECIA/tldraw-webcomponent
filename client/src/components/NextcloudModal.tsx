@@ -1,9 +1,9 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import "../assets/scss/nextcloudModal.scss";
 import { faCloud, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../assets/scss/nextcloudModal.scss";
-import { useTranslation } from "react-i18next";
 import { TDDocument } from "@tldraw/tldraw";
+import { ChangeEvent, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 type Settings = {
   document: TDDocument;

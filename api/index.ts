@@ -1,6 +1,6 @@
+import router from "./src/routes";
 import cors from "cors";
 import express from "express";
-import router from "./src/routes";
 
 require("dotenv").config();
 

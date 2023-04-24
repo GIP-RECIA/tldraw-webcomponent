@@ -1,7 +1,7 @@
-import multer, { diskStorage } from "multer";
-import { existsSync, mkdirSync } from "fs";
-import { extname } from "path";
 import { NextFunction, Request, Response } from "express";
+import { existsSync, mkdirSync } from "fs";
+import multer, { diskStorage } from "multer";
+import { extname } from "path";
 
 const mUpload =
   (uploadPath: string, identifier: string) =>

@@ -1,6 +1,6 @@
-import * as Y from "yjs";
 import type { TDAsset, TDBinding, TDShape, TldrawApp } from "@tldraw/tldraw";
 import { WebsocketProvider } from "y-websocket";
+import * as Y from "yjs";
 
 const initProvider = (
   wsUrl: string,

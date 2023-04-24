@@ -1,8 +1,7 @@
+import Editor from "./components/Editor";
 import React from "react";
 import ReactDOM from "react-dom/client";
-
 import reactToWebComponent from "react-to-webcomponent";
-import Editor from "./components/Editor";
 
 declare global {
   namespace JSX {

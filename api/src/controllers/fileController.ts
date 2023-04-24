@@ -1,6 +1,6 @@
+import { process } from "../utils/utils";
 import { Request, Response } from "express";
 import { readdirSync, unlinkSync } from "fs";
-import { process } from "../utils/utils";
 
 const uploadFile = async (req: Request, res: Response) =>
   process(

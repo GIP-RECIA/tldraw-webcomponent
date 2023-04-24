@@ -1,3 +1,5 @@
+import { getUserName } from "../services/serviceUser";
+import { getDocData } from "../utils/yjs";
 import type {
   TDAsset,
   TDBinding,
@@ -7,10 +9,8 @@ import type {
 } from "@tldraw/tldraw";
 import { useCallback, useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
-import * as Y from "yjs";
 import { WebsocketProvider } from "y-websocket";
-import { getDocData } from "../utils/yjs";
-import { getUserName } from "../services/serviceUser";
+import * as Y from "yjs";
 
 export function useMultiplayer(
   doc: Y.Doc,
