@@ -1,16 +1,18 @@
-import { Tldraw, useFileSystem } from "@tldraw/tldraw";
-import { WebsocketProvider } from "y-websocket";
+import { useState } from "react";
+import { TDExport, Tldraw, TldrawApp, useFileSystem } from "@tldraw/tldraw";
 import { useAssets } from "../hooks/useAssets";
-import { useMultiplayer } from "../hooks/useMultiplayer";
-import * as Y from "yjs";
-import { CustomCursor } from "./Cursor";
 import { useSave } from "../hooks/useSave";
+import { useMultiplayer } from "../hooks/useMultiplayer";
+import { donwloadImageFile } from "../utils/tldraw";
+import * as Y from "yjs";
+import { WebsocketProvider } from "y-websocket";
+import { CustomCursor } from "./Cursor";
+import NextcloudModal from "./NextcloudModal";
 
 type Multiplayer = {
   uploadApi: string | undefined;
   userApi: string | undefined;
   nextcloudUrl: string | undefined;
-  saveOnNextcloudState: boolean;
   doc: Y.Doc;
   provider: WebsocketProvider;
   roomId: string;
@@ -26,20 +28,18 @@ function MultiplayerEditor({
   uploadApi,
   userApi,
   nextcloudUrl,
-  saveOnNextcloudState,
   doc,
   provider,
   roomId,
   language,
   readOnly,
 }: Multiplayer) {
-  const { onSaveProjectAs, onSaveProject } = useFileSystem();
+  const { onSaveProject } = useFileSystem();
   const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets(uploadApi);
-  const {
-    onSaveProject: ncOnSaveProject,
-    onSaveProjectAs: ncOnSaveProjectAs,
-    onExport,
-  } = useSave(nextcloudUrl, userApi);
+  const { onSaveProject: ncOnSaveProject, onExport } = useSave(
+    nextcloudUrl,
+    userApi
+  );
   const { ...events } = useMultiplayer(
     doc,
     provider,
@@ -48,25 +48,69 @@ function MultiplayerEditor({
     language
   );
 
-  const canSaveOnNectcloud = nextcloudUrl && saveOnNextcloudState && userApi;
+  const [nextcloudModal, setNextcloudModal] = useState<any>(undefined);
+
+  const canSaveOnNectcloud = nextcloudUrl && userApi;
+
+  const handleSave = (app: TldrawApp) => {
+    if (nextcloudModal) return;
+    setNextcloudModal(
+      <NextcloudModal
+        document={app.document}
+        onNextcloud={() => {
+          ncOnSaveProject(app);
+          resetNextcloudModal();
+        }}
+        onDownload={() => {
+          onSaveProject(app);
+          resetNextcloudModal();
+        }}
+        onCancel={resetNextcloudModal}
+      />
+    );
+  };
+
+  const handleExport = async (app: TldrawApp, info: TDExport) => {
+    if (nextcloudModal) return;
+    setNextcloudModal(
+      <NextcloudModal
+        document={app.document}
+        onNextcloud={() => {
+          onExport(app, info);
+          resetNextcloudModal();
+        }}
+        onDownload={() => {
+          donwloadImageFile(app, info);
+          resetNextcloudModal();
+        }}
+        onCancel={resetNextcloudModal}
+      />
+    );
+  };
+
+  const resetNextcloudModal = () => {
+    setNextcloudModal(undefined);
+  };
 
   return (
-    <Tldraw
-      autofocus
-      components={components}
-      showPages={false}
-      showMultiplayerMenu={false}
-      onAssetCreate={
-        readOnly ? undefined : uploadApi ? onAssetCreate : undefined
-      }
-      onAssetDelete={uploadApi ? onAssetDelete : undefined}
-      onAssetUpload={uploadApi ? onAssetUpload : undefined}
-      onSaveProject={canSaveOnNectcloud ? ncOnSaveProject : onSaveProject}
-      // onSaveProjectAs={canSaveOnNectcloud ? ncOnSaveProjectAs : onSaveProjectAs}
-      onExport={canSaveOnNectcloud ? onExport : undefined}
-      readOnly={readOnly}
-      {...events}
-    />
+    <div>
+      {nextcloudModal}
+      <Tldraw
+        autofocus
+        components={components}
+        showPages={false}
+        showMultiplayerMenu={false}
+        onAssetCreate={
+          readOnly ? undefined : uploadApi ? onAssetCreate : undefined
+        }
+        onAssetDelete={uploadApi ? onAssetDelete : undefined}
+        onAssetUpload={uploadApi ? onAssetUpload : undefined}
+        onSaveProject={canSaveOnNectcloud ? handleSave : onSaveProject}
+        onExport={canSaveOnNectcloud ? handleExport : undefined}
+        readOnly={readOnly}
+        {...events}
+      />
+    </div>
   );
 }
 

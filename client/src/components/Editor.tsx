@@ -74,9 +74,6 @@ function Editor({
 
   const [room, setRoom] = useState<string | undefined>(roomId);
   const [joinRoom, setJoinRoom] = useState<string | undefined>(undefined);
-  const [saveOnNextcloudState, setSaveOnNextcloudState] = useState<boolean>(
-    (nextcloudUrl ? true : false) && nextcloudSave
-  );
   const [wantJoinRoom, setWantJoinRoom] = useState<boolean>(false);
   const [useLocalDoc, setUseLocalDoc] = useState<boolean>(false);
 
@@ -85,7 +82,6 @@ function Editor({
       uploadApi={uploadApi}
       userApi={userApi}
       nextcloudUrl={nextcloudUrl}
-      saveOnNextcloudState={saveOnNextcloudState}
       idbName={idbName}
       doc={localDoc}
       language={language}
@@ -102,7 +98,6 @@ function Editor({
         uploadApi={uploadApi}
         userApi={userApi}
         nextcloudUrl={nextcloudUrl}
-        saveOnNextcloudState={saveOnNextcloudState}
         doc={doc}
         provider={provider}
         roomId={room}
@@ -127,16 +122,6 @@ function Editor({
     <div>
       <ToastContainer />
       <div className="sharing-container">
-        {nextcloudUrl && !nextcloudSaveHide && userApi && !wantJoinRoom && (
-          <button
-            type="button"
-            className={`sharing-item${saveOnNextcloudState ? "-enabled" : ""}`}
-            onClick={() => setSaveOnNextcloudState(!saveOnNextcloudState)}
-            title={t("sharingItem.nextcloudSave") as string}
-          >
-            <FontAwesomeIcon icon={faCloud} />
-          </button>
-        )}
         {wsUrl && !room && (
           <div>
             {!noShare && !readOnly && !wantJoinRoom && (
