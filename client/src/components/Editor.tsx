@@ -164,7 +164,6 @@ function Editor({
   return (
     <div>
       <ToastContainer />
-      {nextcloudModal}
       <div className="sharing-container">
         {wsUrl && !room && (
           <div>
@@ -261,6 +260,7 @@ function Editor({
           </div>
         )}
       </div>
+      {nextcloudModal}
       {editor}
     </div>
   );

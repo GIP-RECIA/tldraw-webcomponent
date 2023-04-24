@@ -36,6 +36,7 @@ function NextcloudModal({
               setName(value);
               document.name = value;
             }}
+            autoFocus
           />
           <div className="choice-container">
             <button type="button" className="choice-item" onClick={onNextcloud}>
