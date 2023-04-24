@@ -43,7 +43,7 @@
     "@types/react": "^18.0.38",
     "@types/react-dom": "^18.0.11",
     "@types/uuid": "^9.0.1",
-    "@vitejs/plugin-react": "^3.1.0",
+    "@vitejs/plugin-react": "^4.0.0",
     "prettier": "^2.8.8",
     "prop-types": "^15.8.1",
     "react-to-webcomponent": "^1.7.6",
