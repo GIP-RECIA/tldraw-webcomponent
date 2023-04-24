@@ -1,4 +1,5 @@
 import { TDExport, TldrawApp } from "@tldraw/tldraw";
+import { downloadBlob } from "./file";
 
 const toTLDRFile = (app: TldrawApp) => {
   return new File(
@@ -16,4 +17,8 @@ const toImageFile = (app: TldrawApp, info: TDExport) => {
   });
 };
 
-export { toTLDRFile, toImageFile };
+const donwloadImageFile = (app: TldrawApp, info: TDExport) => {
+  downloadBlob(info.blob, `tldraw - ${app.document.name} - ${info.name}`);
+};
+
+export { toTLDRFile, toImageFile, donwloadImageFile };
