@@ -92,8 +92,6 @@ yarn start:ws
   ws-url=""
   user-api=""
   nextcloud-url=""
-  nextcloud-save="true"
-  nextcloud-save-hide="true"
   room-id=""
   language=""
   read-only="true"
