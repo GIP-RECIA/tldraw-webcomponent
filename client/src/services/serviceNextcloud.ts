@@ -1,15 +1,14 @@
 import axios from "axios";
 
-function getNextcloudUrl(nextcloudUrl: string): string {
-  return nextcloudUrl.endsWith("/") ? nextcloudUrl.slice(0, -1) : nextcloudUrl;
-}
+const getNextcloudUrl = (nextcloudUrl: string): string =>
+  nextcloudUrl.endsWith("/") ? nextcloudUrl.slice(0, -1) : nextcloudUrl;
 
-async function getFromNextcloud(
+const getFromNextcloud = async (
   nextcloudUrl: string,
   userID: string,
   fileUri: string
-) {
-  return await axios.get(
+) =>
+  await axios.get(
     `${getNextcloudUrl(
       nextcloudUrl
     )}/remote.php/dav/files/${userID}/${fileUri}`,
@@ -19,15 +18,14 @@ async function getFromNextcloud(
       },
     }
   );
-}
 
-async function saveOnNextcloud(
+const saveOnNextcloud = async (
   nextcloudUrl: string,
   userID: string,
   file: File,
   type: string
-) {
-  return await axios.put(
+) =>
+  await axios.put(
     `${getNextcloudUrl(nextcloudUrl)}/remote.php/dav/files/${userID}/${
       file.name
     }.${type}`,
@@ -38,6 +36,5 @@ async function saveOnNextcloud(
       },
     }
   );
-}
 
 export { getFromNextcloud, saveOnNextcloud };

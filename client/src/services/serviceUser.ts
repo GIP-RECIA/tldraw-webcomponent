@@ -1,6 +1,6 @@
 import oidc from "@uportal/open-id-connect";
 
-async function getUserID(userApi: string): Promise<string> {
+const getUserID = async (userApi: string): Promise<string> => {
   if (!userApi.startsWith("http")) {
     return userApi.endsWith("/") ? userApi.slice(0, -1) : userApi;
   }
@@ -13,9 +13,9 @@ async function getUserID(userApi: string): Promise<string> {
   if (sub.includes("guest")) throw new Error("guest");
 
   return sub;
-}
+};
 
-async function getUserName(userApi: string | undefined): Promise<string> {
+const getUserName = async (userApi: string | undefined): Promise<string> => {
   if (!userApi || !userApi.startsWith("http")) return "Anonymous";
   try {
     const {
@@ -28,6 +28,6 @@ async function getUserName(userApi: string | undefined): Promise<string> {
   } catch (ignore) {
     return "Anonymous";
   }
-}
+};
 
 export { getUserID, getUserName };
