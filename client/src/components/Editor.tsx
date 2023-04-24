@@ -23,8 +23,6 @@ type Settings = {
   wsUrl?: string;
   userApi?: string;
   nextcloudUrl?: string;
-  nextcloudSave?: boolean;
-  nextcloudSaveHide?: boolean;
   roomId?: string;
   language?: string;
   readOnly?: boolean;
@@ -39,8 +37,6 @@ Editor.propTypes = {
   wsUrl: PropTypes.string,
   userApi: PropTypes.string,
   nextcloudUrl: PropTypes.string,
-  nextcloudSave: PropTypes.bool,
-  nextcloudSaveHide: PropTypes.bool,
   roomId: PropTypes.string,
   language: PropTypes.string,
   readOnly: PropTypes.bool,
@@ -57,8 +53,6 @@ function Editor({
   wsUrl,
   userApi,
   nextcloudUrl,
-  nextcloudSave,
-  nextcloudSaveHide,
   roomId,
   language,
   readOnly,
@@ -68,7 +62,6 @@ function Editor({
 }: Settings) {
   const { t } = useTranslation();
 
-  nextcloudSave = nextcloudSave || false;
   language = language || "en";
   readOnly = readOnly || false;
 
