@@ -37,12 +37,14 @@
     "yjs": "^13.5.52"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/lodash": "^4.14.194",
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.35",
     "@types/react-dom": "^18.0.11",
     "@types/uuid": "^9.0.1",
     "@vitejs/plugin-react": "^3.1.0",
+    "prettier": "^2.8.8",
     "prop-types": "^15.8.1",
     "react-to-webcomponent": "^1.7.6",
     "typescript": "^5.0.4",
