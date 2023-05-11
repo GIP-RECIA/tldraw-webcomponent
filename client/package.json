@@ -34,20 +34,20 @@
     "uuid": "^9.0.0",
     "y-presence": "^0.2.3",
     "y-websocket": "^1.5.0",
-    "yjs": "^13.6.0"
+    "yjs": "^13.6.1"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/lodash": "^4.14.194",
     "@types/node": "^18.16.3",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.1",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
     "@types/uuid": "^9.0.1",
     "@vitejs/plugin-react": "^4.0.0",
     "prettier": "^2.8.8",
     "prop-types": "^15.8.1",
     "react-to-webcomponent": "^1.7.6",
     "typescript": "^5.0.4",
-    "vite": "^4.3.4"
+    "vite": "^4.3.5"
   }
 }
