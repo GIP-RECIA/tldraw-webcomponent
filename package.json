@@ -13,6 +13,7 @@
     "client"
   ],
   "scripts": {
+    "prepare": "husky install",
     "initialize": "yarn && cp api/.env.example api/.env",
     "clean": "find . -name node_modules -type d -prune -o -name cache -type d -o -name dist -type d | xargs rm -rf",
     "dev": "concurrently -n WS,API,Client \"yarn start:ws\" \"yarn dev:api\" \"yarn dev:client\"",
@@ -26,7 +27,9 @@
     "start:client": "yarn workspace client preview"
   },
   "devDependencies": {
-    "concurrently": "^8.0.1"
+    "concurrently": "^8.0.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2"
   },
   "packageManager": "yarn@3.5.1"
 }
