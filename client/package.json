@@ -21,7 +21,7 @@
     "@uportal/open-id-connect": "^1.38.1",
     "axios": "^1.4.0",
     "i18next": "^22.5.0",
-    "i18next-browser-languagedetector": "^7.0.1",
+    "i18next-browser-languagedetector": "^7.0.2",
     "i18next-http-backend": "^2.2.1",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
@@ -38,9 +38,9 @@
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
-    "@types/lodash": "^4.14.194",
-    "@types/node": "^18.16.14",
-    "@types/react": "^18.2.6",
+    "@types/lodash": "^4.14.195",
+    "@types/node": "^18.16.16",
+    "@types/react": "^18.2.7",
     "@types/react-dom": "^18.2.4",
     "@types/uuid": "^9.0.1",
     "@vitejs/plugin-react": "^4.0.0",
@@ -48,6 +48,6 @@
     "prop-types": "^15.8.1",
     "react-to-webcomponent": "^1.7.6",
     "typescript": "^5.0.4",
-    "vite": "^4.3.8"
+    "vite": "^4.3.9"
   }
 }
