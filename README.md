@@ -67,40 +67,6 @@ To use multiplayer functionality.
 yarn start:ws
 ```
 
-### WebComponent
-
-|    Property     |   Type    | Required | Default | Description                                                                                                                                                                 |
-| :-------------: | :-------: | :------: | :-----: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|   `idb-name`    | `string`  |  `true`  |         | Name for indexeddb                                                                                                                                                          |
-|  `upload-api`   | `string`  | `false`  |         | API url for file managment (by default, save in local storage)                                                                                                              |
-|    `ws-url`     | `string`  | `false`  |         | [Yjs](https://github.com/yjs/yjs) WebSocket server url                                                                                                                      |
-|   `user-api`    | `string`  | `false`  |         | API url with `@uportal/open-id-connect` to get user info or Nextcloud WEBDAV info after `/remote.php/dav/files/` (Use for Nextcloud save and get usernames for multiplayer) |
-| `nextcloud-url` | `string`  | `false`  |         | Nextcloud server url                                                                                                                                                        |
-|    `room-id`    | `string`  | `false`  |         | Identifier of multiplayer room                                                                                                                                              |
-|   `language`    | `string`  | `false`  |  `en`   | Default interface language (check [tldraw translation](https://github.com/tldraw/tldraw/tree/main/packages/tldraw/src/translations) for availables translations)            |
-|   `read-only`   | `boolean` | `false`  | `false` | Disable edition on multiplayer                                                                                                                                              |
-|    `no-join`    | `boolean` | `false`  | `false` | Disallow joining room by removing icon                                                                                                                                      |
-|   `no-leave`    | `boolean` | `false`  | `false` | Disallow leaving room by removing icon                                                                                                                                      |
-|   `no-share`    | `boolean` | `false`  | `false` | Disallow sharing romm by removing icon                                                                                                                                      |
-
-/!\ DONT USE `/` AT END OF URLs
-
-```html
-<tldraw-editor
-  idb-name=""
-  upload-api=""
-  ws-url=""
-  user-api=""
-  nextcloud-url=""
-  room-id=""
-  language=""
-  read-only="true"
-  no-join="true"
-  no-share="true"
-  no-leave="true"
-/>
-```
-
 ## Build
 
 Build all in `./dist`

@@ -1,6 +1,6 @@
 {
-  "name": "api",
-  "version": "1.0.0",
+  "name": "@gip-recia/tldraw-api",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "license": "MIT",
   "author": {

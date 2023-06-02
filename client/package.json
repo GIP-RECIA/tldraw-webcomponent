@@ -1,12 +1,27 @@
 {
-  "name": "client",
-  "version": "1.0.0",
+  "name": "@gip-recia/tldraw-webcomponent",
+  "version": "0.0.1",
   "type": "module",
-  "license": "MIT",
+  "description": "tldraw web component",
+  "keywords": [
+    "tldraw",
+    "web component",
+    "gip-recia"
+  ],
+  "homepage": "https://github.com/GIP-RECIA/tldraw-webcomponent/#README.md",
+  "bugs": {
+    "url": "https://github.com/GIP-RECIA/tldraw-webcomponent/issues"
+  },
+  "license": "Apache-2.0",
   "author": {
     "name": "Quentin Guillemin",
     "email": "guillemin.quentin@outlook.fr",
     "url": "https://github.com/Quentin-Guillemin"
+  },
+  "main": "dist/tldraw-webcomponent-index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GIP-RECIA/tldraw-webcomponent.git"
   },
   "scripts": {
     "dev": "vite --host",
