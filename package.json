@@ -27,7 +27,7 @@
     "start:client": "yarn workspace client preview"
   },
   "devDependencies": {
-    "concurrently": "^8.0.1",
+    "concurrently": "^8.1.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2"
   },
