@@ -70,8 +70,9 @@ function Editor({
     userApi
   );
 
-  language = language || "en";
-  readOnly = readOnly || false;
+  language = language ?? "en";
+  readOnly = readOnly ?? false;
+  const isNextcloudConfigured = nextcloudUrl && userApi;
 
   const [room, setRoom] = useState<string | undefined>(roomId);
   const [joinRoom, setJoinRoom] = useState<string | undefined>(undefined);
@@ -80,6 +81,10 @@ function Editor({
   const [nextcloudModal, setNextcloudModal] = useState<any>(undefined);
 
   const handleSave = (app: TldrawApp) => {
+    if (!isNextcloudConfigured) {
+      onSaveProject(app);
+      return;
+    }
     if (nextcloudModal) return;
     setNextcloudModal(
       <NextcloudModal
@@ -98,6 +103,10 @@ function Editor({
   };
 
   const handleExport = async (app: TldrawApp, info: TDExport) => {
+    if (!isNextcloudConfigured) {
+      donwloadImageFile(app, info);
+      return;
+    }
     if (nextcloudModal) return;
     setNextcloudModal(
       <NextcloudModal
