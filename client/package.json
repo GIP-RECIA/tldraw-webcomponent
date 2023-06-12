@@ -49,7 +49,7 @@
     "uuid": "^9.0.0",
     "y-presence": "^0.2.3",
     "y-websocket": "^1.5.0",
-    "yjs": "^13.6.1"
+    "yjs": "^13.6.2"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
