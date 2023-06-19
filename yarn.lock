@@ -744,7 +744,7 @@ __metadata:
     "@trivago/prettier-plugin-sort-imports": ^4.1.1
     "@types/lodash": ^4.14.195
     "@types/node": ^18.16.18
-    "@types/react": ^18.2.12
+    "@types/react": ^18.2.13
     "@types/react-dom": ^18.2.5
     "@types/uuid": ^9.0.2
     "@uportal/open-id-connect": ^1.38.1
@@ -2025,7 +2025,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:16 || 17 || 18, @types/react@npm:^18.2.12":
+"@types/react@npm:*, @types/react@npm:16 || 17 || 18":
   version: 18.2.12
   resolution: "@types/react@npm:18.2.12"
   dependencies:
@@ -2033,6 +2033,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: ad85a7eadaf1b35cfeee9f715b39311420ff46d46e0650377d918b3f888c2e47416037da4a765e1dccd3d1916abd54c105a3bee803c971ba56c955a7768ce976
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^18.2.13":
+  version: 18.2.13
+  resolution: "@types/react@npm:18.2.13"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: f7c15f19c164a29262993ea2aae2085fa38cddd9b8359fd8fefabfced91010b515a3abe2042b2b7f2f86e6b38a25b191415aa9313a9027175e3a000883c858cc
   languageName: node
   linkType: hard
 
