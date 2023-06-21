@@ -242,7 +242,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.19.4, @babel/runtime@npm:^7.20.6, @babel/runtime@npm:^7.21.0":
+"@babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.19.4, @babel/runtime@npm:^7.20.6, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.22.5":
   version: 7.22.5
   resolution: "@babel/runtime@npm:7.22.5"
   dependencies:
@@ -750,7 +750,7 @@ __metadata:
     "@uportal/open-id-connect": ^1.38.1
     "@vitejs/plugin-react": ^4.0.0
     axios: ^1.4.0
-    i18next: ^22.5.1
+    i18next: ^23.2.2
     i18next-browser-languagedetector: ^7.0.2
     i18next-http-backend: ^2.2.1
     lodash: ^4.17.21
@@ -3671,12 +3671,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next@npm:^22.5.1":
-  version: 22.5.1
-  resolution: "i18next@npm:22.5.1"
+"i18next@npm:^23.2.2":
+  version: 23.2.2
+  resolution: "i18next@npm:23.2.2"
   dependencies:
-    "@babel/runtime": ^7.20.6
-  checksum: 175f8ab7fac2abcee147b00cc2d8e7d4fa9b05cdc227f02cac841fc2fd9545ed4a6d88774f594f8ad12dc944e4d34cc8e88aa00c8b9947baef9e859d93abd305
+    "@babel/runtime": ^7.22.5
+  checksum: 9f7fe331750a43b82c809ce988dad04f79dbe163141ea96b2dd0c650888d08263aed85a4bffbc0973aabdc6db51d35697add8598985c3600aa00356da3e9e367
   languageName: node
   linkType: hard
 
