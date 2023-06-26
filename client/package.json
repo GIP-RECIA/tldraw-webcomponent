@@ -33,7 +33,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@tldraw/tldraw": "1.29.2",
-    "@uportal/open-id-connect": "^1.38.1",
+    "@uportal/open-id-connect": "^1.39.0",
     "axios": "^1.4.0",
     "i18next": "^22.5.1",
     "i18next-browser-languagedetector": "^7.0.2",
