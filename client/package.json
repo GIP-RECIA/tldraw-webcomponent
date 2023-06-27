@@ -61,7 +61,7 @@
     "@vitejs/plugin-react": "^4.0.0",
     "prettier": "^2.8.8",
     "prop-types": "^15.8.1",
-    "react-to-webcomponent": "^1.7.6",
+    "react-to-webcomponent": "^2.0.0",
     "typescript": "^5.0.4",
     "vite": "^4.3.9"
   }
