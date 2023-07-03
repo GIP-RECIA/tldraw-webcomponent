@@ -62,7 +62,7 @@
     "prettier": "^2.8.8",
     "prop-types": "^15.8.1",
     "react-to-webcomponent": "^1.7.6",
-    "typescript": "^5.0.4",
+    "typescript": "^5.1.6",
     "vite": "^4.3.9"
   }
 }
