@@ -898,8 +898,8 @@ __metadata:
     "@trivago/prettier-plugin-sort-imports": ^4.1.1
     "@types/lodash": ^4.14.195
     "@types/node": ^18.16.19
-    "@types/react": ^18.2.13
-    "@types/react-dom": ^18.2.5
+    "@types/react": ^18.2.14
+    "@types/react-dom": ^18.2.6
     "@types/uuid": ^9.0.2
     "@uportal/open-id-connect": ^1.39.0
     "@vitejs/plugin-react": ^4.0.1
@@ -2186,7 +2186,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^18.2.5":
+"@types/react-dom@npm:^18.2.6":
   version: 18.2.6
   resolution: "@types/react-dom@npm:18.2.6"
   dependencies:
@@ -2195,7 +2195,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:16 || 17 || 18, @types/react@npm:^18.2.13":
+"@types/react@npm:*, @types/react@npm:16 || 17 || 18, @types/react@npm:^18.2.14":
   version: 18.2.14
   resolution: "@types/react@npm:18.2.14"
   dependencies:
