@@ -9,10 +9,16 @@
     "roomId": "Copy room id to clipboard",
     "leaveRoom": "Leave room"
   },
+  "toast": {
+    "clipboard": {
+      "success": "Copied to clipboard",
+      "error": "Unable to copy in clipboard"
+    }
+  },
   "nextcloud": {
     "stateMessage": {
-      "Created": "created",
-      "Updated": "updated"
+      "created": "created",
+      "updated": "updated"
     },
     "toast": {
       "success": "\"{{fileName}}\" has been {{state}} on your Nextcloud",

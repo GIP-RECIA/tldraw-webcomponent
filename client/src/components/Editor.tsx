@@ -18,6 +18,7 @@ import PropTypes from "prop-types";
 import { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { v4 as uuidv4, validate as uuidValidate } from "uuid";
 
 type Settings = {
@@ -170,6 +171,22 @@ function Editor({
     setUseLocalDoc(false);
   };
 
+  const copyToClipboard = async () => {
+    if (room) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(room);
+        toast.success(t("toast.clipboard.success"), {
+          theme: "colored",
+        });
+      } else {
+        toast.error(t("toast.clipboard.error"), {
+          theme: "colored",
+        });
+        console.log("RoomId:", room);
+      }
+    }
+  };
+
   return (
     <div>
       <ToastContainer />
@@ -250,7 +267,7 @@ function Editor({
               <button
                 type="button"
                 className="sharing-item"
-                onClick={() => navigator.clipboard.writeText(room)}
+                onClick={copyToClipboard}
                 title={t("sharingItem.roomId") as string}
               >
                 {room}
