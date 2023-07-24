@@ -65,6 +65,6 @@
     "prop-types": "^15.8.1",
     "react-to-webcomponent": "^1.7.6",
     "typescript": "^5.1.6",
-    "vite": "^4.4.6"
+    "vite": "^4.4.7"
   }
 }
