@@ -17,8 +17,7 @@ import { TDExport, TldrawApp, useFileSystem } from "@tldraw/tldraw";
 import PropTypes from "prop-types";
 import { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ToastContainer } from "react-toastify";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { v4 as uuidv4, validate as uuidValidate } from "uuid";
 
 type Settings = {
