@@ -757,7 +757,7 @@ __metadata:
     "@types/uuid": ^9.0.2
     "@uportal/open-id-connect": ^1.40.1
     "@vitejs/plugin-basic-ssl": ^1.0.1
-    "@vitejs/plugin-react": ^4.0.3
+    "@vitejs/plugin-react": ^4.0.4
     axios: ^1.5.0
     i18next: ^23.4.6
     i18next-browser-languagedetector: ^7.1.0
@@ -2109,7 +2109,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitejs/plugin-react@npm:^4.0.3":
+"@vitejs/plugin-react@npm:^4.0.4":
   version: 4.0.4
   resolution: "@vitejs/plugin-react@npm:4.0.4"
   dependencies:
