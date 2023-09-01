@@ -15,21 +15,21 @@ npm install @gip-recia/tldraw-webcomponent
 Dans un module JavaScript :
 
 ```js
-import "@gip-recia/tldraw-webcomponent";
+import '@gip-recia/tldraw-webcomponent';
 ```
 
 Dans une page HTML :
 
 ```html
 <script type="module">
-  import "./path/to/tldraw-webcomponent.js";
+  import './path/to/tldraw-webcomponent.js';
 </script>
 ```
 
 3. Ajout du composant sur une page HTML :
 
 ```js
-const tldrawEditor = document.createElement("tldraw-editor");
+const tldrawEditor = document.createElement('tldraw-editor');
 document.body.appendChild(tldrawEditor);
 ```
 
