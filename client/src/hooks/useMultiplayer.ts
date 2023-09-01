@@ -1,23 +1,17 @@
-import { getUserName } from "../services/serviceUser";
-import { getDocData } from "../utils/yjs";
-import type {
-  TDAsset,
-  TDBinding,
-  TDShape,
-  TDUser,
-  TldrawApp,
-} from "@tldraw/tldraw";
-import { useCallback, useEffect, useState } from "react";
-import { useHotkeys } from "react-hotkeys-hook";
-import { WebsocketProvider } from "y-websocket";
-import * as Y from "yjs";
+import { getUserName } from '../services/serviceUser';
+import { getDocData } from '../utils/yjs';
+import type { TDAsset, TDBinding, TDShape, TDUser, TldrawApp } from '@tldraw/tldraw';
+import { useCallback, useEffect, useState } from 'react';
+import { useHotkeys } from 'react-hotkeys-hook';
+import { WebsocketProvider } from 'y-websocket';
+import * as Y from 'yjs';
 
 export function useMultiplayer(
   doc: Y.Doc,
   provider: WebsocketProvider,
   roomId: string,
   userApi: string | undefined,
-  language: string
+  language: string,
 ) {
   const [app, setApp] = useState<TldrawApp>();
   const [loading, setLoading] = useState(true);
@@ -37,8 +31,8 @@ export function useMultiplayer(
   // Put the state into the window, for debugging.
   const onMount = useCallback(
     async (app: TldrawApp) => {
-      app.setSetting("language", language);
-      app.setSetting("keepStyleMenuOpen", true);
+      app.setSetting('language', language);
+      app.setSetting('keepStyleMenuOpen', true);
       app.loadRoom(roomId);
       app.document.name = roomId;
       app.pause(); // Turn off the app's own undo / redo stack
@@ -48,7 +42,7 @@ export function useMultiplayer(
       }
       setApp(app);
     },
-    [roomId]
+    [roomId],
   );
 
   // Update the live shapes when the app's shapes change.
@@ -57,7 +51,7 @@ export function useMultiplayer(
       app: TldrawApp,
       shapes: Record<string, TDShape | undefined>,
       bindings: Record<string, TDBinding | undefined>,
-      assets: Record<string, TDAsset | undefined>
+      assets: Record<string, TDAsset | undefined>,
     ) => {
       doc.transact(() => {
         if (!(yShapes && yBindings && yAssets)) return;
@@ -87,13 +81,13 @@ export function useMultiplayer(
         });
       });
     },
-    []
+    [],
   );
 
   // Handle presence updates when the user's pointer / selection changes
   const onChangePresence = useCallback((app: TldrawApp, user: TDUser) => {
     if (!app.room) return;
-    awareness.setLocalStateField("user", user);
+    awareness.setLocalStateField('user', user);
   }, []);
 
   // Document Changes --------
@@ -118,9 +112,9 @@ export function useMultiplayer(
       app.updateUsers(others.map((other) => other.user).filter(Boolean));
     };
 
-    awareness.on("change", onChangeAwareness);
+    awareness.on('change', onChangeAwareness);
 
-    return () => awareness.off("change", onChangeAwareness);
+    return () => awareness.off('change', onChangeAwareness);
   }, [app]);
 
   useEffect(() => {
@@ -130,7 +124,7 @@ export function useMultiplayer(
       provider.disconnect();
     }
 
-    window.addEventListener("beforeunload", handleDisconnect);
+    window.addEventListener('beforeunload', handleDisconnect);
 
     // Subscribe to changes
     function handleChanges() {
@@ -139,7 +133,7 @@ export function useMultiplayer(
       app.replacePageContent(
         Object.fromEntries(yShapes.entries()),
         Object.fromEntries(yBindings.entries()),
-        Object.fromEntries(yAssets.entries())
+        Object.fromEntries(yAssets.entries()),
       );
     }
 
@@ -152,7 +146,7 @@ export function useMultiplayer(
     setup();
 
     return () => {
-      window.removeEventListener("beforeunload", handleDisconnect);
+      window.removeEventListener('beforeunload', handleDisconnect);
       yShapes.unobserveDeep(handleChanges);
     };
   }, [app]);
@@ -162,9 +156,9 @@ export function useMultiplayer(
   const onSessionEnd = useCallback(() => {}, []);
 
   useHotkeys(
-    "ctrl+shift+l;,⌘+shift+l",
+    'ctrl+shift+l;,⌘+shift+l',
     () => {
-      if (window.confirm("Reset the document?")) {
+      if (window.confirm('Reset the document?')) {
         undoManager.stopCapturing();
         doc.transact(() => {
           if (!(yShapes && yBindings && yAssets)) return;
@@ -183,7 +177,7 @@ export function useMultiplayer(
         });
       }
     },
-    []
+    [],
   );
 
   return {

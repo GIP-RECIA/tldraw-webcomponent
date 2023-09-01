@@ -1,24 +1,24 @@
-import "../assets/scss/editor.scss";
-import { useSave } from "../hooks/useSave";
-import { donwloadImageFile } from "../utils/tldraw";
-import { cloneDoc, initProvider, newDoc } from "../utils/yjs";
-import MultiplayerEditor from "./MultiplayerEditor";
-import NextcloudModal from "./NextcloudModal";
-import SingleplayerEditor from "./SingleplayerEditor";
+import '../assets/scss/editor.scss';
+import { useSave } from '../hooks/useSave';
+import { donwloadImageFile } from '../utils/tldraw';
+import { cloneDoc, initProvider, newDoc } from '../utils/yjs';
+import MultiplayerEditor from './MultiplayerEditor';
+import NextcloudModal from './NextcloudModal';
+import SingleplayerEditor from './SingleplayerEditor';
 import {
   faArrowRightFromBracket,
   faArrowRightToBracket,
   faShareNodes,
   faUsers,
   faXmark,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { TDExport, TldrawApp, useFileSystem } from "@tldraw/tldraw";
-import PropTypes from "prop-types";
-import { ChangeEvent, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { ToastContainer, toast } from "react-toastify";
-import { v4 as uuidv4, validate as uuidValidate } from "uuid";
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { TDExport, TldrawApp, useFileSystem } from '@tldraw/tldraw';
+import PropTypes from 'prop-types';
+import { ChangeEvent, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ToastContainer, toast } from 'react-toastify';
+import { validate as uuidValidate, v4 as uuidv4 } from 'uuid';
 
 type Settings = {
   idbName: string;
@@ -65,12 +65,9 @@ function Editor({
 }: Settings) {
   const { t } = useTranslation();
   const { onSaveProject } = useFileSystem();
-  const { onSaveProject: ncOnSaveProject, onExport } = useSave(
-    nextcloudUrl,
-    userApi
-  );
+  const { onSaveProject: ncOnSaveProject, onExport } = useSave(nextcloudUrl, userApi);
 
-  language = language ?? "en";
+  language = language ?? 'en';
   readOnly = readOnly ?? false;
   const isNextcloudConfigured = nextcloudUrl && userApi;
 
@@ -98,7 +95,7 @@ function Editor({
           resetNextcloudModal();
         }}
         onCancel={resetNextcloudModal}
-      />
+      />,
     );
   };
 
@@ -120,7 +117,7 @@ function Editor({
           resetNextcloudModal();
         }}
         onCancel={resetNextcloudModal}
-      />
+      />,
     );
   };
 
@@ -174,14 +171,14 @@ function Editor({
     if (room) {
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(room);
-        toast.success(t("toast.clipboard.success"), {
-          theme: "colored",
+        toast.success(t('toast.clipboard.success'), {
+          theme: 'colored',
         });
       } else {
-        toast.error(t("toast.clipboard.error"), {
-          theme: "colored",
+        toast.error(t('toast.clipboard.error'), {
+          theme: 'colored',
         });
-        console.log("RoomId:", room);
+        console.log('RoomId:', room);
       }
     }
   };
@@ -197,7 +194,7 @@ function Editor({
                 type="button"
                 className="sharing-item"
                 onClick={() => setRoom(uuidv4())}
-                title={t("sharingItem.generateRoom") as string}
+                title={t('sharingItem.generateRoom') as string}
               >
                 <FontAwesomeIcon icon={faUsers} />
               </button>
@@ -210,7 +207,7 @@ function Editor({
                   setUseLocalDoc(true);
                   setRoom(uuidv4());
                 }}
-                title={t("sharingItem.shareCurrentPage") as string}
+                title={t('sharingItem.shareCurrentPage') as string}
               >
                 <FontAwesomeIcon icon={faShareNodes} />
               </button>
@@ -220,7 +217,7 @@ function Editor({
                 type="button"
                 className="sharing-item"
                 onClick={() => setWantJoinRoom(true)}
-                title={t("sharingItem.joinRoom") as string}
+                title={t('sharingItem.joinRoom') as string}
               >
                 <FontAwesomeIcon icon={faArrowRightToBracket} />
               </button>
@@ -230,7 +227,7 @@ function Editor({
                 type="button"
                 className="sharing-item"
                 onClick={resetStates}
-                title={t("sharingItem.closeJoinRoom") as string}
+                title={t('sharingItem.closeJoinRoom') as string}
               >
                 <FontAwesomeIcon icon={faXmark} />
               </button>
@@ -238,12 +235,10 @@ function Editor({
             {!noJoin && wantJoinRoom && (
               <input
                 className="sharing-item input-join"
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setJoinRoom(e.target.value)
-                }
-                onKeyUp={(e) => e.key === "Enter" && joinRoomHandler()}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setJoinRoom(e.target.value)}
+                onKeyUp={(e) => e.key === 'Enter' && joinRoomHandler()}
                 type="text"
-                placeholder={t("sharingItem.joinRoomPlaceholder") as string}
+                placeholder={t('sharingItem.joinRoomPlaceholder') as string}
                 maxLength={uuidv4().length}
                 autoFocus
               ></input>
@@ -253,7 +248,7 @@ function Editor({
                 type="button"
                 className="sharing-item"
                 onClick={joinRoomHandler}
-                title={t("sharingItem.joinRoom") as string}
+                title={t('sharingItem.joinRoom') as string}
               >
                 <FontAwesomeIcon icon={faArrowRightToBracket} />
               </button>
@@ -267,7 +262,7 @@ function Editor({
                 type="button"
                 className="sharing-item"
                 onClick={copyToClipboard}
-                title={t("sharingItem.roomId") as string}
+                title={t('sharingItem.roomId') as string}
               >
                 {room}
               </button>
@@ -277,7 +272,7 @@ function Editor({
                 type="button"
                 className="sharing-item"
                 onClick={resetStates}
-                title={t("sharingItem.leaveRoom") as string}
+                title={t('sharingItem.leaveRoom') as string}
               >
                 <FontAwesomeIcon icon={faArrowRightFromBracket} />
               </button>

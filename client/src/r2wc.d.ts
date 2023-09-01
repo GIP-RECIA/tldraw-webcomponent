@@ -1,1 +1,1 @@
-declare module "react-to-webcomponent";
+declare module 'react-to-webcomponent';

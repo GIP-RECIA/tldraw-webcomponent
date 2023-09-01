@@ -1,18 +1,11 @@
-import type { TLUser } from "@tldraw/core";
-import { memo } from "react";
+import type { TLUser } from '@tldraw/core';
+import { memo } from 'react';
 
-export type CursorComponent<T = any> = (
-  props: Pick<TLUser<T>, "id" | "color" | "metadata">
-) => any;
+export type CursorComponent<T = any> = (props: Pick<TLUser<T>, 'id' | 'color' | 'metadata'>) => any;
 
 export const Cursor: CursorComponent = memo(({ color }) => {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 35 35"
-      fill="none"
-      fillRule="evenodd"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" fill="none" fillRule="evenodd">
       <g fill="rgba(0,0,0,.2)" transform="translate(1,1)">
         <path d="m12 24.4219v-16.015l11.591 11.619h-6.781l-.411.124z" />
         <path d="m21.0845 25.0962-3.605 1.535-4.682-11.089 3.686-1.553z" />
@@ -33,9 +26,9 @@ export const CustomCursor: CursorComponent = ({ color, metadata }) => {
   return (
     <div
       style={{
-        display: "flex",
-        width: "fit-content",
-        alignItems: "center",
+        display: 'flex',
+        width: 'fit-content',
+        alignItems: 'center',
         gap: 8,
       }}
     >
@@ -45,14 +38,14 @@ export const CustomCursor: CursorComponent = ({ color, metadata }) => {
           height: 12,
           aspectRatio: 1,
           background: color,
-          borderRadius: "100%",
+          borderRadius: '100%',
         }}
       />
       <div
         style={{
           // whiteSpace: "nowrap",
-          background: "white",
-          padding: "4px 8px",
+          background: 'white',
+          padding: '4px 8px',
           borderRadius: 4,
         }}
       >

@@ -1,14 +1,10 @@
-import { downloadBlob } from "./file";
-import { TDExport, TldrawApp } from "@tldraw/tldraw";
+import { downloadBlob } from './file';
+import { TDExport, TldrawApp } from '@tldraw/tldraw';
 
 const toTLDRFile = (app: TldrawApp) => {
-  return new File(
-    [JSON.stringify({ document: app.state.document })],
-    `tldraw - ${app.document.name}`,
-    {
-      type: "application/tldr;charset=utf-8",
-    }
-  );
+  return new File([JSON.stringify({ document: app.state.document })], `tldraw - ${app.document.name}`, {
+    type: 'application/tldr;charset=utf-8',
+  });
 };
 
 const toImageFile = (app: TldrawApp, info: TDExport) => {

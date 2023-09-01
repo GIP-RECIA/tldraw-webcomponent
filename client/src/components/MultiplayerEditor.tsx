@@ -1,9 +1,9 @@
-import { useAssets } from "../hooks/useAssets";
-import { useMultiplayer } from "../hooks/useMultiplayer";
-import { CustomCursor } from "./Cursor";
-import { TDExport, Tldraw, TldrawApp } from "@tldraw/tldraw";
-import { WebsocketProvider } from "y-websocket";
-import * as Y from "yjs";
+import { useAssets } from '../hooks/useAssets';
+import { useMultiplayer } from '../hooks/useMultiplayer';
+import { CustomCursor } from './Cursor';
+import { TDExport, Tldraw, TldrawApp } from '@tldraw/tldraw';
+import { WebsocketProvider } from 'y-websocket';
+import * as Y from 'yjs';
 
 type Multiplayer = {
   uploadApi: string | undefined;
@@ -33,13 +33,7 @@ function MultiplayerEditor({
   onExport,
 }: Multiplayer) {
   const { onAssetCreate, onAssetDelete, onAssetUpload } = useAssets(uploadApi);
-  const { ...events } = useMultiplayer(
-    doc,
-    provider,
-    roomId,
-    userApi,
-    language
-  );
+  const { ...events } = useMultiplayer(doc, provider, roomId, userApi, language);
 
   return (
     <Tldraw
@@ -47,9 +41,7 @@ function MultiplayerEditor({
       components={components}
       showPages={false}
       showMultiplayerMenu={false}
-      onAssetCreate={
-        readOnly ? undefined : uploadApi ? onAssetCreate : undefined
-      }
+      onAssetCreate={readOnly ? undefined : uploadApi ? onAssetCreate : undefined}
       onAssetDelete={uploadApi ? onAssetDelete : undefined}
       onAssetUpload={uploadApi ? onAssetUpload : undefined}
       onSaveProject={onSaveProject}

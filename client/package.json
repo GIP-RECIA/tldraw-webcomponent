@@ -27,7 +27,8 @@
     "dev": "vite --host",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "format": "prettier --write src/"
+    "format:check": "prettier --check --config ../.prettierrc.json --ignore-path ../.prettierignore src/",
+    "format": "prettier --write --config ../.prettierrc.json --ignore-path ../.prettierignore src/"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",

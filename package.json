@@ -24,7 +24,9 @@
     "build:client": "yarn workspace @gip-recia/tldraw-webcomponent build",
     "start:ws": "HOST=localhost PORT=1234 node ./node_modules/y-websocket/bin/server.js",
     "start:api": "yarn workspace @gip-recia/tldraw-api start",
-    "start:client": "yarn workspace @gip-recia/tldraw-webcomponent preview"
+    "start:client": "yarn workspace @gip-recia/tldraw-webcomponent preview",
+    "format:check": "yarn workspace @gip-recia/tldraw-webcomponent format:check && yarn workspace @gip-recia/tldraw-api format:check",
+    "format": "yarn workspace @gip-recia/tldraw-webcomponent format && yarn workspace @gip-recia/tldraw-api format"
   },
   "devDependencies": {
     "concurrently": "^8.2.1",

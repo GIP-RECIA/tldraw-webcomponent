@@ -1,40 +1,31 @@
-import { TldrawApp } from "@tldraw/tldraw";
-import axios from "axios";
-import { useCallback } from "react";
+import { TldrawApp } from '@tldraw/tldraw';
+import axios from 'axios';
+import { useCallback } from 'react';
 
 export function useAssets(apiUrl: string | undefined) {
-  const onAssetCreate = useCallback(
-    async (app: TldrawApp, file: File, id: string): Promise<string | false> => {
-      let body = new FormData();
-      body.append("name", id);
-      body.append("file", file);
+  const onAssetCreate = useCallback(async (app: TldrawApp, file: File, id: string): Promise<string | false> => {
+    let body = new FormData();
+    body.append('name', id);
+    body.append('file', file);
 
-      let response = await axios.post(`${apiUrl}/files`, body, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+    let response = await axios.post(`${apiUrl}/files`, body, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
 
-      return apiUrl + response.data.uri;
-    },
-    []
-  );
+    return apiUrl + response.data.uri;
+  }, []);
 
-  const onAssetUpload = useCallback(
-    async (app: TldrawApp, file: File, id: string): Promise<string | false> => {
-      console.log("Upload", file, id);
+  const onAssetUpload = useCallback(async (app: TldrawApp, file: File, id: string): Promise<string | false> => {
+    console.log('Upload', file, id);
 
-      return false;
-    },
-    []
-  );
+    return false;
+  }, []);
 
-  const onAssetDelete = useCallback(
-    async (app: TldrawApp, id: string): Promise<boolean> => {
-      await axios.delete(`${apiUrl}/files/${id}`);
+  const onAssetDelete = useCallback(async (app: TldrawApp, id: string): Promise<boolean> => {
+    await axios.delete(`${apiUrl}/files/${id}`);
 
-      return true;
-    },
-    []
-  );
+    return true;
+  }, []);
 
   return { onAssetCreate, onAssetDelete, onAssetUpload };
 }

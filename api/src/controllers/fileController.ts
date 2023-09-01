@@ -1,6 +1,6 @@
-import { process } from "../utils/utils";
-import { Request, Response } from "express";
-import { readdirSync, unlinkSync } from "fs";
+import { process } from '../utils/utils';
+import { Request, Response } from 'express';
+import { readdirSync, unlinkSync } from 'fs';
 
 const uploadFile = async (req: Request, res: Response) =>
   process(
@@ -13,19 +13,17 @@ const uploadFile = async (req: Request, res: Response) =>
       } else throw new Error();
     },
     req,
-    res
+    res,
   );
 
 const deleteFile = (req: Request, res: Response) =>
   process(
     (req: Request, res: Response) => {
-      let file = readdirSync("public/uploads").find(
-        (file) => file.split(".")[0] === req.params.name
-      );
+      let file = readdirSync('public/uploads').find((file) => file.split('.')[0] === req.params.name);
       unlinkSync(`public/uploads/${file}`);
     },
     req,
-    res
+    res,
   );
 
 export { uploadFile, deleteFile };
