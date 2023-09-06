@@ -37,7 +37,7 @@
     "@tldraw/tldraw": "1.29.2",
     "@uportal/open-id-connect": "^1.40.1",
     "axios": "^1.5.0",
-    "i18next": "^23.4.6",
+    "i18next": "^23.4.9",
     "i18next-browser-languagedetector": "^7.1.0",
     "i18next-http-backend": "^2.2.2",
     "lodash": "^4.17.21",
@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
-    "@types/lodash": "^4.14.197",
+    "@types/lodash": "^4.14.198",
     "@types/node": "^18.17.14",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
