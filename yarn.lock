@@ -775,6 +775,7 @@ __metadata:
     typescript: ^5.2.2
     uuid: ^9.0.0
     vite: ^4.4.9
+    vite-plugin-css-injected-by-js: ^3.3.0
     y-presence: ^0.2.3
     y-websocket: ^1.5.0
     yjs: ^13.6.7
@@ -6015,6 +6016,15 @@ __metadata:
   version: 1.1.2
   resolution: "vary@npm:1.1.2"
   checksum: ae0123222c6df65b437669d63dfa8c36cee20a504101b2fcd97b8bf76f91259c17f9f2b4d70a1e3c6bbcee7f51b28392833adb6b2770b23b01abec84e369660b
+  languageName: node
+  linkType: hard
+
+"vite-plugin-css-injected-by-js@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "vite-plugin-css-injected-by-js@npm:3.3.0"
+  peerDependencies:
+    vite: ">2.0.0-0"
+  checksum: bacc78de4849795415d3175d700dc93ff7698e1ba4e47bb6d3b55c5f6d76df04c8bae7ae9bc59fd3be0097ebe25707f88d1ed6cfac4ccbb772baac93c87395f3
   languageName: node
   linkType: hard
 
