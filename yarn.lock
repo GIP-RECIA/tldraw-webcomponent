@@ -755,7 +755,7 @@ __metadata:
     "@types/react": ^18.2.21
     "@types/react-dom": ^18.2.7
     "@types/uuid": ^9.0.3
-    "@uportal/open-id-connect": ^1.40.1
+    "@uportal/open-id-connect": ^1.40.2
     "@vitejs/plugin-react": ^4.0.4
     axios: ^1.5.0
     i18next: ^23.4.9
@@ -2073,12 +2073,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uportal/open-id-connect@npm:^1.40.1":
-  version: 1.40.1
-  resolution: "@uportal/open-id-connect@npm:1.40.1"
+"@uportal/open-id-connect@npm:^1.40.2":
+  version: 1.40.2
+  resolution: "@uportal/open-id-connect@npm:1.40.2"
   dependencies:
     jwt-decode: ^3.0.0
-  checksum: 07ba0e3db81516cac05e875f350d3304dea3a8fbefbcb88cdf4e83bd1125a95bb51e11360ea06eff95fb2ad836edf607fb35e5dfb8c581fa75d1da73953e54ef
+  checksum: d0a3c7457abb6d370cf061782d29af069d8f9a784f9fd30861a7a09551d085e2cf5126b767ab2302c28660e25ccfe94d0045285824d3cae1d3adfc2aee501e4b
   languageName: node
   linkType: hard
 
