@@ -37,7 +37,7 @@
     "@tldraw/tldraw": "1.29.2",
     "@uportal/open-id-connect": "^1.40.2",
     "axios": "^1.5.0",
-    "i18next": "^23.4.9",
+    "i18next": "^23.5.1",
     "i18next-browser-languagedetector": "^7.1.0",
     "i18next-http-backend": "^2.2.2",
     "lodash": "^4.17.21",
