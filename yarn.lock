@@ -1998,9 +1998,9 @@ __metadata:
   linkType: hard
 
 "@types/prop-types@npm:*":
-  version: 15.7.5
-  resolution: "@types/prop-types@npm:15.7.5"
-  checksum: 5b43b8b15415e1f298243165f1d44390403bb2bd42e662bca3b5b5633fdd39c938e91b7fce3a9483699db0f7a715d08cef220c121f723a634972fdf596aec980
+  version: 15.7.6
+  resolution: "@types/prop-types@npm:15.7.6"
+  checksum: 5f2796c7330461a556c4d18035fb914b372f96b1619a4f8302d07e1ea708e06a2dbe666dfcd8ff03f64c625aa4c12b31f677d0298a32910f5ab7ee51521d8086
   languageName: node
   linkType: hard
 
@@ -2027,18 +2027,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:16 || 17 || 18":
-  version: 18.2.21
-  resolution: "@types/react@npm:18.2.21"
-  dependencies:
-    "@types/prop-types": "*"
-    "@types/scheduler": "*"
-    csstype: ^3.0.2
-  checksum: ffed203bfe7aad772b8286f7953305c9181ac3a8f27d3f5400fbbc2a8e27ca8e5bbff818ee014f39ca0d19d2b3bb154e5bdbec7e232c6f80b59069375aa78349
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:^18.2.22":
+"@types/react@npm:*, @types/react@npm:16 || 17 || 18, @types/react@npm:^18.2.22":
   version: 18.2.22
   resolution: "@types/react@npm:18.2.22"
   dependencies:
@@ -2528,9 +2517,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001517":
-  version: 1.0.30001535
-  resolution: "caniuse-lite@npm:1.0.30001535"
-  checksum: d66f71a3b97bc24108a54fe7ecaf9133c8a9466f91199185bdf43cff94dc89905860ea15ac18e57a109dd5dc85465d8df7dffa50e19324d03682f37a203468c1
+  version: 1.0.30001538
+  resolution: "caniuse-lite@npm:1.0.30001538"
+  checksum: 94c5d55757a339c7cc175f08a024671e2b4e7c04f130b1015793303d637061347efb6ad84447c3b8137333e742d150b8ad9672716bbf2482646c2e63a56f6c55
   languageName: node
   linkType: hard
 
@@ -4047,7 +4036,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lib0@npm:^0.2.31, lib0@npm:^0.2.42, lib0@npm:^0.2.52, lib0@npm:^0.2.74":
+"lib0@npm:^0.2.31, lib0@npm:^0.2.52, lib0@npm:^0.2.74, lib0@npm:^0.2.85":
   version: 0.2.85
   resolution: "lib0@npm:0.2.85"
   dependencies:
@@ -4815,13 +4804,13 @@ __metadata:
   linkType: hard
 
 "postcss@npm:^8.4.27":
-  version: 8.4.29
-  resolution: "postcss@npm:8.4.29"
+  version: 8.4.30
+  resolution: "postcss@npm:8.4.30"
   dependencies:
     nanoid: ^3.3.6
     picocolors: ^1.0.0
     source-map-js: ^1.0.2
-  checksum: dd6daa25e781db9ae5b651d9b7bfde0ec6e60e86a37da69a18eb4773d5ddd51e28fc4ff054fbdc04636a31462e6bf09a1e50986f69ac52b10d46b7457cd36d12
+  checksum: 6c810c10c9bd3e03ca016e0b6b6756261e640aba1a9a7b1200b55502bc34b9165e38f590aef3493afc2f30ab55cdfcd43fd0f8408d69a77318ddbcf2a8ad164b
   languageName: node
   linkType: hard
 
@@ -6210,11 +6199,13 @@ __metadata:
   linkType: hard
 
 "y-protocols@npm:^1.0.5":
-  version: 1.0.5
-  resolution: "y-protocols@npm:1.0.5"
+  version: 1.0.6
+  resolution: "y-protocols@npm:1.0.6"
   dependencies:
-    lib0: ^0.2.42
-  checksum: d19404a4ebafcf3761c28b881abe8c32ab6e457db0e5ffc7dbb749cbc2c3bb98e003a43f3e8eba7f245b2698c76f2c4cdd1c2db869f8ec0c6ef94736d9a88652
+    lib0: ^0.2.85
+  peerDependencies:
+    yjs: ^13.0.0
+  checksum: 4b57c8811befcf2e45c3d47830005f8a33e626c734f78a42fe8a4fa3caad2233ba85a7c8bceefbd52ffc40130d3f3faee664fd0d1c324ff1fa8817a056ccdc1c
   languageName: node
   linkType: hard
 
