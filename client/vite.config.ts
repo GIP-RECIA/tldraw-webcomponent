@@ -12,9 +12,9 @@ export default ({ mode }: { mode: string }) => {
     build: {
       rollupOptions: {
         output: {
-          assetFileNames: 'assets/tldraw-webcomponent-[name].[ext]',
-          entryFileNames: 'assets/tldraw-webcomponent-[name].js',
-          chunkFileNames: 'assets/tldraw-webcomponent-[name].js',
+          assetFileNames: '[name].[ext]',
+          entryFileNames: '[name].js',
+          chunkFileNames: '[name].js',
         },
       },
     },

@@ -1,7 +1,12 @@
 {
   "name": "@gip-recia/tldraw-webcomponent",
-  "version": "0.0.2",
+  "version": "0.1.1",
   "type": "module",
+  "files": [
+    "dist/*.js",
+    "dist/*.woff",
+    "dist/*.woff2"
+  ],
   "description": "tldraw web component",
   "keywords": [
     "tldraw",
@@ -18,7 +23,14 @@
     "email": "guillemin.quentin@outlook.fr",
     "url": "https://github.com/Quentin-Guillemin"
   },
-  "main": "dist/tldraw-webcomponent-index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/GIP-RECIA/tldraw-webcomponent.git"
