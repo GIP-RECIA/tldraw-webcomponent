@@ -42,13 +42,13 @@ const updateDoc = (doc: Y.Doc, app: TldrawApp) => {
     yBindings.clear();
     yAssets.clear();
 
-    Object.entries(shapes).forEach(([id, shape]) => {
+    Object.entries(shapes).forEach(([_, shape]) => {
       yShapes.set(shape.id, shape);
     });
-    Object.entries(bindings).forEach(([id, binding]) => {
+    Object.entries(bindings).forEach(([_, binding]) => {
       yBindings.set(binding.id, binding);
     });
-    Object.entries(assets).forEach(([id, asset]) => {
+    Object.entries(assets).forEach(([_, asset]) => {
       yAssets.set(asset.id, asset);
     });
   });

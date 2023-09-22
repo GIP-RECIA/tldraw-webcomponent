@@ -4,11 +4,11 @@ import { useCallback } from 'react';
 
 export function useAssets(apiUrl: string | undefined) {
   const onAssetCreate = useCallback(async (app: TldrawApp, file: File, id: string): Promise<string | false> => {
-    let body = new FormData();
+    const body = new FormData();
     body.append('name', id);
     body.append('file', file);
 
-    let response = await axios.post(`${apiUrl}/files`, body, {
+    const response = await axios.post(`${apiUrl}/files`, body, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
 
