@@ -731,7 +731,7 @@ __metadata:
     react-dom: ^18.2.0
     react-hotkeys-hook: ^4.4.1
     react-i18next: ^13.2.2
-    react-to-webcomponent: ^1.7.6
+    react-to-webcomponent: ^2.0.0
     react-toastify: ^9.1.3
     regenerator-runtime: ^0.14.0
     sass: ^1.68.0
@@ -814,6 +814,13 @@ __metadata:
   version: 0.11.0
   resolution: "@pkgjs/parseargs@npm:0.11.0"
   checksum: 6ad6a00fc4f2f2cfc6bff76fb1d88b8ee20bc0601e18ebb01b6d4be583733a860239a521a7fbca73b612e66705078809483549d2b18f370eb346c5155c8e4a0f
+  languageName: node
+  linkType: hard
+
+"@r2wc/core@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@r2wc/core@npm:1.0.0"
+  checksum: 541d03241d14450d383242dc263ef955f54ba52e8220712ca10744b72eb5bc8fc8a60eabfc5602c05f9ae2f3ee47108aa436cf30db5265ad16f743df15968d3b
   languageName: node
   linkType: hard
 
@@ -4050,10 +4057,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-to-webcomponent@npm:^1.7.6":
-  version: 1.7.6
-  resolution: "react-to-webcomponent@npm:1.7.6"
-  checksum: 7ccf0db32fb5d32623c95c13ff47b51c6c3eac032579a91c90f43bd4bf9c881fca4d4d05b61a9cf1a794abdaf3bdd85d6248af4e6d45a2aed95afaf9c2281f0c
+"react-to-webcomponent@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "react-to-webcomponent@npm:2.0.0"
+  dependencies:
+    "@r2wc/core": ^1.0.0
+  peerDependencies:
+    react: ^16.0.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: 3c567075d73cae0afe6048f46e18e50b829d39e716877fc254f8b5397e39079ac1178f049a0fd0960f93ef4c761d52b8f0ff3cdb735045887bfa37cd21fdc7be
   languageName: node
   linkType: hard
 
