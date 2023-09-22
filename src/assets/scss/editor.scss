@@ -2,6 +2,11 @@ $border-radius: 9px;
 $height: 40px;
 
 tldraw-editor {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  
   div.sharing-container {
     position: absolute;
     z-index: 2;
