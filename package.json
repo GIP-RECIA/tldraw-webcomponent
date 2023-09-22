@@ -1,37 +1,88 @@
 {
-  "name": "@gip-recia/express-yjs-tldraw",
-  "version": "1.0.0",
-  "private": true,
-  "license": "MIT",
+  "name": "@gip-recia/tldraw-webcomponent",
+  "version": "0.1.1",
+  "type": "module",
+  "files": [
+    "dist/*.js",
+    "dist/*.woff",
+    "dist/*.woff2"
+  ],
+  "description": "tldraw web component",
+  "keywords": [
+    "tldraw",
+    "web component",
+    "gip-recia"
+  ],
+  "homepage": "https://github.com/GIP-RECIA/tldraw-webcomponent/#README.md",
+  "bugs": {
+    "url": "https://github.com/GIP-RECIA/tldraw-webcomponent/issues"
+  },
+  "license": "Apache-2.0",
   "author": {
     "name": "Quentin Guillemin",
     "email": "guillemin.quentin@outlook.fr",
     "url": "https://github.com/Quentin-Guillemin"
   },
-  "workspaces": [
-    "api",
-    "client"
-  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GIP-RECIA/tldraw-webcomponent.git"
+  },
   "scripts": {
-    "prepare": "husky install",
-    "initialize": "yarn && cp api/.env.example api/.env && cp client/.env.example client/.env",
-    "clean": "find . -name node_modules -type d -prune -o -name cache -type d -o -name dist -type d | xargs rm -rf",
-    "dev": "concurrently -n WS,API,Client \"yarn start:ws\" \"yarn dev:api\" \"yarn dev:client\"",
-    "dev:api": "yarn workspace @gip-recia/tldraw-api dev",
-    "dev:client": "yarn workspace @gip-recia/tldraw-webcomponent dev",
-    "build": "rm -rf dist && yarn build:api && yarn build:client && mkdir dist && mv api/dist dist/api && mv client/dist dist/client",
-    "build:api": "yarn workspace @gip-recia/tldraw-api build",
-    "build:client": "yarn workspace @gip-recia/tldraw-webcomponent build",
+    "dev": "concurrently -n WS,APP \"yarn start:ws\" \"vite --host\"",
     "start:ws": "HOST=localhost PORT=1234 node ./node_modules/y-websocket/bin/server.js",
-    "start:api": "yarn workspace @gip-recia/tldraw-api start",
-    "start:client": "yarn workspace @gip-recia/tldraw-webcomponent preview",
-    "format:check": "yarn workspace @gip-recia/tldraw-webcomponent format:check && yarn workspace @gip-recia/tldraw-api format:check",
-    "format": "yarn workspace @gip-recia/tldraw-webcomponent format && yarn workspace @gip-recia/tldraw-api format"
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "format:check": "prettier --check --config ../.prettierrc.json --ignore-path ../.prettierignore src/",
+    "format": "prettier --write --config ../.prettierrc.json --ignore-path ../.prettierignore src/"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@tldraw/tldraw": "1.29.2",
+    "@uportal/open-id-connect": "^1.40.2",
+    "axios": "^1.5.0",
+    "i18next": "^23.5.1",
+    "i18next-browser-languagedetector": "^7.1.0",
+    "i18next-http-backend": "^2.2.2",
+    "lodash": "^4.17.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hotkeys-hook": "^4.4.1",
+    "react-i18next": "^13.2.2",
+    "react-toastify": "^9.1.3",
+    "regenerator-runtime": "^0.14.0",
+    "sass": "^1.68.0",
+    "uuid": "^9.0.1",
+    "y-presence": "^0.2.3",
+    "y-websocket": "^1.5.0",
+    "yjs": "^13.6.8"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
+    "@types/lodash": "^4.14.198",
+    "@types/node": "^18.17.18",
+    "@types/react": "^18.2.22",
+    "@types/react-dom": "^18.2.7",
+    "@types/uuid": "^9.0.4",
+    "@vitejs/plugin-react": "^4.0.4",
     "concurrently": "^8.2.1",
     "husky": "^8.0.3",
-    "lint-staged": "^14.0.1"
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3",
+    "prop-types": "^15.8.1",
+    "react-to-webcomponent": "^1.7.6",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9",
+    "vite-plugin-css-injected-by-js": "^3.3.0"
   },
   "packageManager": "yarn@3.6.3"
 }

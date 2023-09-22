@@ -1,85 +1,66 @@
-# tldraw WebComponent
+# **tldraw-webcomponent**
 
-Tldraw singleplayer and mutliplayer WebComponent.
+tldraw WebComponent
 
-Librairies :
+## **Installation**
 
-- [tldraw](https://www.tldraw.com)
-- [Yjs](https://github.com/yjs/yjs)
-- [Express](https://github.com/expressjs/express)
+1. Installation via npm :
 
-Based on [nimeshnayaju yjs-tldraw](https://github.com/nimeshnayaju/yjs-tldraw) POC for yjs multiplayer.
-
-## Features
-
-- Open `.tldr` files
-- Realtime save on browser
-- File upload on browser or with api
-- Multiplayer
-  - Generate an empty room
-  - Share current page in room
-  - Join a room
-- Export and save on Nextcloud
-
-## Roadmap
-
-- [ ] tldraw v2
-
-## Setup
-
-```bash
-yarn initialize
+```sh
+npm install @gip-recia/tldraw-webcomponent
 ```
 
----
+2. Importation du composant :
 
-Remove `node_modules` and `dist` folders.
+Dans un module JavaScript :
 
-```bash
-yarn clean
+```js
+import '@gip-recia/tldraw-webcomponent';
 ```
 
-## How to use
+Dans une page HTML :
 
-### Development
-
-```bash
-yarn dev
+```html
+<script src="./path/to/index.js"></script>
 ```
 
-OR
+3. Ajout du composant sur une page HTML :
 
-Launch api for image uploading.
-
-```bash
-yarn dev:api
+```js
+const tldrawEditor = document.createElement('tldraw-editor');
+document.body.appendChild(tldrawEditor);
 ```
 
-Launch client to use tldraw.
+## **Paramètres**
 
-```bash
-yarn dev:client
-```
+| Nom             |   Type    | Requis  | Default | Description                                                                                                                                                                                                                 |
+| --------------- | :-------: | :-----: | :-----: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `idb-name`      | `string`  | `true`  |         | Nom de l'indexed db                                                                                                                                                                                                         |
+| `upload-api`    | `string`  | `false` |         | URL de l'API REST pour la gestion des fichiers (sauvagarde dans le local storage par défaut)                                                                                                                                |
+| `ws-url`        | `string`  | `false` |         | URL du serveur de WebSocket [Yjs](https://github.com/yjs/yjs)                                                                                                                                                               |
+| `user-api`      | `string`  | `false` |         | URL de l'API des infromations utilisateurs `@uportal/open-id-connect` OU informations Nextcloud WEBDAV après `/remote.php/dav/files/` (Utilisé pour l'export dans Nextcloud et les noms d'utilisateurs pour le multiplayer) |
+| `nextcloud-url` | `string`  | `false` |         | URL du serveur Nextcloud                                                                                                                                                                                                    |
+| `room-id`       | `string`  | `false` |         | Identifiant de la salle multiplayer courante                                                                                                                                                                                |
+| `language`      | `string`  | `false` |  `en`   | Langue par défaut de l'interface (regarder [tldraw translation](https://github.com/tldraw/tldraw/tree/main/assets/translations) pour les traductions disponibles)                                                           |
+| `read-only`     | `boolean` | `false` | `false` | Désactiver l'édition lors de en mode multiplayer                                                                                                                                                                            |
+| `no-join`       | `boolean` | `false` | `false` | Ne pas autoriser à rejoindre une salle                                                                                                                                                                                      |
+| `no-leave`      | `boolean` | `false` | `false` | Ne pas autoriser à quitter la salle                                                                                                                                                                                         |
+| `no-share`      | `boolean` | `false` | `false` | Ne pas autoriser à partager la salle                                                                                                                                                                                        |
 
-To use multiplayer functionality.
+/!\ NE PAS UTILISER DE `/` A LA FIN DES URLs
 
-```bash
-yarn start:ws
-```
-
-## Build
-
-Build all in `./dist`
-
-```bash
-yarn build
-```
-
-OR
-
-Build api and client on there own folder.
-
-```bash
-yarn build:api
-yarn build:client
+```html
+<tldraw-editor
+  idb-name=""
+  upload-api=""
+  ws-url=""
+  user-api=""
+  nextcloud-url=""
+  room-id=""
+  language=""
+  read-only="true"
+  no-join="true"
+  no-share="true"
+  no-leave="true"
+/>
 ```

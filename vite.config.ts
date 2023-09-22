@@ -12,7 +12,7 @@ export default ({ mode }: { mode: string }) => {
     build: {
       rollupOptions: {
         output: {
-          assetFileNames: '[name].[ext]',
+          assetFileNames: 'assets/[name].[ext]',
           entryFileNames: '[name].js',
           chunkFileNames: '[name].js',
         },
