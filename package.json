@@ -79,7 +79,7 @@
     "lint-staged": "^14.0.1",
     "prettier": "^3.0.3",
     "prop-types": "^15.8.1",
-    "react-to-webcomponent": "^1.7.6",
+    "react-to-webcomponent": "^2.0.0",
     "typescript": "^5.2.2",
     "vite": "^4.4.9",
     "vite-plugin-css-injected-by-js": "^3.3.0"
