@@ -799,6 +799,7 @@ __metadata:
     "@fortawesome/fontawesome-svg-core": ^6.4.2
     "@fortawesome/free-solid-svg-icons": ^6.4.2
     "@fortawesome/react-fontawesome": ^0.2.0
+    "@r2wc/react-to-web-component": ^2.0.2
     "@tldraw/tldraw": 1.29.2
     "@trivago/prettier-plugin-sort-imports": ^4.2.0
     "@types/lodash": ^4.14.198
@@ -830,7 +831,6 @@ __metadata:
     react-dom: ^18.2.0
     react-hotkeys-hook: ^4.4.1
     react-i18next: ^13.2.2
-    react-to-webcomponent: ^2.0.0
     react-toastify: ^9.1.3
     regenerator-runtime: ^0.14.0
     sass: ^1.68.0
@@ -986,6 +986,18 @@ __metadata:
   version: 1.0.0
   resolution: "@r2wc/core@npm:1.0.0"
   checksum: 541d03241d14450d383242dc263ef955f54ba52e8220712ca10744b72eb5bc8fc8a60eabfc5602c05f9ae2f3ee47108aa436cf30db5265ad16f743df15968d3b
+  languageName: node
+  linkType: hard
+
+"@r2wc/react-to-web-component@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "@r2wc/react-to-web-component@npm:2.0.2"
+  dependencies:
+    "@r2wc/core": ^1.0.0
+  peerDependencies:
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  checksum: 144a4f9ea48b4b6bc42550d55284b89f235a33a66cad2da2444e6a999ad32c3a7c9a91c15c4daabef8e6d6b8565b82a872c3bf6e9d9f8fac4ade71fee4fcfaca
   languageName: node
   linkType: hard
 
@@ -5958,18 +5970,6 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 7ee8ef3aab74c7ae1d70ff34a27643d11ba1a8d62d072c767827d9ff9a520905223e567002e0bf6c772929d8ea1c781a3ba0cc4a563e92b1e3dc2eaa817ecbe8
-  languageName: node
-  linkType: hard
-
-"react-to-webcomponent@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "react-to-webcomponent@npm:2.0.0"
-  dependencies:
-    "@r2wc/core": ^1.0.0
-  peerDependencies:
-    react: ^16.0.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
-  checksum: 3c567075d73cae0afe6048f46e18e50b829d39e716877fc254f8b5397e39079ac1178f049a0fd0960f93ef4c761d52b8f0ff3cdb735045887bfa37cd21fdc7be
   languageName: node
   linkType: hard
 

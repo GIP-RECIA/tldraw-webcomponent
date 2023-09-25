@@ -14,7 +14,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TDExport, TldrawApp, useFileSystem } from '@tldraw/tldraw';
-import PropTypes from 'prop-types';
 import { ChangeEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ToastContainer, toast } from 'react-toastify';
@@ -32,20 +31,6 @@ type Settings = {
   noJoin?: boolean;
   noLeave?: boolean;
   noShare?: boolean;
-};
-
-Editor.propTypes = {
-  idbName: PropTypes.string.isRequired,
-  uploadApi: PropTypes.string,
-  wsUrl: PropTypes.string,
-  userApi: PropTypes.string,
-  nextcloudUrl: PropTypes.string,
-  roomId: PropTypes.string,
-  language: PropTypes.string,
-  readOnly: PropTypes.bool,
-  noJoin: PropTypes.bool,
-  noLeave: PropTypes.bool,
-  noShare: PropTypes.bool,
 };
 
 const localDoc = newDoc();
@@ -131,7 +116,7 @@ function Editor({
       idbName={idbName}
       doc={localDoc}
       language={language}
-      readOnly={wantJoinRoom}
+      readOnly={readOnly || wantJoinRoom}
       onSaveProject={handleSave}
       onExport={handleExport}
     />

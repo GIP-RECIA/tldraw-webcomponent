@@ -1,20 +1,21 @@
 import Editor from './components/Editor';
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import reactToWebComponent from 'react-to-webcomponent';
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'tldraw-editor': any;
-    }
-  }
-}
+import r2wc from '@r2wc/react-to-web-component';
 
 customElements.define(
   'tldraw-editor',
-  reactToWebComponent(Editor, React, ReactDOM, {
-    dashStyleAttributes: true,
-    shadow: false,
+  r2wc(Editor, {
+    props: {
+      idbName: 'string',
+      uploadApi: 'string',
+      wsUrl: 'string',
+      userApi: 'string',
+      nextcloudUrl: 'string',
+      roomId: 'string',
+      language: 'string',
+      readOnly: 'boolean',
+      noJoin: 'boolean',
+      noLeave: 'boolean',
+      noShare: 'boolean',
+    },
   }),
 );
