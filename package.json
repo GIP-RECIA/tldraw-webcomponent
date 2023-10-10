@@ -86,7 +86,7 @@
     "prettier": "^3.0.3",
     "prop-types": "^15.8.1",
     "regenerator-runtime": "^0.14.0",
-    "sass": "^1.68.0",
+    "sass": "^1.69.1",
     "typescript": "^5.2.2",
     "uuid": "^9.0.1",
     "vite": "^4.4.11",
