@@ -761,7 +761,7 @@ __metadata:
     "@tldraw/tldraw": 1.29.2
     "@trivago/prettier-plugin-sort-imports": ^4.2.0
     "@types/lodash": ^4.14.198
-    "@types/node": ^18.17.18
+    "@types/node": ^18.18.4
     "@types/react": ^18.2.22
     "@types/react-dom": ^18.2.7
     "@types/uuid": ^9.0.4
@@ -1996,7 +1996,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.17.18":
+"@types/node@npm:^18.18.4":
   version: 18.18.4
   resolution: "@types/node@npm:18.18.4"
   checksum: 4901e91c4cc479bb58acbcd79236a97a0ad6db4a53cb1f4ba4cf32af15324c61b16faa6e31c1b09bf538a20feb5f5274239157ce5237f5741db0b9ab71e69c52
