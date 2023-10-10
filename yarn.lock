@@ -765,13 +765,13 @@ __metadata:
     "@types/react": ^18.2.27
     "@types/react-dom": ^18.2.12
     "@types/uuid": ^9.0.5
-    "@typescript-eslint/eslint-plugin": ^6.7.2
-    "@typescript-eslint/parser": ^6.7.2
+    "@typescript-eslint/eslint-plugin": ^6.7.5
+    "@typescript-eslint/parser": ^6.7.5
     "@uportal/open-id-connect": ^1.40.2
     "@vitejs/plugin-react": ^4.0.4
     axios: ^1.5.1
     concurrently: ^8.2.1
-    eslint: ^8.49.0
+    eslint: ^8.51.0
     eslint-config-prettier: ^9.0.0
     eslint-plugin-import: ^2.28.1
     eslint-plugin-jsx-a11y: ^6.7.1
@@ -2051,7 +2051,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^6.7.2":
+"@typescript-eslint/eslint-plugin@npm:^6.7.5":
   version: 6.7.5
   resolution: "@typescript-eslint/eslint-plugin@npm:6.7.5"
   dependencies:
@@ -2076,7 +2076,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^6.7.2":
+"@typescript-eslint/parser@npm:^6.7.5":
   version: 6.7.5
   resolution: "@typescript-eslint/parser@npm:6.7.5"
   dependencies:
@@ -3525,7 +3525,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.49.0":
+"eslint@npm:^8.51.0":
   version: 8.51.0
   resolution: "eslint@npm:8.51.0"
   dependencies:
