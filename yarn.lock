@@ -757,7 +757,7 @@ __metadata:
     "@fortawesome/fontawesome-svg-core": ^6.4.2
     "@fortawesome/free-solid-svg-icons": ^6.4.2
     "@fortawesome/react-fontawesome": ^0.2.0
-    "@r2wc/react-to-web-component": ^2.0.2
+    "@r2wc/react-to-web-component": ^2.0.3
     "@tldraw/tldraw": 1.29.2
     "@trivago/prettier-plugin-sort-imports": ^4.2.0
     "@types/lodash": ^4.14.199
@@ -947,15 +947,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@r2wc/react-to-web-component@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "@r2wc/react-to-web-component@npm:2.0.2"
+"@r2wc/react-to-web-component@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "@r2wc/react-to-web-component@npm:2.0.3"
   dependencies:
     "@r2wc/core": ^1.0.0
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: 144a4f9ea48b4b6bc42550d55284b89f235a33a66cad2da2444e6a999ad32c3a7c9a91c15c4daabef8e6d6b8565b82a872c3bf6e9d9f8fac4ade71fee4fcfaca
+  checksum: 762bbd07d0f0d1476e4874a8f7533321e92af8a1033c7e1ec5cf9a4085bcc361fccf67e66e347baf8228b77dc33f59e4f8b63197044a3b529ac5ff0387db1cd8
   languageName: node
   linkType: hard
 

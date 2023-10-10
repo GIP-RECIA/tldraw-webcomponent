@@ -58,7 +58,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@r2wc/react-to-web-component": "^2.0.2",
+    "@r2wc/react-to-web-component": "^2.0.3",
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@types/lodash": "^4.14.199",
     "@types/node": "^18.18.4",
