@@ -769,7 +769,7 @@ __metadata:
     "@typescript-eslint/parser": ^6.7.2
     "@uportal/open-id-connect": ^1.40.2
     "@vitejs/plugin-react": ^4.0.4
-    axios: ^1.5.0
+    axios: ^1.5.1
     concurrently: ^8.2.1
     eslint: ^8.49.0
     eslint-config-prettier: ^9.0.0
@@ -2545,7 +2545,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.5.0":
+"axios@npm:^1.5.1":
   version: 1.5.1
   resolution: "axios@npm:1.5.1"
   dependencies:
