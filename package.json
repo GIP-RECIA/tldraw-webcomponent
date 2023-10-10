@@ -89,7 +89,7 @@
     "sass": "^1.68.0",
     "typescript": "^5.2.2",
     "uuid": "^9.0.1",
-    "vite": "^4.4.9",
+    "vite": "^4.4.11",
     "vite-plugin-css-injected-by-js": "^3.3.0"
   },
   "packageManager": "yarn@3.6.3"
