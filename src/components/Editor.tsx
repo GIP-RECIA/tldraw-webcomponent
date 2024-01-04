@@ -4,7 +4,7 @@ import { EditorProps } from '../types/EditorProps';
 import { Tldraw, TldrawApp, useFileSystem } from '@tldraw/tldraw';
 
 function Editor({ persistanceApiUrl, userInfoApiUrl }: Readonly<EditorProps>) {
-  const { onOpenMedia } = useFileSystem();
+  const { onOpenMedia, onOpenProject } = useFileSystem();
   const { loadDocument, onSaveProject } = usePersistance(persistanceApiUrl);
 
   setUserInfoApiUrl(userInfoApiUrl);
@@ -20,6 +20,7 @@ function Editor({ persistanceApiUrl, userInfoApiUrl }: Readonly<EditorProps>) {
       onMount={onMount}
       showMultiplayerMenu={false}
       onOpenMedia={onOpenMedia}
+      onOpenProject={onOpenProject}
       onSaveProject={onSaveProject}
     />
   );
