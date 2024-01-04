@@ -1,4 +1,4 @@
-import { getFile, saveFile } from '../services/fileService';
+import { getFile, saveFile } from '../services/fileService.ts';
 import { TDDocument, TldrawApp } from '@tldraw/tldraw';
 import { useCallback } from 'react';
 

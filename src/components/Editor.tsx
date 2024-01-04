@@ -1,7 +1,8 @@
-import { usePersistance } from '../hooks/usePersistance';
-import { setUserInfoApiUrl } from '../services/userService';
-import { EditorProps } from '../types/EditorProps';
-import { Tldraw, TldrawApp, useFileSystem } from '@tldraw/tldraw';
+import { usePersistance } from '../hooks/usePersistance.ts';
+import { EditorProps } from '../types/EditorProps.ts';
+import { setUserInfoApiUrl } from '../utils/soffitUtils.ts';
+import { donwloadImageFile } from '../utils/tldrawUtils.ts';
+import { TDExport, Tldraw, TldrawApp, useFileSystem } from '@tldraw/tldraw';
 import debounce from 'lodash.debounce';
 import throttle from 'lodash.throttle';
 
@@ -19,6 +20,10 @@ function Editor({ persistanceApiUrl, userInfoApiUrl }: Readonly<EditorProps>) {
     isReady = true;
   }, 10);
 
+  const onExport = async (app: TldrawApp, info: TDExport): Promise<void> => {
+    donwloadImageFile(app, info);
+  };
+
   const onPersist = throttle(async (app: TldrawApp): Promise<void> => {
     if (isReady) await onSaveProject(app);
   }, 3000);
@@ -31,6 +36,7 @@ function Editor({ persistanceApiUrl, userInfoApiUrl }: Readonly<EditorProps>) {
       onOpenMedia={onOpenMedia}
       onOpenProject={onOpenProject}
       onSaveProject={onSaveProject}
+      onExport={onExport}
       onPersist={onPersist}
     />
   );

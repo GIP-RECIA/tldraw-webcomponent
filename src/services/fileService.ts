@@ -1,24 +1,7 @@
-import { getToken } from './userService';
-import axios from 'axios';
+import { instance as axios } from '../utils/axiosUtils.ts';
 
-const getFile = async (persistanceApiUrl: string) => {
-  return await axios.get(persistanceApiUrl, {
-    headers: {
-      Authorization: `Bearer ${await getToken()}`,
-    },
-  });
-};
+const getFile = async (url: string) => await axios.get(url);
 
-const saveFile = async (persistanceApiUrl: string, blob: string) => {
-  return await axios.put(
-    persistanceApiUrl,
-    { blob },
-    {
-      headers: {
-        Authorization: `Bearer ${await getToken()}`,
-      },
-    },
-  );
-};
+const saveFile = async (url: string, blob: string) => await axios.put(url, { blob });
 
 export { getFile, saveFile };
