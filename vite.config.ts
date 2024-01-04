@@ -10,13 +10,14 @@ export default ({ mode }: { mode: string }) => {
     base: process.env.VITE_BASE_URI,
     plugins: [react(), cssInjectedByJsPlugin()],
     build: {
-      rollupOptions: {
-        output: {
-          assetFileNames: 'assets/[name].[ext]',
-          entryFileNames: '[name].js',
-          chunkFileNames: '[name].js',
-        },
+      lib: {
+        entry: './src/main.tsx',
+        name: '@gip-recia/tldraw-webcomponent',
+        fileName: 'index',
       },
+    },
+    define: {
+      'process.env': process.env,
     },
   });
 };

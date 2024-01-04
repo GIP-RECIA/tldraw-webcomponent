@@ -1,6 +1,7 @@
-import 'react-toastify/dist/ReactToastify.css';
+import 'regenerator-runtime/runtime.js';
+
+import { register as registerCustomElements } from './ce.ts';
+
 import './assets/scss/main.scss';
 
-import 'regenerator-runtime/runtime.js';
-import './i18n';
-import './ce';
+registerCustomElements();
