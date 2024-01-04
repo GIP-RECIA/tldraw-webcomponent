@@ -8,7 +8,7 @@ const Editor = r2wc(EditorSFC, {
   },
 });
 
-const register = () => {
+const register = (): void => {
   customElements.define('tldraw-editor', Editor);
 };
 

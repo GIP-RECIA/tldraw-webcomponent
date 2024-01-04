@@ -1,4 +1,4 @@
-const downloadBlob = (blob: Blob, filename: string) => {
+const downloadBlob = (blob: Blob, filename: string): void => {
   const blobUrl = URL.createObjectURL(blob);
   const link = document.createElement('a');
 

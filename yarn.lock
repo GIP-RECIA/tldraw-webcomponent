@@ -727,6 +727,8 @@ __metadata:
     "@r2wc/react-to-web-component": "npm:^2.0.3"
     "@tldraw/tldraw": "npm:^1.29.2"
     "@trivago/prettier-plugin-sort-imports": "npm:^4.3.0"
+    "@types/lodash.debounce": "npm:^4.0.9"
+    "@types/lodash.throttle": "npm:^4.1.9"
     "@types/node": "npm:^20.10.6"
     "@types/react": "npm:^18.2.46"
     "@types/react-dom": "npm:^18.2.18"
@@ -742,6 +744,8 @@ __metadata:
     eslint-plugin-react-refresh: "npm:^0.4.5"
     husky: "npm:^8.0.3"
     lint-staged: "npm:^15.2.0"
+    lodash.debounce: "npm:^4.0.8"
+    lodash.throttle: "npm:^4.1.1"
     prettier: "npm:^3.1.1"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
@@ -2020,6 +2024,31 @@ __metadata:
   version: 7.0.15
   resolution: "@types/json-schema@npm:7.0.15"
   checksum: 1a3c3e06236e4c4aab89499c428d585527ce50c24fe8259e8b3926d3df4cfbbbcf306cfc73ddfb66cbafc973116efd15967020b0f738f63e09e64c7d260519e7
+  languageName: node
+  linkType: hard
+
+"@types/lodash.debounce@npm:^4.0.9":
+  version: 4.0.9
+  resolution: "@types/lodash.debounce@npm:4.0.9"
+  dependencies:
+    "@types/lodash": "npm:*"
+  checksum: 8183a152e01928e3b97ca773f6ae6038b8695e76493ba8bf6b743ec143948a62294fbc9d49fa4a78b52265b3ba4892ef57534e0c13d04aa0f111671b5a944feb
+  languageName: node
+  linkType: hard
+
+"@types/lodash.throttle@npm:^4.1.9":
+  version: 4.1.9
+  resolution: "@types/lodash.throttle@npm:4.1.9"
+  dependencies:
+    "@types/lodash": "npm:*"
+  checksum: 6d330072387f062d408747f0dbe62869820ee3f3fbec43965f703ce9c9083e4ff9082faa4fe92aea000d6367b7645955e9c8db6a4e04e6bd769697fdd19c12b1
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:*":
+  version: 4.14.202
+  resolution: "@types/lodash@npm:4.14.202"
+  checksum: 1bb9760a5b1dda120132c4b987330d67979c95dbc22612678682cd61b00302e190f4207228f3728580059cdab5582362262e3819aea59960c1017bd2b9fb26f6
   languageName: node
   linkType: hard
 
@@ -3767,10 +3796,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.debounce@npm:^4.0.8":
+  version: 4.0.8
+  resolution: "lodash.debounce@npm:4.0.8"
+  checksum: cd0b2819786e6e80cb9f5cda26b1a8fc073daaf04e48d4cb462fa4663ec9adb3a5387aa22d7129e48eed1afa05b482e2a6b79bfc99b86886364449500cbb00fd
+  languageName: node
+  linkType: hard
+
 "lodash.merge@npm:^4.6.2":
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
   checksum: d0ea2dd0097e6201be083865d50c3fb54fbfbdb247d9cc5950e086c991f448b7ab0cdab0d57eacccb43473d3f2acd21e134db39f22dac2d6c9ba6bf26978e3d6
+  languageName: node
+  linkType: hard
+
+"lodash.throttle@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "lodash.throttle@npm:4.1.1"
+  checksum: 9be9fb2ffd686c20543167883305542f4564062a5f712a40e8c6f2f0d9fd8254a6e9d801c2470b1b24e0cdf2ae83c1277b55aa0fb4799a2db6daf545f53820e1
   languageName: node
   linkType: hard
 
