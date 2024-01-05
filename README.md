@@ -37,10 +37,10 @@ document.body.appendChild(tldrawEditor);
 | ----------- | :--------: | :-----: | :-----: | --------------------------- |
 | `blob`      |  `string`  | `true`  |         | Fichier                     |
 | `read-only` | `boolean`  | `false` |         | Lecture seule               |
-| `on-change` | `function` | `true`  |         | Retourne le fichier modifié |
+| `change`    | `function` | `true`  |         | Retourne le fichier modifié |
 
 <br/>
 
 ```html
-<tldraw-editor blob="" read-only="" on-change="" />
+<tldraw-editor blob="" read-only="" change="" />
 ```

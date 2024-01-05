@@ -5,10 +5,10 @@ import { FC, useEffect, useState } from 'react';
 type EditorProps = {
   blob: string;
   readOnly: boolean;
-  onChange: (blob: string) => void;
+  change: (blob: string) => void;
 };
 
-const Editor: FC<EditorProps> = ({ blob, readOnly, onChange }) => {
+const Editor: FC<EditorProps> = ({ blob, readOnly, change }) => {
   const { onOpenMedia, onOpenProject } = useFileSystem();
 
   const [globalApp, setGlobalApp] = useState<TldrawApp>();
@@ -28,7 +28,7 @@ const Editor: FC<EditorProps> = ({ blob, readOnly, onChange }) => {
   };
 
   const saveProject = async (app: TldrawApp): Promise<void> => {
-    onChange(
+    change(
       JSON.stringify({
         name: app.state.document.name,
         fileHandle: null,

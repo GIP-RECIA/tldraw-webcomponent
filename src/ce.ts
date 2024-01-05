@@ -5,7 +5,7 @@ const Editor = r2wc(EditorSFC, {
   props: {
     blob: 'string',
     readOnly: 'boolean',
-    onChange: 'function',
+    change: 'function',
   },
 });
 
