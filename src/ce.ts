@@ -3,8 +3,9 @@ import r2wc from '@r2wc/react-to-web-component';
 
 const Editor = r2wc(EditorSFC, {
   props: {
-    persistanceApiUrl: 'string',
-    userInfoApiUrl: 'string',
+    blob: 'string',
+    readOnly: 'boolean',
+    onChange: 'function',
   },
 });
 

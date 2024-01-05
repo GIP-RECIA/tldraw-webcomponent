@@ -1,6 +1,6 @@
 {
   "name": "@gip-recia/tldraw-webcomponent",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "files": [
     "dist"
@@ -50,16 +50,12 @@
   "devDependencies": {
     "@r2wc/react-to-web-component": "^2.0.3",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
-    "@types/lodash.debounce": "^4.0.9",
-    "@types/lodash.throttle": "^4.1.9",
     "@types/node": "^20.10.6",
     "@types/react": "^18.2.46",
     "@types/react-dom": "^18.2.18",
     "@typescript-eslint/eslint-plugin": "^6.17.0",
     "@typescript-eslint/parser": "^6.17.0",
-    "@uportal/open-id-connect": "^1.40.2",
     "@vitejs/plugin-react": "^4.2.1",
-    "axios": "^1.6.4",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.2",
@@ -67,10 +63,7 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
-    "lodash.debounce": "^4.0.8",
-    "lodash.throttle": "^4.1.1",
     "prettier": "^3.1.1",
-    "regenerator-runtime": "^0.14.1",
     "sass": "^1.69.7",
     "typescript": "^5.3.3",
     "vite": "^5.0.10",

@@ -1,32 +1,47 @@
-import { usePersistance } from '../hooks/usePersistance.ts';
-import { EditorProps } from '../types/EditorProps.ts';
-import { setUserInfoApiUrl } from '../utils/soffitUtils.ts';
 import { donwloadImageFile } from '../utils/tldrawUtils.ts';
-import { TDExport, Tldraw, TldrawApp, useFileSystem } from '@tldraw/tldraw';
-import debounce from 'lodash.debounce';
-import throttle from 'lodash.throttle';
+import { TDDocument, TDExport, Tldraw, TldrawApp, useFileSystem } from '@tldraw/tldraw';
+import { FC, useEffect, useState } from 'react';
 
-function Editor({ persistanceApiUrl, userInfoApiUrl }: Readonly<EditorProps>) {
+type EditorProps = {
+  blob: string;
+  readOnly: boolean;
+  onChange: (blob: string) => void;
+};
+
+const Editor: FC<EditorProps> = ({ blob, readOnly, onChange }) => {
   const { onOpenMedia, onOpenProject } = useFileSystem();
-  const { loadDocument, onSaveProject } = usePersistance(persistanceApiUrl);
 
-  setUserInfoApiUrl(userInfoApiUrl);
+  const [globalApp, setGlobalApp] = useState<TldrawApp>();
 
-  let isReady: boolean = false;
-
-  const onMount = debounce(async (app: TldrawApp): Promise<void> => {
+  const onMount = async (app: TldrawApp): Promise<void> => {
     app.setSetting('language', window.navigator.language);
-    await loadDocument(app);
-    isReady = true;
-  }, 10);
+    setGlobalApp(app);
+  };
+
+  const onSaveProject = async (app: TldrawApp): Promise<void> => {
+    if (!globalApp) return;
+    await saveProject(app);
+  };
 
   const onExport = async (app: TldrawApp, info: TDExport): Promise<void> => {
     donwloadImageFile(app, info);
   };
 
-  const onPersist = throttle(async (app: TldrawApp): Promise<void> => {
-    if (isReady) await onSaveProject(app);
-  }, 3000);
+  const saveProject = async (app: TldrawApp): Promise<void> => {
+    onChange(
+      JSON.stringify({
+        name: app.state.document.name,
+        fileHandle: null,
+        document: app.state.document,
+        assets: app.state.document.assets,
+      }),
+    );
+  };
+
+  useEffect((): void => {
+    if (!globalApp) return;
+    if (blob != '') globalApp.loadDocument(JSON.parse(blob).document as TDDocument);
+  });
 
   return (
     <Tldraw
@@ -37,9 +52,10 @@ function Editor({ persistanceApiUrl, userInfoApiUrl }: Readonly<EditorProps>) {
       onOpenProject={onOpenProject}
       onSaveProject={onSaveProject}
       onExport={onExport}
-      onPersist={onPersist}
+      onPersist={onSaveProject}
+      readOnly={readOnly}
     />
   );
-}
+};
 
 export default Editor;
