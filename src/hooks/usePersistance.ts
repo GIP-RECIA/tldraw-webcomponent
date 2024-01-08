@@ -19,8 +19,10 @@ export function usePersistance(persistanceApiUrl: string) {
   const loadDocument = useCallback(
     async (app: TldrawApp): Promise<void> => {
       const response = await getFile(persistanceApiUrl);
-      app.loadDocument(JSON.parse(response.data.blob).document as TDDocument);
-      app.document.name = response.data.title;
+      if (response.data.blob != '') {
+        app.loadDocument(JSON.parse(response.data.blob).document as TDDocument);
+        app.document.name = response.data.title;
+      }
     },
     [persistanceApiUrl],
   );

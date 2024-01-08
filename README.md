@@ -38,6 +38,8 @@ document.body.appendChild(tldrawEditor);
 | `persistance-api-url` | `string` | `true` |         | URL du fichier (GET & PUT)        |
 | `user-info-api-url`   | `string` | `true` |         | URL des informations utilisateurs |
 
+<br/>
+
 ```html
 <tldraw-editor persistance-api-url="" user-info-api-url="" />
 ```
