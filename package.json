@@ -1,6 +1,6 @@
 {
   "name": "@gip-recia/tldraw-webcomponent",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "type": "module",
   "files": [
     "dist"
@@ -31,7 +31,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/GIP-RECIA/tldraw-webcomponent.git"
+    "url": "git+https://github.com/GIP-RECIA/tldraw-webcomponent.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "dev": "vite --host",
