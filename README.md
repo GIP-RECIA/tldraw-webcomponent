@@ -1,8 +1,12 @@
-# **tldraw-webcomponent**
+# tldraw-webcomponent
 
 tldraw WebComponent
 
-## **Installation**
+- [tldraw-webcomponent](#tldraw-webcomponent)
+  - [Installation](#installation)
+  - [Paramètres](#paramètres)
+
+## Installation
 
 1. Installation via npm :
 
@@ -21,7 +25,7 @@ import '@gip-recia/tldraw-webcomponent';
 Dans une page HTML :
 
 ```html
-<script src="./path/to/index.js"></script>
+<script src="./path/to/tldraw-webcomponent.js"></script>
 ```
 
 3. Ajout du composant sur une page HTML :
@@ -31,7 +35,7 @@ const tldrawEditor = document.createElement('tldraw-editor');
 document.body.appendChild(tldrawEditor);
 ```
 
-## **Paramètres**
+## Paramètres
 
 | Nom                   |   Type   | Requis | Default | Description                       |
 | --------------------- | :------: | :----: | :-----: | --------------------------------- |

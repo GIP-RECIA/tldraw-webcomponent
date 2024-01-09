@@ -21,12 +21,12 @@
     "email": "guillemin.quentin@outlook.fr",
     "url": "https://github.com/Quentin-Guillemin"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
+  "main": "./dist/tldraw-webcomponent.js",
+  "module": "./dist/tldraw-webcomponent.js",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "import": "./dist/tldraw-webcomponent.js",
+      "require": "./dist/tldraw-webcomponent.js"
     }
   },
   "repository": {
