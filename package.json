@@ -35,7 +35,8 @@
   },
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build",
+    "build": "vite build && yarn build:min",
+    "build:min": "npm exec terser -- -c -m --module dist/tldraw-webcomponent.js > dist/tldraw-webcomponent.min.js",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "format:check": "prettier --check src/",
@@ -72,6 +73,7 @@
     "prettier": "^3.1.1",
     "regenerator-runtime": "^0.14.1",
     "sass": "^1.69.7",
+    "terser": "^5.26.0",
     "typescript": "^5.3.3",
     "vite": "^5.0.11",
     "vite-plugin-css-injected-by-js": "^3.3.1"

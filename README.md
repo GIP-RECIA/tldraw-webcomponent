@@ -25,7 +25,7 @@ import '@gip-recia/tldraw-webcomponent';
 Dans une page HTML :
 
 ```html
-<script src="./path/to/tldraw-webcomponent.js"></script>
+<script src="./path/to/tldraw-webcomponent.min.js"></script>
 ```
 
 3. Ajout du composant sur une page HTML :
