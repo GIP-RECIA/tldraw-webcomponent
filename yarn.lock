@@ -729,7 +729,7 @@ __metadata:
     "@trivago/prettier-plugin-sort-imports": "npm:^4.3.0"
     "@types/lodash.debounce": "npm:^4.0.9"
     "@types/lodash.throttle": "npm:^4.1.9"
-    "@types/node": "npm:^20.10.7"
+    "@types/node": "npm:^20.11.3"
     "@types/react": "npm:^18.2.48"
     "@types/react-dom": "npm:^18.2.18"
     "@typescript-eslint/eslint-plugin": "npm:^6.19.0"
@@ -2070,12 +2070,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.10.7":
-  version: 20.10.7
-  resolution: "@types/node@npm:20.10.7"
+"@types/node@npm:^20.11.3":
+  version: 20.11.3
+  resolution: "@types/node@npm:20.11.3"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 4a1ba3fb7fc0a262c6b2d5ec763cec7abf5b5d6b2d277798ddbf05227f5778f9a806987821fd4d3eacd6f37c946ac61a9c64fb79ae4b84daaec12354158835a3
+  checksum: dff64333435bbda87e200e24e2103f40692d0a01849db685ecb31db7c589f2556843a03dd351ddaee9981020263939c026557b36df49154efd910c610deefe78
   languageName: node
   linkType: hard
 
