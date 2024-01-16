@@ -733,7 +733,7 @@ __metadata:
     "@types/react": "npm:^18.2.47"
     "@types/react-dom": "npm:^18.2.18"
     "@typescript-eslint/eslint-plugin": "npm:^6.18.1"
-    "@typescript-eslint/parser": "npm:^6.18.1"
+    "@typescript-eslint/parser": "npm:^6.19.0"
     "@uportal/open-id-connect": "npm:^1.40.2"
     "@vitejs/plugin-react": "npm:^4.2.1"
     axios: "npm:^1.6.5"
@@ -2145,7 +2145,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:^6.18.1":
+"@typescript-eslint/parser@npm:^6.19.0":
   version: 6.19.0
   resolution: "@typescript-eslint/parser@npm:6.19.0"
   dependencies:
