@@ -4,14 +4,14 @@ import { useCallback } from 'react';
 
 export function usePersistance(persistanceApiUrl: string) {
   const onSaveProject = useCallback(
-    async (app: TldrawApp): Promise<void> => {
+    async (app: TldrawApp) => {
       const blob = JSON.stringify({
         name: app.state.document.name,
         fileHandle: null,
         document: app.state.document,
         assets: app.state.document.assets,
       });
-      await saveFile(persistanceApiUrl, blob);
+      return await saveFile(persistanceApiUrl, blob);
     },
     [persistanceApiUrl],
   );
