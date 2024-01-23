@@ -5,7 +5,7 @@ import { setUserInfoApiUrl } from '../utils/soffitUtils.ts';
 import { donwloadImageFile } from '../utils/tldrawUtils.ts';
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { TDExport, Tldraw, TldrawApp, useFileSystem } from '@tldraw/tldraw';
+import { TDExport, Tldraw, TldrawApp, useFileSystem } from '@gip-recia/tldraw-v1';
 import debounce from 'lodash.debounce';
 import throttle from 'lodash.throttle';
 import { useState } from 'react';
@@ -69,6 +69,9 @@ function Editor({ persistanceApiUrl, assetsApiUrl, userInfoApiUrl, darkMode }: R
           onAssetCreate={onAssetCreate}
           onAssetDelete={onAssetDelete}
           darkMode={darkMode}
+          hideNewReleaseLink
+          hideSocialLinks
+          hideSponsorLink
         />
       )}
     </>

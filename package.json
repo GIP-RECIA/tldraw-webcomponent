@@ -51,7 +51,7 @@
     "release:major": "standard-version --release-as major"
   },
   "dependencies": {
-    "@tldraw/tldraw": "^1.29.2",
+    "@gip-recia/tldraw-v1": "^1.29.2-recia-1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

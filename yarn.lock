@@ -769,14 +769,14 @@ __metadata:
   linkType: hard
 
 "@floating-ui/react-dom@npm:^2.0.0":
-  version: 2.0.5
-  resolution: "@floating-ui/react-dom@npm:2.0.5"
+  version: 2.0.6
+  resolution: "@floating-ui/react-dom@npm:2.0.6"
   dependencies:
     "@floating-ui/dom": "npm:^1.5.4"
   peerDependencies:
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: b4fc008c725149b9565949184d844c914a8fa2687636c3c1166a1d52ca58537b3ba9b0a0e2945cf424662c846e60b173df0d325af7e700a31550e5e0b346070a
+  checksum: 4a3f828370c1b14af0e4d24df18de7b2cfd6695c189532d5949daaa43cba13ce7f231c71783b47e8c54baefcc2542650d82a4a6cebcf3d9091673f2a53d3a2cb
   languageName: node
   linkType: hard
 
@@ -950,6 +950,41 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@gip-recia/tldraw-v1@npm:^1.29.2-recia-1.0.0":
+  version: 1.29.2-recia-1.0.0
+  resolution: "@gip-recia/tldraw-v1@npm:1.29.2-recia-1.0.0"
+  dependencies:
+    "@fontsource/caveat-brush": "npm:^4.5.9"
+    "@fontsource/crimson-pro": "npm:^4.5.10"
+    "@fontsource/recursive": "npm:^4.5.11"
+    "@fontsource/source-code-pro": "npm:^4.5.12"
+    "@fontsource/source-sans-pro": "npm:^4.5.11"
+    "@radix-ui/react-alert-dialog": "npm:^1.0.0"
+    "@radix-ui/react-context-menu": "npm:^1.0.0"
+    "@radix-ui/react-dialog": "npm:^1.0.0"
+    "@radix-ui/react-dropdown-menu": "npm:^1.0.0"
+    "@radix-ui/react-icons": "npm:^1.1.1"
+    "@radix-ui/react-popover": "npm:^1.0.0"
+    "@radix-ui/react-tooltip": "npm:^1.0.0"
+    "@stitches/react": "npm:^1.2.8"
+    "@tldraw/core": "npm:^1.23.2"
+    "@tldraw/intersect": "npm:^1.9.2"
+    "@tldraw/vec": "npm:^1.9.2"
+    browser-fs-access: "npm:^0.31.0"
+    idb-keyval: "npm:^6.2.0"
+    perfect-freehand: "npm:^1.2.0"
+    react-error-boundary: "npm:^3.1.4"
+    react-hotkeys-hook: "npm:^3.4.7"
+    react-intl: "npm:^6.1.1"
+    tslib: "npm:^2.4.0"
+    zustand: "npm:^4.1.1"
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: dd104b6e1f086d1cac9d00ac4bd0180d162ad4681f7857d040379776997425d6078c0fedda53766873df350af1cfbad2e308a0d93c17cab42853a561564f8058
+  languageName: node
+  linkType: hard
+
 "@gip-recia/tldraw-webcomponent@workspace:.":
   version: 0.0.0-use.local
   resolution: "@gip-recia/tldraw-webcomponent@workspace:."
@@ -959,8 +994,8 @@ __metadata:
     "@fortawesome/fontawesome-svg-core": "npm:^6.5.1"
     "@fortawesome/free-solid-svg-icons": "npm:^6.5.1"
     "@fortawesome/react-fontawesome": "npm:^0.2.0"
+    "@gip-recia/tldraw-v1": "npm:^1.29.2-recia-1.0.0"
     "@r2wc/react-to-web-component": "npm:^2.0.3"
-    "@tldraw/tldraw": "npm:^1.29.2"
     "@trivago/prettier-plugin-sort-imports": "npm:^4.3.0"
     "@types/lodash.debounce": "npm:^4.0.9"
     "@types/lodash.throttle": "npm:^4.1.9"
@@ -2158,41 +2193,6 @@ __metadata:
   dependencies:
     "@tldraw/vec": "npm:^1.9.2"
   checksum: ff169a5527e108c3de14e3f9be6d71762e6000834e6adf21db78e212c85e43317ce7a1d42b2d519c36a36673ee3ff265e6c140f9c737f0ece30fd5ef7c69689a
-  languageName: node
-  linkType: hard
-
-"@tldraw/tldraw@npm:^1.29.2":
-  version: 1.29.2
-  resolution: "@tldraw/tldraw@npm:1.29.2"
-  dependencies:
-    "@fontsource/caveat-brush": "npm:^4.5.9"
-    "@fontsource/crimson-pro": "npm:^4.5.10"
-    "@fontsource/recursive": "npm:^4.5.11"
-    "@fontsource/source-code-pro": "npm:^4.5.12"
-    "@fontsource/source-sans-pro": "npm:^4.5.11"
-    "@radix-ui/react-alert-dialog": "npm:^1.0.0"
-    "@radix-ui/react-context-menu": "npm:^1.0.0"
-    "@radix-ui/react-dialog": "npm:^1.0.0"
-    "@radix-ui/react-dropdown-menu": "npm:^1.0.0"
-    "@radix-ui/react-icons": "npm:^1.1.1"
-    "@radix-ui/react-popover": "npm:^1.0.0"
-    "@radix-ui/react-tooltip": "npm:^1.0.0"
-    "@stitches/react": "npm:^1.2.8"
-    "@tldraw/core": "npm:^1.23.2"
-    "@tldraw/intersect": "npm:^1.9.2"
-    "@tldraw/vec": "npm:^1.9.2"
-    browser-fs-access: "npm:^0.31.0"
-    idb-keyval: "npm:^6.2.0"
-    perfect-freehand: "npm:^1.2.0"
-    react-error-boundary: "npm:^3.1.4"
-    react-hotkeys-hook: "npm:^3.4.7"
-    react-intl: "npm:^6.1.1"
-    tslib: "npm:^2.4.0"
-    zustand: "npm:^4.1.1"
-  peerDependencies:
-    react: ">=16.8"
-    react-dom: ">=16.8"
-  checksum: 521128651d6adda779749cbeff0c01246a27b5d779a00b596fd2b48da9b23eb5d430e41964605d377a08818525d0c5cf89fb51244aa3e94241143a5a8ae403ff
   languageName: node
   linkType: hard
 
@@ -3484,9 +3484,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.601":
-  version: 1.4.640
-  resolution: "electron-to-chromium@npm:1.4.640"
-  checksum: 75cfe02be2e2b0c7f53e8d97e9d3cd0d8959a4e861f7bf944abace94f9872b9e31128ca3140f657b8b886b919d46f7af03efaf0d8bd8b9a4b48e3212fdd2ec01
+  version: 1.4.642
+  resolution: "electron-to-chromium@npm:1.4.642"
+  checksum: a311069d54de937f93944cb49826a2a92f2332644673c2e85c67f5d6592468e48eb795c0f96c9377e6d09948cdadfc07ce021af2b30350dc2dd86a491d7e1288
   languageName: node
   linkType: hard
 
@@ -6543,13 +6543,13 @@ __metadata:
   linkType: hard
 
 "string-width@npm:^7.0.0":
-  version: 7.0.0
-  resolution: "string-width@npm:7.0.0"
+  version: 7.1.0
+  resolution: "string-width@npm:7.1.0"
   dependencies:
     emoji-regex: "npm:^10.3.0"
     get-east-asian-width: "npm:^1.0.0"
     strip-ansi: "npm:^7.1.0"
-  checksum: bc0de5700a2690895169fce447ec4ed44bc62de80312c2093d5606bfd48319bb88e48a99e97f269dff2bc9577448b91c26b3804c16e7d9b389699795e4655c3b
+  checksum: a183573fe7209e0d294f661846d33f8caf72aa86d983e5b48a0ed45ab15bcccb02c6f0344b58b571988871105457137b8207855ea536827dbc4a376a0f31bf8f
   languageName: node
   linkType: hard
 
