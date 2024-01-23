@@ -1,3 +1,4 @@
+import { useAssets } from '../hooks/useAssets.ts';
 import { usePersistance } from '../hooks/usePersistance.ts';
 import { EditorProps } from '../types/EditorProps.ts';
 import { setUserInfoApiUrl } from '../utils/soffitUtils.ts';
@@ -9,14 +10,21 @@ import debounce from 'lodash.debounce';
 import throttle from 'lodash.throttle';
 import { useState } from 'react';
 
-function Editor({ persistanceApiUrl, userInfoApiUrl }: Readonly<EditorProps>) {
+function Editor({ persistanceApiUrl, assetsApiUrl, userInfoApiUrl, darkMode }: Readonly<EditorProps>) {
   const { onOpenMedia, onOpenProject } = useFileSystem();
-  const { loadDocument, onSaveProject } = usePersistance(persistanceApiUrl);
+  const { loadDocument, onSaveProject } = usePersistance(
+    persistanceApiUrl.endsWith('/') ? persistanceApiUrl.slice(0, -1) : persistanceApiUrl,
+  );
+  const { onAssetCreate, onAssetDelete } = useAssets(
+    assetsApiUrl.endsWith('/') ? assetsApiUrl.slice(0, -1) : assetsApiUrl,
+  );
 
   setUserInfoApiUrl(userInfoApiUrl);
 
   const [isReady, setIsReady] = useState<boolean>(false);
   const [isSaving, setIsSaving] = useState<boolean>(false);
+
+  const isOk: boolean = userInfoApiUrl.length > 0 && persistanceApiUrl.length > 0 && assetsApiUrl.length > 0;
 
   const onMount = debounce(async (app: TldrawApp): Promise<void> => {
     app.setSetting('language', window.navigator.language);
@@ -48,16 +56,21 @@ function Editor({ persistanceApiUrl, userInfoApiUrl }: Readonly<EditorProps>) {
   return (
     <>
       <div className="saving">{isSaving && <FontAwesomeIcon icon={faFloppyDisk} beat />}</div>
-      <Tldraw
-        autofocus
-        onMount={onMount}
-        showMultiplayerMenu={false}
-        onOpenMedia={onOpenMedia}
-        onOpenProject={onOpenProject}
-        onSaveProject={onSave}
-        onExport={onExport}
-        onPersist={onSave}
-      />
+      {isOk && (
+        <Tldraw
+          autofocus
+          onMount={onMount}
+          showMultiplayerMenu={false}
+          onOpenMedia={onOpenMedia}
+          onOpenProject={onOpenProject}
+          onSaveProject={onSave}
+          onExport={onExport}
+          onPersist={onSave}
+          onAssetCreate={onAssetCreate}
+          onAssetDelete={onAssetDelete}
+          darkMode={darkMode}
+        />
+      )}
     </>
   );
 }
