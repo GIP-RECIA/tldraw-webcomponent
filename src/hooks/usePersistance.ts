@@ -2,16 +2,19 @@ import { getFile, saveFile } from '../services/fileService.ts';
 import { TDDocument, TldrawApp } from '@gip-recia/tldraw-v1';
 import { useCallback } from 'react';
 
+const toBlob = (app: TldrawApp): string => {
+  return JSON.stringify({
+    name: app.state.document.name,
+    fileHandle: null,
+    document: app.state.document,
+    assets: app.state.document.assets,
+  });
+};
+
 export function usePersistance(persistanceApiUrl: string) {
   const onSaveProject = useCallback(
     async (app: TldrawApp) => {
-      const blob = JSON.stringify({
-        name: app.state.document.name,
-        fileHandle: null,
-        document: app.state.document,
-        assets: app.state.document.assets,
-      });
-      return await saveFile(persistanceApiUrl, blob);
+      return await saveFile(persistanceApiUrl, toBlob(app));
     },
     [persistanceApiUrl],
   );
@@ -32,3 +35,5 @@ export function usePersistance(persistanceApiUrl: string) {
     loadDocument,
   };
 }
+
+export { toBlob };
