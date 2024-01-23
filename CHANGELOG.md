@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v1.4.0...v1.5.0) (2024-01-23)
+
+
+### Features
+
+* lock editor on error and download file ([3a77948](https://github.com/GIP-RECIA/tldraw-webcomponent/commit/3a779483614fc283547261174a3d43976c053c37))
+
+
+### Bug Fixes
+
+* missing @tldraw/tldraw replacements ([b697e51](https://github.com/GIP-RECIA/tldraw-webcomponent/commit/b697e5163e1ab777d93587de7540619aeaeee446))
+
 ## [1.4.0](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v1.3.0...v1.4.0) (2024-01-23)
 
 
