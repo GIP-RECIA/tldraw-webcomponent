@@ -1,5 +1,5 @@
 import { downloadBlob } from './fileUtils.ts';
-import { TDExport, TldrawApp } from '@tldraw/tldraw';
+import { TDExport, TldrawApp } from '@gip-recia/tldraw-v1';
 
 const getName = (app: TldrawApp, info?: TDExport): string => {
   return `${app.document.name}${info ? ' - ' + info.name : ''}`;

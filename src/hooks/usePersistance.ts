@@ -1,5 +1,5 @@
 import { getFile, saveFile } from '../services/fileService.ts';
-import { TDDocument, TldrawApp } from '@tldraw/tldraw';
+import { TDDocument, TldrawApp } from '@gip-recia/tldraw-v1';
 import { useCallback } from 'react';
 
 export function usePersistance(persistanceApiUrl: string) {

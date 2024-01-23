@@ -1,5 +1,5 @@
 import { deleteAsset, saveAsset } from '../services/assetService';
-import { TldrawApp } from '@tldraw/tldraw';
+import { TldrawApp } from '@gip-recia/tldraw-v1';
 import { useCallback } from 'react';
 
 export function useAssets(assetApiUrl: string) {
