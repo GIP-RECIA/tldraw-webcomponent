@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v1.3.0...v1.4.0) (2024-01-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* add required property
+
+### Features
+
+* add required property ([53e9e75](https://github.com/GIP-RECIA/tldraw-webcomponent/commit/53e9e75ec2a4db2a2a8f381ff2da46191bdd5631))
+
 ## [1.3.0](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v1.2.0...v1.3.0) (2024-01-17)
 
 
