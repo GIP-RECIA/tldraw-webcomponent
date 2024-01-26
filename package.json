@@ -1,6 +1,6 @@
 {
   "name": "@gip-recia/tldraw-webcomponent",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "type": "module",
   "files": [
     "dist"

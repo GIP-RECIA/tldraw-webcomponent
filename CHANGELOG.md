@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v1.5.1...v1.6.0) (2024-01-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* tldraw-editor renamed to tldraw-singleplayer & new tldraw-multiplayer component
+
+### Features
+
+* tldraw-editor renamed to tldraw-singleplayer & new tldraw-multiplayer component ([72c4d3e](https://github.com/GIP-RECIA/tldraw-webcomponent/commit/72c4d3ea80650a3e1dd1916b766398bd56f64430))
+
 ### [1.5.1](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v1.5.0...v1.5.1) (2024-01-23)
 
 ## [1.5.0](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v1.4.0...v1.5.0) (2024-01-23)
