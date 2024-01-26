@@ -1,6 +1,5 @@
 import { useAssets } from '../hooks/useAssets.ts';
 import { toBlob, usePersistance } from '../hooks/usePersistance.ts';
-import { EditorProps } from '../types/EditorProps.ts';
 import { setUserInfoApiUrl } from '../utils/soffitUtils.ts';
 import { donwloadImageFile } from '../utils/tldrawUtils.ts';
 import { faFloppyDisk, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
@@ -10,7 +9,21 @@ import debounce from 'lodash.debounce';
 import throttle from 'lodash.throttle';
 import { useState } from 'react';
 
-function Editor({ persistanceApiUrl, assetsApiUrl, userInfoApiUrl, darkMode }: Readonly<EditorProps>) {
+type SingleplayerEditorProps = {
+  persistanceApiUrl: string;
+  assetsApiUrl: string;
+  userInfoApiUrl: string;
+  darkMode?: boolean;
+};
+
+export default function SingleplayerEditor({
+  persistanceApiUrl,
+  assetsApiUrl,
+  userInfoApiUrl,
+  darkMode,
+}: Readonly<SingleplayerEditorProps>) {
+  setUserInfoApiUrl(userInfoApiUrl);
+
   const { onOpenMedia, onOpenProject, onSaveProject } = useFileSystem();
   const { loadDocument, onSaveProject: onPSaveProject } = usePersistance(
     persistanceApiUrl.endsWith('/') ? persistanceApiUrl.slice(0, -1) : persistanceApiUrl,
@@ -18,8 +31,6 @@ function Editor({ persistanceApiUrl, assetsApiUrl, userInfoApiUrl, darkMode }: R
   const { onAssetCreate, onAssetDelete } = useAssets(
     assetsApiUrl.endsWith('/') ? assetsApiUrl.slice(0, -1) : assetsApiUrl,
   );
-
-  setUserInfoApiUrl(userInfoApiUrl);
 
   const [isReady, setIsReady] = useState<boolean>(false);
   const [isSaving, setIsSaving] = useState<boolean>(false);
@@ -68,12 +79,12 @@ function Editor({ persistanceApiUrl, assetsApiUrl, userInfoApiUrl, darkMode }: R
   }, 3000);
 
   return (
-    <>
-      <div className="saving">
-        {readOnly && !isSaving && <FontAwesomeIcon icon={faTriangleExclamation} shake size="2xl" />}
-        {isSaving && <FontAwesomeIcon icon={faFloppyDisk} beatFade size="2xl" />}
-      </div>
-      {isOk && (
+    isOk && (
+      <>
+        <div className="bottom-container">
+          {readOnly && !isSaving && <FontAwesomeIcon icon={faTriangleExclamation} shake />}
+          {isSaving && <FontAwesomeIcon icon={faFloppyDisk} beatFade />}
+        </div>
         <Tldraw
           autofocus
           onMount={onMount}
@@ -91,9 +102,7 @@ function Editor({ persistanceApiUrl, assetsApiUrl, userInfoApiUrl, darkMode }: R
           hideSponsorLink
           readOnly={readOnly}
         />
-      )}
-    </>
+      </>
+    )
   );
 }
-
-export default Editor;

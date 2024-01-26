@@ -1,7 +1,8 @@
-import EditorSFC from './components/Editor.tsx';
+import MultiplayerEditorSFC from './components/MultiplayerEditor.tsx';
+import SingleplayerEditorSFC from './components/SingleplayerEditor.tsx';
 import r2wc from '@r2wc/react-to-web-component';
 
-const Editor = r2wc(EditorSFC, {
+const SingleplayerEditor = r2wc(SingleplayerEditorSFC, {
   props: {
     persistanceApiUrl: 'string',
     assetsApiUrl: 'string',
@@ -10,8 +11,18 @@ const Editor = r2wc(EditorSFC, {
   },
 });
 
+const MultiplayerEditor = r2wc(MultiplayerEditorSFC, {
+  props: {
+    websocketApiUrl: 'string',
+    roomId: 'string',
+    userInfoApiUrl: 'string',
+    darkMode: 'boolean',
+  },
+});
+
 const register = (): void => {
-  customElements.define('tldraw-editor', Editor);
+  customElements.define('tldraw-singleplayer', SingleplayerEditor);
+  customElements.define('tldraw-multiplayer', MultiplayerEditor);
 };
 
-export { Editor, register };
+export { SingleplayerEditor, MultiplayerEditor, register };
