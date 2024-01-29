@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { WebsocketProvider } from 'y-websocket';
 import * as Y from 'yjs';
 
+// Based on https://github.com/nimeshnayaju/yjs-tldraw
 export function useMultiplayer(doc: Y.Doc, provider: WebsocketProvider, roomId: string) {
   const { yShapes, yBindings, yAssets, undoManager } = getDocData(doc);
   const awareness = provider.awareness;
