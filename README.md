@@ -30,12 +30,23 @@ Dans une page HTML :
 
 3. Ajout du composant sur une page HTML :
 
+**Singleplayer**
+
 ```js
-const tldrawEditor = document.createElement('tldraw-editor');
-document.body.appendChild(tldrawEditor);
+const tldrawSingleplayer = document.createElement('tldraw-singleplayer');
+document.body.appendChild(tldrawSingleplayer);
+```
+
+**Multiplayer**
+
+```js
+const tldrawMultiplayer = document.createElement('tldraw-multiplayer');
+document.body.appendChild(tldrawMultiplayer);
 ```
 
 ## Paramètres
+
+**Singleplayer**
 
 | Nom                   |   Type    | Requis  | Default | Description                         |
 | --------------------- | :-------: | :-----: | :-----: | ----------------------------------- |
@@ -47,5 +58,21 @@ document.body.appendChild(tldrawEditor);
 <br/>
 
 ```html
-<tldraw-editor persistance-api-url="" assets-api-url="" user-info-api-url="" dark-mode />
+<tldraw-singleplayer persistance-api-url="" assets-api-url="" user-info-api-url="" dark-mode />
+```
+
+**Multiplayer**
+
+| Nom                 |   Type    | Requis  | Default | Description                         |
+| ------------------- | :-------: | :-----: | :-----: | ----------------------------------- |
+| `websocket-api-url` | `string`  | `true`  |         | URL du serveur de YJS               |
+| `room-id`           | `string`  | `true`  |         | Identifiant de la salle             |
+| `init-url`          | `string`  | `false` |         | URL du projet à prendre pour source |
+| `user-info-api-url` | `string`  | `true`  |         | URL des informations utilisateurs   |
+| `dark-mode`         | `boolean` | `false` |         | Active le thème sombre              |
+
+<br/>
+
+```html
+<tldraw-multiplayer websocket-api-url="" room-id="" init-url="" user-info-api-url="" dark-mode />
 ```
