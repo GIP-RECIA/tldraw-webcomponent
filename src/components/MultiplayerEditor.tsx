@@ -75,7 +75,8 @@ function UserCounter({ provider }: Readonly<UserCounterProps>) {
 
   return (
     <>
-      <FontAwesomeIcon icon={faUsers} /> {users.size}
+      <FontAwesomeIcon icon={faUsers} style={{ marginRight: '8px' }} />
+      {users.size}
     </>
   );
 }
