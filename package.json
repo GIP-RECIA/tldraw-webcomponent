@@ -94,5 +94,5 @@
     "vite": "^5.0.12",
     "vite-plugin-css-injected-by-js": "^3.3.1"
   },
-  "packageManager": "yarn@4.0.2"
+  "packageManager": "yarn@4.1.0"
 }
