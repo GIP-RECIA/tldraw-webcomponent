@@ -15,6 +15,7 @@ const MultiplayerEditor = r2wc(MultiplayerEditorSFC, {
   props: {
     websocketApiUrl: 'string',
     roomId: 'string',
+    initUrl: 'string',
     userInfoApiUrl: 'string',
     darkMode: 'boolean',
   },

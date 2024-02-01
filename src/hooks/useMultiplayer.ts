@@ -1,18 +1,29 @@
 import { getToken } from '../utils/soffitUtils';
-import { getDocData } from '../utils/yjsUtils';
+import { getDocData, updateDoc } from '../utils/yjsUtils';
+import { usePersistance } from './usePersistance';
 import { TDAsset, TDBinding, TDShape, TDUser, TldrawApp } from '@gip-recia/tldraw-v1';
 import { useCallback, useEffect, useRef } from 'react';
 import { WebsocketProvider } from 'y-websocket';
 import * as Y from 'yjs';
 
 // Based on https://github.com/nimeshnayaju/yjs-tldraw
-export function useMultiplayer(doc: Y.Doc, provider: WebsocketProvider, roomId: string) {
+export function useMultiplayer(doc: Y.Doc, provider: WebsocketProvider, roomId: string, initUrl?: string) {
+  const { loadDocument } = usePersistance(initUrl ?? '');
   const { yShapes, yBindings, yAssets, undoManager } = getDocData(doc);
   const awareness = provider.awareness;
   const tldrawRef = useRef<TldrawApp>();
 
   const onMount = useCallback(
     async (app: TldrawApp) => {
+      if (initUrl) {
+        try {
+          await loadDocument(app);
+          updateDoc(doc, app);
+        } catch (e) {
+          //
+        }
+      }
+
       app.setSetting('language', window.navigator.language);
       app.loadRoom(roomId);
       app.pause();

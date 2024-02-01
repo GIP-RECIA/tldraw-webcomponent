@@ -24,7 +24,7 @@ export default function SingleplayerEditor({
 }: Readonly<SingleplayerEditorProps>) {
   setUserInfoApiUrl(userInfoApiUrl);
 
-  const { onOpenMedia, onOpenProject, onSaveProject } = useFileSystem();
+  const { onOpenProject, onSaveProject } = useFileSystem();
   const { loadDocument, onSaveProject: onPSaveProject } = usePersistance(
     persistanceApiUrl.endsWith('/') ? persistanceApiUrl.slice(0, -1) : persistanceApiUrl,
   );
@@ -89,7 +89,6 @@ export default function SingleplayerEditor({
           autofocus
           onMount={onMount}
           showMultiplayerMenu={false}
-          onOpenMedia={onOpenMedia}
           onOpenProject={onOpenProject}
           onSaveProject={onSave}
           onExport={onExport}
