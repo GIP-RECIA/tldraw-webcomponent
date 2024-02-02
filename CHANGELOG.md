@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v1.7.0...v1.8.0) (2024-02-02)
+
+
+### Features
+
+* i18n fallback to an available user language ([f5c611b](https://github.com/GIP-RECIA/tldraw-webcomponent/commit/f5c611b76bf980d6b73785fefa7d2ab7d1ff7360))
+
 ## [1.7.0](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v1.6.0...v1.7.0) (2024-02-01)
 
 
