@@ -1,5 +1,6 @@
 import { useAssets } from '../hooks/useAssets.ts';
 import { toBlob, usePersistance } from '../hooks/usePersistance.ts';
+import { findLanguage } from '../utils/i18nUtils.ts';
 import { setUserInfoApiUrl } from '../utils/soffitUtils.ts';
 import { donwloadImageFile } from '../utils/tldrawUtils.ts';
 import { faFloppyDisk, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
@@ -40,7 +41,7 @@ export default function SingleplayerEditor({
   const isOk: boolean = userInfoApiUrl.length > 0 && persistanceApiUrl.length > 0 && assetsApiUrl.length > 0;
 
   const onMount = debounce(async (app: TldrawApp): Promise<void> => {
-    app.setSetting('language', window.navigator.language);
+    app.setSetting('language', findLanguage('en'));
     try {
       await loadDocument(app);
     } catch (e) {

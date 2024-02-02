@@ -1,3 +1,4 @@
+import { findLanguage } from '../utils/i18nUtils';
 import { getToken } from '../utils/soffitUtils';
 import { getDocData, updateDoc } from '../utils/yjsUtils';
 import { usePersistance } from './usePersistance';
@@ -24,7 +25,7 @@ export function useMultiplayer(doc: Y.Doc, provider: WebsocketProvider, roomId: 
         }
       }
 
-      app.setSetting('language', window.navigator.language);
+      app.setSetting('language', findLanguage('en'));
       app.loadRoom(roomId);
       app.pause();
       tldrawRef.current = app;
