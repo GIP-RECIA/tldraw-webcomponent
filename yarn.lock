@@ -7280,11 +7280,11 @@ __metadata:
   linkType: hard
 
 "vite-plugin-css-injected-by-js@npm:^3.3.1":
-  version: 3.3.1
-  resolution: "vite-plugin-css-injected-by-js@npm:3.3.1"
+  version: 3.4.0
+  resolution: "vite-plugin-css-injected-by-js@npm:3.4.0"
   peerDependencies:
     vite: ">2.0.0-0"
-  checksum: 10/9ba376cbdcb65059cb5fe687cb4c961bb30a0de18f445f56aa6197ed9a2261759df71e486daa84a7b6b61cb730beae4f5451f92ae0e0b96ccfb52d8488f044c6
+  checksum: 10/cbe2cb0a6cb0255735a8462d1c153d0d890029da7e523d2e2240368748dc1a98ed6a40a693b24d4ffaf11e0566d6ca3aeb306165fe19432efe3b68f3e032d659
   languageName: node
   linkType: hard
 
