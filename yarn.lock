@@ -7497,11 +7497,11 @@ __metadata:
   linkType: hard
 
 "yjs@npm:^13.6.11":
-  version: 13.6.11
-  resolution: "yjs@npm:13.6.11"
+  version: 13.6.12
+  resolution: "yjs@npm:13.6.12"
   dependencies:
     lib0: "npm:^0.2.86"
-  checksum: 10/59cdd1c79668ef7eb8c7d037aaf507b802b1c53c8cdca8574578426e40f4a44931de5b0f703ae26a66cae8f31abe8681cbfb6cac04e33e85d7c62c04b9f70b1a
+  checksum: 10/11f8daddb28e088d16c175044496a95af30a9a730fc441eb1c62813fb1c815d1b0f92c4a5d3669386dc89f57a126b23a190377249cfd8bba1a4cf44bc8f86a00
   languageName: node
   linkType: hard
 
