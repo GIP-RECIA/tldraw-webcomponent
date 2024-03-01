@@ -1,6 +1,5 @@
 import './assets/scss/app.scss';
-import MultiplayerEditor from './components/MultiplayerEditor.tsx';
-import SingleplayerEditor from './components/SingleplayerEditor.tsx';
+import TldrawEditor from './components/TldrawEditor.tsx';
 import { useState } from 'react';
 
 function App() {
@@ -12,7 +11,10 @@ function App() {
     VITE_ROOM_ID,
   } = import.meta.env;
 
-  const [mode, setMode] = useState<string>('singleplayer');
+  const [mode, setMode] = useState<'single' | 'multi'>('single');
+  const [autoSave, setAutoSave] = useState<boolean>(false);
+  const [isOwner, setIsOwner] = useState<boolean>(false);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   return (
     <>
@@ -20,42 +22,42 @@ function App() {
         <div>
           Mode
           <label>
-            <input
-              type="radio"
-              value="singleplayer"
-              checked={mode === 'singleplayer'}
-              onChange={() => setMode('singleplayer')}
-            />
+            <input type="radio" value="singleplayer" checked={mode === 'single'} onChange={() => setMode('single')} />
             Singleplayer
           </label>
           <label>
-            <input
-              type="radio"
-              value="multiplayer"
-              checked={mode === 'multiplayer'}
-              onChange={() => setMode('multiplayer')}
-            />
+            <input type="radio" value="multiplayer" checked={mode === 'multi'} onChange={() => setMode('multi')} />
             Multiplayer
           </label>
+        </div>
+        <div>
+          Autosave
+          <input type="checkbox" onChange={() => setAutoSave(!autoSave)} />
+        </div>
+        <div>
+          Owner
+          <input type="checkbox" onChange={() => setIsOwner(!isOwner)} />
+        </div>
+        <div>
+          Dark mode
+          <input type="checkbox" onChange={() => setIsDarkMode(!isDarkMode)} />
         </div>
       </div>
       <main>
         <div className="app-container">
           <div className="tldraw__editor">
-            {mode == 'singleplayer' && (
-              <SingleplayerEditor
-                persistanceApiUrl={VITE_PERSISTANCE_API_URL}
-                assetsApiUrl={VITE_ASSETS_API_URL}
-                userInfoApiUrl={VITE_USER_INFO_API_URI}
-              />
-            )}
-            {mode == 'multiplayer' && (
-              <MultiplayerEditor
-                websocketApiUrl={VITE_WEBSOCKET_API_URL}
-                roomId={VITE_ROOM_ID}
-                userInfoApiUrl={VITE_USER_INFO_API_URI}
-              />
-            )}
+            <TldrawEditor
+              mode={mode}
+              persistanceApiUrl={VITE_PERSISTANCE_API_URL}
+              assetsApiUrl={VITE_ASSETS_API_URL}
+              userInfoApiUrl={VITE_USER_INFO_API_URI}
+              darkMode={isDarkMode}
+              autoSave={autoSave}
+              isOwner={isOwner}
+              websocketApiUrl={VITE_WEBSOCKET_API_URL}
+              roomId={VITE_ROOM_ID}
+              initUrl={VITE_PERSISTANCE_API_URL}
+            />
           </div>
         </div>
       </main>

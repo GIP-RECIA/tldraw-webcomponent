@@ -2,30 +2,44 @@ import { findLanguage } from '../utils/i18nUtils';
 import { getToken } from '../utils/soffitUtils';
 import { getDocData, updateDoc } from '../utils/yjsUtils';
 import { usePersistance } from './usePersistance';
+import { useYjs } from './useYjs';
 import { TDAsset, TDBinding, TDShape, TDUser, TldrawApp } from '@gip-recia/tldraw-v1';
+import debounce from 'lodash.debounce';
 import { useCallback, useEffect, useRef } from 'react';
 import { WebsocketProvider } from 'y-websocket';
-import * as Y from 'yjs';
 
 // Based on https://github.com/nimeshnayaju/yjs-tldraw
-export function useMultiplayer(doc: Y.Doc, provider: WebsocketProvider, roomId: string, initUrl?: string) {
+export function useMultiplayer(
+  websocketApiUrl: string,
+  roomId: string,
+  initUrl: string | undefined,
+  setIsLoading: (value: boolean) => void,
+  setIsError: (value: boolean) => void,
+  setIsReady: (value: boolean) => void,
+  setProvider: (value: WebsocketProvider) => void,
+) {
   const { loadDocument } = usePersistance(initUrl ?? '');
+  const { doc, provider, awareness } = useYjs(websocketApiUrl, roomId);
   const { yShapes, yBindings, yAssets, undoManager } = getDocData(doc);
-  const awareness = provider.awareness;
   const tldrawRef = useRef<TldrawApp>();
 
   const onMount = useCallback(
-    async (app: TldrawApp) => {
+    debounce(async (app: TldrawApp) => {
+      app.setSetting('language', findLanguage('en'));
       if (initUrl) {
+        setIsLoading(true);
         try {
           await loadDocument(app);
           updateDoc(doc, app);
+          setIsLoading(false);
+          setIsReady(true);
         } catch (e) {
-          //
+          setIsLoading(false);
+          setIsError(true);
+          console.error(e);
         }
       }
 
-      app.setSetting('language', findLanguage('en'));
       app.loadRoom(roomId);
       app.pause();
       tldrawRef.current = app;
@@ -42,7 +56,9 @@ export function useMultiplayer(doc: Y.Doc, provider: WebsocketProvider, roomId: 
         Object.fromEntries(yBindings.entries()),
         Object.fromEntries(yAssets.entries()),
       );
-    },
+
+      if (!initUrl) setIsReady(true);
+    }, 10),
     [roomId],
   );
 
@@ -145,6 +161,8 @@ export function useMultiplayer(doc: Y.Doc, provider: WebsocketProvider, roomId: 
   }, []);
 
   useEffect(() => {
+    setProvider(provider);
+
     function handleDisconnect() {
       provider.disconnect();
     }
@@ -159,5 +177,8 @@ export function useMultiplayer(doc: Y.Doc, provider: WebsocketProvider, roomId: 
     onUndo,
     onRedo,
     onChangePresence,
+    data: {
+      provider,
+    },
   };
 }
