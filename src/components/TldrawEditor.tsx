@@ -1,38 +1,23 @@
-import { useTldraw } from '../hooks/useTldraw';
+import { CommonProps } from '../types/CommonProps';
+import { TldrawEditorProps } from '../types/TldrawEditorProps';
+import { setUserInfoApiUrl } from '../utils/soffitUtils';
 import BottomContainer from './BottomContainer';
 import MultiplayerEditor from './MultiplayerEditor';
 import SingleplayerEditor from './SingleplayerEditor';
 import { useEffect, useState } from 'react';
 import { WebsocketProvider } from 'y-websocket';
 
-type TldrawEditorProps = {
-  // Common properties
-  mode?: 'single' | 'multi';
-  persistanceApiUrl?: string;
-  assetsApiUrl?: string;
-  userInfoApiUrl: string;
-  darkMode?: boolean;
-  autoSave?: boolean;
-  autoSaveDelay?: number;
-  open?: boolean;
-  readOnly?: boolean;
-
-  // Multi properties
-  websocketApiUrl?: string;
-  roomId?: string;
-  initUrl?: string;
-};
-
 export default function TldrawEditor({
   mode,
+  wsDestroy,
   persistanceApiUrl,
   assetsApiUrl,
   userInfoApiUrl,
   darkMode,
+  readOnly,
   autoSave,
   autoSaveDelay,
   open,
-  readOnly,
   websocketApiUrl,
   roomId,
   initUrl,
@@ -42,38 +27,54 @@ export default function TldrawEditor({
   const [isError, setIsError] = useState<boolean>(false);
   const [isReady, setIsReady] = useState<boolean>(false);
   const [provider, setProvider] = useState<WebsocketProvider>();
-  const [cMode, setCMode] = useState<'single' | 'multi'>('single');
+  const [cMode, setCMode] = useState<'single' | 'multi'>();
 
-  const tldrawEvents = useTldraw(
-    persistanceApiUrl,
-    assetsApiUrl,
-    userInfoApiUrl,
-    autoSave ?? true,
-    autoSaveDelay ?? 3000,
-    open ?? false,
-    isReady,
-    setIsSaving,
-  );
+  setUserInfoApiUrl(userInfoApiUrl);
 
   useEffect(() => {
     setIsSaving(false);
     setIsLoading(false);
     setIsReady(false);
     setIsError(false);
-    provider?.destroy();
+    provider?.disconnect();
     setProvider(undefined);
-    setTimeout(() => setCMode(mode ?? 'single'), 200); // Fix save when switching to multi mode
+    setTimeout(() => setCMode(mode), 10); // Fix save when switching to multi mode
   }, [mode]);
 
-  const isSingle: boolean = cMode == 'single' && persistanceApiUrl != undefined;
+  useEffect(() => {
+    if (wsDestroy) provider?.destroy();
+  }, [wsDestroy]);
+
+  const isSingle: boolean = cMode == 'single';
   const isMulti: boolean = cMode == 'multi' && websocketApiUrl != undefined && roomId != undefined;
 
-  const common = {
+  const common: CommonProps = {
     darkMode: darkMode ?? false,
+    autoSave: autoSave ?? true,
+    autoSaveDelay: autoSaveDelay ?? 3000,
+    open: open ?? false,
     readOnly: readOnly ?? isError,
+    isReady,
+    setIsSaving,
     setIsLoading,
     setIsError,
     setIsReady,
+  };
+
+  const singleplayerProps = {
+    persistanceApiUrl,
+    assetsApiUrl,
+    ...common,
+  };
+
+  const multiplayerProps = {
+    persistanceApiUrl,
+    assetsApiUrl,
+    websocketApiUrl: websocketApiUrl!,
+    roomId: roomId!,
+    initUrl,
+    setProvider,
+    ...common,
   };
 
   const bottomContainer = {
@@ -85,17 +86,8 @@ export default function TldrawEditor({
 
   return (
     <>
-      {isSingle && <SingleplayerEditor {...common} persistanceApiUrl={persistanceApiUrl!} {...tldrawEvents} />}
-      {isMulti && (
-        <MultiplayerEditor
-          {...common}
-          websocketApiUrl={websocketApiUrl!}
-          roomId={roomId!}
-          initUrl={initUrl}
-          setProvider={setProvider}
-          {...tldrawEvents}
-        />
-      )}
+      {isSingle && <SingleplayerEditor {...singleplayerProps} />}
+      {isMulti && <MultiplayerEditor {...multiplayerProps} />}
       <BottomContainer {...bottomContainer} />
     </>
   );

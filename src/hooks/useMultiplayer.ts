@@ -1,24 +1,35 @@
+import { useAssets } from '../hooks/useAssets.ts';
 import { findLanguage } from '../utils/i18nUtils';
 import { getToken } from '../utils/soffitUtils';
+import { donwloadImageFile } from '../utils/tldrawUtils';
 import { getDocData, updateDoc } from '../utils/yjsUtils';
-import { usePersistance } from './usePersistance';
+import { toBlob, usePersistance } from './usePersistance';
 import { useYjs } from './useYjs';
-import { TDAsset, TDBinding, TDShape, TDUser, TldrawApp } from '@gip-recia/tldraw-v1';
+import { TDAsset, TDBinding, TDExport, TDShape, TDUser, TldrawApp, useFileSystem } from '@gip-recia/tldraw-v1';
 import debounce from 'lodash.debounce';
+import throttle from 'lodash.throttle';
 import { useCallback, useEffect, useRef } from 'react';
 import { WebsocketProvider } from 'y-websocket';
 
 // Based on https://github.com/nimeshnayaju/yjs-tldraw
 export function useMultiplayer(
+  persistanceApiUrl: string | undefined,
+  assetsApiUrl: string | undefined,
   websocketApiUrl: string,
   roomId: string,
   initUrl: string | undefined,
+  autoSave: boolean,
+  autoSaveDelay: number,
+  open: boolean,
+  isReady: boolean,
+  setIsSaving: (isSaving: boolean) => void,
   setIsLoading: (value: boolean) => void,
   setIsError: (value: boolean) => void,
   setIsReady: (value: boolean) => void,
   setProvider: (value: WebsocketProvider) => void,
 ) {
-  const { loadDocument } = usePersistance(initUrl ?? '');
+  const { onSaveProject, onOpenProject } = useFileSystem();
+  const { onSaveProject: onPSaveProject, loadDocument } = usePersistance(persistanceApiUrl);
   const { doc, provider, awareness } = useYjs(websocketApiUrl, roomId);
   const { yShapes, yBindings, yAssets, undoManager } = getDocData(doc);
   const tldrawRef = useRef<TldrawApp>();
@@ -153,12 +164,14 @@ export function useMultiplayer(
         Object.fromEntries(yBindings.entries()),
         Object.fromEntries(yAssets.entries()),
       );
+
+      if (!tldraw.isPointing) tryAutoSave(tldraw);
     }
 
     yShapes.observeDeep(handleChanges);
 
     return () => yShapes.unobserveDeep(handleChanges);
-  }, []);
+  }, [isReady, autoSave]);
 
   useEffect(() => {
     setProvider(provider);
@@ -171,14 +184,50 @@ export function useMultiplayer(
     return () => window.removeEventListener('beforeunload', handleDisconnect);
   }, []);
 
+  const onSave = useCallback(
+    async (app: TldrawApp): Promise<void> => {
+      setIsSaving(true);
+      try {
+        const response = await onPSaveProject(app);
+        if (response?.status === 200) {
+          setTimeout(() => {
+            setIsSaving(false);
+          }, 1000);
+        }
+      } catch (e) {
+        setIsSaving(false);
+        onSaveProject(app);
+      }
+    },
+    [persistanceApiUrl],
+  );
+
+  const blob = useRef<string>('');
+
+  const tryAutoSave = useCallback(
+    throttle(async (app: TldrawApp): Promise<void> => {
+      if (!isReady || !autoSave) return;
+      const newBlob = toBlob(app);
+      if (blob.current == newBlob) return;
+      blob.current = newBlob;
+      await onSave(app);
+    }, autoSaveDelay),
+    [isReady, autoSave, autoSaveDelay],
+  );
+
+  const onExport = useCallback(async (app: TldrawApp, info: TDExport): Promise<void> => {
+    donwloadImageFile(app, info);
+  }, []);
+
   return {
     onMount,
+    onOpenProject: open ? onOpenProject : undefined,
+    onSaveProject: persistanceApiUrl ? onSave : onSaveProject,
     onChangePage,
     onUndo,
     onRedo,
     onChangePresence,
-    data: {
-      provider,
-    },
+    onExport,
+    ...useAssets(assetsApiUrl),
   };
 }

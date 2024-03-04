@@ -37,34 +37,36 @@ document.body.appendChild(tldrawEditor);
 
 ## Paramètres
 
-| Nom                   |       Type        |       Requis        | Default  | Description                                                                        |
-| --------------------- | :---------------: | :-----------------: | :------: | ---------------------------------------------------------------------------------- |
-| `mode`                | `single \| multi` |       `false`       | `single` | Mode de fonctionnement                                                             |
-| `persistance-api-url` |     `string`      | Pour le mode single |          | URL du fichier (GET & PUT) \| (En mode multi, permet la sauvegarde sur le fichier) |
-| `assets-api-url`      |     `string`      |       `false`       |          | URL des assets (GET, POST & DELETE)                                                |
-| `user-info-api-url`   |     `string`      |       `true`        |          | URL des informations utilisateurs                                                  |
-| `dark-mode`           |     `boolean`     |       `false`       | `false`  | Active le thème sombre                                                             |
-| `auto-save`           |     `boolean`     |       `false`       |  `true`  | Active la sauvegarde automatique                                                   |
-| `auto-save-delay`     |     `number`      |       `false`       | 3000 ms  | Délais de sauvegarde automatique                                                   |
-| `open`                |     `boolean`     |       `false`       | `false`  | Possibilité d'ouvrir des fichiers externes                                         |
-| `read-only`           |     `boolean`     |       `false`       | `false`  | Restreint l'accès en lecture seul                                                  |
-| `websocket-api-url`   |     `string`      | Pour le mode multi  |          | URL du serveur de YJS                                                              |
-| `room-id`             |     `string`      | Pour le mode multi  |          | Identifiant de la salle                                                            |
-| `init-url`            |     `string`      |       `false`       |          | URL du projet à prendre comme base de salle                                        |
+| Nom                   |       Type        |       Requis       | Default | Description                                                                        |
+| --------------------- | :---------------: | :----------------: | :-----: | ---------------------------------------------------------------------------------- |
+| `mode`                | `single \| multi` |       `true`       |         | Mode de fonctionnement                                                             |
+| `ws-destroy`          |     `boolean`     |      `false`       |         | Détruit la connecion YJS                                                           |
+| `persistance-api-url` |     `string`      |      `false`       |         | URL du fichier (GET & PUT) \| (En mode multi, permet la sauvegarde sur le fichier) |
+| `assets-api-url`      |     `string`      |      `false`       |         | URL des assets (GET, POST & DELETE)                                                |
+| `user-info-api-url`   |     `string`      |       `true`       |         | URL des informations utilisateurs                                                  |
+| `dark-mode`           |     `boolean`     |      `false`       | `false` | Active le thème sombre                                                             |
+| `read-only`           |     `boolean`     |      `false`       | `false` | Restreint l'accès en lecture seul                                                  |
+| `auto-save`           |     `boolean`     |      `false`       | `true`  | Active la sauvegarde automatique                                                   |
+| `auto-save-delay`     |     `number`      |      `false`       | 3000 ms | Délais de sauvegarde automatique                                                   |
+| `open`                |     `boolean`     |      `false`       | `false` | Possibilité d'ouvrir des fichiers externes                                         |
+| `websocket-api-url`   |     `string`      | Pour le mode multi |         | URL du serveur de YJS                                                              |
+| `room-id`             |     `string`      | Pour le mode multi |         | Identifiant de la salle                                                            |
+| `init-url`            |     `string`      |      `false`       |         | URL du projet à prendre comme base de salle                                        |
 
 <br/>
 
 ```html
 <tldraw-editor
   mode=""
+  ws-destroy
   persistance-api-url=""
   assets-api-url=""
   user-info-api-url=""
   dark-mode
+  read-only
   auto-save
   auto-save-delay=""
   open
-  read-only
   websocket-api-url=""
   room-id=""
   init-url=""

@@ -11,9 +11,11 @@ const toBlob = (app: TldrawApp): string => {
   });
 };
 
-export function usePersistance(persistanceApiUrl: string) {
+export function usePersistance(persistanceApiUrl: string | undefined) {
   const onSaveProject = useCallback(
     async (app: TldrawApp) => {
+      if (!persistanceApiUrl) return;
+
       return await saveFile(persistanceApiUrl, toBlob(app));
     },
     [persistanceApiUrl],
@@ -21,6 +23,8 @@ export function usePersistance(persistanceApiUrl: string) {
 
   const loadDocument = useCallback(
     async (app: TldrawApp): Promise<void> => {
+      if (!persistanceApiUrl) return;
+
       const response = await getFile(persistanceApiUrl);
       if (response.data.blob != '') {
         app.loadDocument(JSON.parse(response.data.blob).document as TDDocument);

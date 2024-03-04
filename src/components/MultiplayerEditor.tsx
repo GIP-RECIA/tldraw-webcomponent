@@ -1,41 +1,42 @@
 import { useMultiplayer } from '../hooks/useMultiplayer.ts';
+import { MultiplayerEditorProps } from '../types/MultiplayerEditorProps.ts';
 import { CustomCursor } from './Cursor.tsx';
 import { Tldraw } from '@gip-recia/tldraw-v1';
-import { WebsocketProvider } from 'y-websocket';
-
-type MultiplayerEditorProps = {
-  setIsLoading: (value: boolean) => void;
-  setIsError: (value: boolean) => void;
-  setIsReady: (value: boolean) => void;
-  websocketApiUrl: string;
-  roomId: string;
-  initUrl?: string;
-  setProvider: (value: WebsocketProvider) => void;
-};
 
 const components = {
   Cursor: CustomCursor,
 };
 
 export default function MultiplayerEditor({
-  setIsLoading,
-  setIsError,
-  setIsReady,
+  persistanceApiUrl,
+  assetsApiUrl,
   websocketApiUrl,
   roomId,
   initUrl,
   setProvider,
-  ...tldrawEvents
+  ...params
 }: Readonly<MultiplayerEditorProps>) {
-  const { ...multiCallbacks } = useMultiplayer(
-    websocketApiUrl,
-    roomId,
-    initUrl,
-    setIsLoading,
-    setIsError,
-    setIsReady,
-    setProvider,
-  );
+  const { autoSave, autoSaveDelay, open, isReady, setIsSaving, setIsLoading, setIsError, setIsReady } = params;
+
+  const props = {
+    ...params,
+    ...useMultiplayer(
+      persistanceApiUrl,
+      assetsApiUrl,
+      websocketApiUrl,
+      roomId,
+      initUrl,
+      autoSave,
+      autoSaveDelay,
+      open,
+      isReady,
+      setIsSaving,
+      setIsLoading,
+      setIsError,
+      setIsReady,
+      setProvider,
+    ),
+  };
 
   return (
     <Tldraw
@@ -46,8 +47,7 @@ export default function MultiplayerEditor({
       hideNewReleaseLink
       hideSocialLinks
       hideSponsorLink
-      {...tldrawEvents}
-      {...multiCallbacks}
+      {...props}
     />
   );
 }

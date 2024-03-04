@@ -1,51 +1,29 @@
-import { usePersistance } from '../hooks/usePersistance.ts';
-import { findLanguage } from '../utils/i18nUtils.ts';
-import { Tldraw, TldrawApp } from '@gip-recia/tldraw-v1';
-import debounce from 'lodash.debounce';
-import { useCallback } from 'react';
-
-type SingleplayerEditorProps = {
-  setIsLoading: (value: boolean) => void;
-  setIsError: (value: boolean) => void;
-  setIsReady: (value: boolean) => void;
-  persistanceApiUrl: string;
-};
+import { useSingleplayer } from '../hooks/useSingleplayer.ts';
+import { SingleplayerEditorProps } from '../types/SingleplayerEditorProps.ts';
+import { Tldraw } from '@gip-recia/tldraw-v1';
 
 export default function SingleplayerEditor({
-  setIsLoading,
-  setIsError,
-  setIsReady,
   persistanceApiUrl,
-  ...tldrawEvents
+  assetsApiUrl,
+  ...params
 }: Readonly<SingleplayerEditorProps>) {
-  const { loadDocument } = usePersistance(persistanceApiUrl);
+  const { autoSave, autoSaveDelay, open, isReady, setIsSaving, setIsLoading, setIsError, setIsReady } = params;
 
-  const onMount = useCallback(
-    debounce(async (app: TldrawApp): Promise<void> => {
-      app.setSetting('language', findLanguage('en'));
-      setIsLoading(true);
-      try {
-        await loadDocument(app);
-        setIsLoading(false);
-        setIsReady(true);
-      } catch (e) {
-        setIsLoading(false);
-        setIsError(true);
-        console.error(e);
-      }
-    }, 10),
-    [persistanceApiUrl],
-  );
+  const props = {
+    ...params,
+    ...useSingleplayer(
+      persistanceApiUrl,
+      assetsApiUrl,
+      autoSave,
+      autoSaveDelay,
+      open,
+      isReady,
+      setIsSaving,
+      setIsLoading,
+      setIsError,
+      setIsReady,
+    ),
+  };
 
-  return (
-    <Tldraw
-      autofocus
-      onMount={onMount}
-      showMultiplayerMenu={false}
-      hideNewReleaseLink
-      hideSocialLinks
-      hideSponsorLink
-      {...tldrawEvents}
-    />
-  );
+  return <Tldraw autofocus showMultiplayerMenu={false} hideNewReleaseLink hideSocialLinks hideSponsorLink {...props} />;
 }
