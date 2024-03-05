@@ -10,6 +10,14 @@ body,
   overflow: hidden;
 }
 
+.settings {
+  display: flex;
+
+  div {
+    margin-right: 12px;
+  }
+}
+
 main {
   flex-grow: 1;
   display: flex;
@@ -19,8 +27,8 @@ main {
 
   .app-container {
     border: 4px solid black;
-    height: 900px;
-    width: 1600px;
+    height: 100%;
+    width: 100%;
 
     .tldraw__editor {
       display: block;
