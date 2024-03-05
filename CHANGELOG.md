@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v3.1.0...v3.2.0) (2024-03-05)
+
+
+### Features
+
+* add owner property + fix asset and persistence on multi ([ad45175](https://github.com/GIP-RECIA/tldraw-webcomponent/commit/ad4517598b23fe481a8f87e665f990a9c371aa6b))
+* better app dev ([7a742f5](https://github.com/GIP-RECIA/tldraw-webcomponent/commit/7a742f5942991db8b0d026e688f67ab3191bdece))
+
 ## [3.1.0](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v3.0.0...v3.1.0) (2024-03-04)
 
 
