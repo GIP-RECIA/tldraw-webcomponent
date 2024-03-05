@@ -7,5 +7,6 @@ export type MultiplayerEditorProps = {
   websocketApiUrl: string;
   roomId: string;
   initUrl?: string;
+  owner: boolean;
   setProvider: (value: WebsocketProvider) => void;
 } & CommonProps;

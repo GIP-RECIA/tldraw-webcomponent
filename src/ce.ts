@@ -16,6 +16,7 @@ const TldrawEditor = r2wc(TldrawEditorSFC, {
     websocketApiUrl: 'string',
     roomId: 'string',
     initUrl: 'string',
+    owner: 'boolean',
   },
 });
 

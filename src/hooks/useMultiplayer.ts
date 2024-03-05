@@ -8,16 +8,16 @@ import { useYjs } from './useYjs';
 import { TDAsset, TDBinding, TDExport, TDShape, TDUser, TldrawApp, useFileSystem } from '@gip-recia/tldraw-v1';
 import debounce from 'lodash.debounce';
 import throttle from 'lodash.throttle';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { WebsocketProvider } from 'y-websocket';
 
-// Based on https://github.com/nimeshnayaju/yjs-tldraw
 export function useMultiplayer(
   persistanceApiUrl: string | undefined,
   assetsApiUrl: string | undefined,
   websocketApiUrl: string,
   roomId: string,
   initUrl: string | undefined,
+  owner: boolean,
   autoSave: boolean,
   autoSaveDelay: number,
   open: boolean,
@@ -28,10 +28,69 @@ export function useMultiplayer(
   setIsReady: (value: boolean) => void,
   setProvider: (value: WebsocketProvider) => void,
 ) {
+  /* -- Custom work -- */
+
+  /**
+   * Force rerendering
+   */
+  const [key, setKey] = useState<number>(0);
+
+  /**
+   * Define persistance API URL on yjs
+   */
+  useEffect(() => {
+    if (!owner) return;
+
+    const oldValue: string = yPersistanceApiUrl.toString();
+    if (oldValue != persistanceApiUrl) {
+      yPersistanceApiUrl.delete(0, oldValue.length);
+      if (persistanceApiUrl) yPersistanceApiUrl.insert(0, persistanceApiUrl);
+    }
+  }, [persistanceApiUrl, owner]);
+
+  useEffect(() => {
+    function handleChanges() {
+      setKey((value) => value + 1);
+    }
+
+    yPersistanceApiUrl.observeDeep(handleChanges);
+
+    return () => yPersistanceApiUrl.unobserveDeep(handleChanges);
+  }, []);
+
+  /**
+   * Define assets API URL on yjs
+   */
+  useEffect(() => {
+    if (!owner) return;
+
+    const oldValue: string = yAssetsApiUrl.toString();
+    if (oldValue != assetsApiUrl) {
+      yAssetsApiUrl.delete(0, oldValue.length);
+      if (assetsApiUrl) yAssetsApiUrl.insert(0, assetsApiUrl);
+    }
+  }, [assetsApiUrl, owner]);
+
+  useEffect(() => {
+    function handleChanges() {
+      setKey((value) => value + 1);
+    }
+
+    yAssetsApiUrl.observeDeep(handleChanges);
+
+    return () => yAssetsApiUrl.unobserveDeep(handleChanges);
+  }, []);
+
   const { onSaveProject, onOpenProject } = useFileSystem();
-  const { onSaveProject: onPSaveProject, loadDocument } = usePersistance(persistanceApiUrl);
   const { doc, provider, awareness } = useYjs(websocketApiUrl, roomId);
-  const { yShapes, yBindings, yAssets, undoManager } = getDocData(doc);
+  const { yPersistanceApiUrl, yAssetsApiUrl, yShapes, yBindings, yAssets, undoManager } = getDocData(doc);
+  const { onSaveProject: onPSaveProject } = usePersistance(
+    yPersistanceApiUrl.toString().length > 0 ? yPersistanceApiUrl.toString() : undefined,
+  );
+  const { loadDocument } = usePersistance(initUrl);
+
+  /* -- https://github.com/nimeshnayaju/yjs-tldraw -- */
+
   const tldrawRef = useRef<TldrawApp>();
 
   const onMount = useCallback(
@@ -171,7 +230,7 @@ export function useMultiplayer(
     yShapes.observeDeep(handleChanges);
 
     return () => yShapes.unobserveDeep(handleChanges);
-  }, [isReady, autoSave]);
+  }, [isReady, autoSave, owner, key]);
 
   useEffect(() => {
     setProvider(provider);
@@ -184,8 +243,12 @@ export function useMultiplayer(
     return () => window.removeEventListener('beforeunload', handleDisconnect);
   }, []);
 
+  /* -- Custom work -- */
+
   const onSave = useCallback(
     async (app: TldrawApp): Promise<void> => {
+      if (!owner) return;
+
       setIsSaving(true);
       try {
         const response = await onPSaveProject(app);
@@ -199,20 +262,21 @@ export function useMultiplayer(
         onSaveProject(app);
       }
     },
-    [persistanceApiUrl],
+    [owner, key],
   );
 
   const blob = useRef<string>('');
 
   const tryAutoSave = useCallback(
     throttle(async (app: TldrawApp): Promise<void> => {
-      if (!isReady || !autoSave) return;
+      if (!owner || !isReady || !autoSave || yPersistanceApiUrl.toString().length == 0) return;
+
       const newBlob = toBlob(app);
       if (blob.current == newBlob) return;
       blob.current = newBlob;
       await onSave(app);
     }, autoSaveDelay),
-    [isReady, autoSave, autoSaveDelay],
+    [isReady, autoSave, autoSaveDelay, owner, key],
   );
 
   const onExport = useCallback(async (app: TldrawApp, info: TDExport): Promise<void> => {
@@ -228,6 +292,6 @@ export function useMultiplayer(
     onRedo,
     onChangePresence,
     onExport,
-    ...useAssets(assetsApiUrl),
+    ...useAssets(yAssetsApiUrl.toString().length > 0 ? yAssetsApiUrl.toString() : undefined),
   };
 }

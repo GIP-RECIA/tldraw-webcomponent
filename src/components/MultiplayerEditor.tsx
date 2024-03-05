@@ -13,6 +13,7 @@ export default function MultiplayerEditor({
   websocketApiUrl,
   roomId,
   initUrl,
+  owner,
   setProvider,
   ...params
 }: Readonly<MultiplayerEditorProps>) {
@@ -26,6 +27,7 @@ export default function MultiplayerEditor({
       websocketApiUrl,
       roomId,
       initUrl,
+      owner,
       autoSave,
       autoSaveDelay,
       open,

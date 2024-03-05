@@ -21,6 +21,7 @@ export default function TldrawEditor({
   websocketApiUrl,
   roomId,
   initUrl,
+  owner,
 }: Readonly<TldrawEditorProps>) {
   const [isSaving, setIsSaving] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -73,6 +74,7 @@ export default function TldrawEditor({
     websocketApiUrl: websocketApiUrl!,
     roomId: roomId!,
     initUrl,
+    owner: owner ?? false,
     setProvider,
     ...common,
   };

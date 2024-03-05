@@ -15,6 +15,8 @@ const cloneDoc = (doc: Y.Doc): Y.Doc => {
 };
 
 const getDocData = (doc: Y.Doc) => {
+  const yPersistanceApiUrl: Y.Text = doc.getText('persistanceApiUrl');
+  const yAssetsApiUrl: Y.Text = doc.getText('assetsApiUrl');
   const yShapes: Y.Map<TDShape> = doc.getMap('shapes');
   const yBindings: Y.Map<TDBinding> = doc.getMap('bindings');
   const yAssets: Y.Map<TDAsset> = doc.getMap('assets');
@@ -22,6 +24,8 @@ const getDocData = (doc: Y.Doc) => {
   const undoManager = new Y.UndoManager([yShapes, yBindings, yAssets]);
 
   return {
+    yPersistanceApiUrl,
+    yAssetsApiUrl,
     yShapes,
     yBindings,
     yAssets,

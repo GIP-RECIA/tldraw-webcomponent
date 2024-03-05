@@ -16,4 +16,5 @@ export type TldrawEditorProps = {
   websocketApiUrl?: string;
   roomId?: string;
   initUrl?: string;
+  owner?: boolean;
 };
