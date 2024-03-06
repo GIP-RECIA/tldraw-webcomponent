@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.2.2](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v3.2.1...v3.2.2) (2024-03-06)
+
+
+### Bug Fixes
+
+* move dependencies to devDependencies ([5eb5ffe](https://github.com/GIP-RECIA/tldraw-webcomponent/commit/5eb5ffe1043ef680bae60a21f0866ba39436d330))
+
 ### [3.2.1](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v3.2.0...v3.2.1) (2024-03-06)
 
 
