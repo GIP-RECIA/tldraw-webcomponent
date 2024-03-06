@@ -50,27 +50,20 @@
     "release:patch": "standard-version --release-as patch",
     "release:major": "standard-version --release-as major"
   },
-  "dependencies": {
-    "@gip-recia/tldraw-v1": "^1.29.2-recia-1.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "y-presence": "^0.2.3",
-    "y-websocket": "^1.5.4",
-    "yjs": "^13.6.14"
-  },
   "devDependencies": {
     "@commitlint/cli": "^19.0.3",
     "@commitlint/config-conventional": "^19.0.3",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@gip-recia/tldraw-v1": "^1.29.2-recia-1.0.0",
     "@r2wc/react-to-web-component": "^2.0.3",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
-    "@types/lodash.debounce": "^4.0.9",
-    "@types/lodash.throttle": "^4.1.9",
-    "@types/node": "^20.11.24",
-    "@types/react": "^18.2.63",
-    "@types/react-dom": "^18.2.19",
+    "@types/lodash.debounce": "^4",
+    "@types/lodash.throttle": "^4",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
     "@uportal/open-id-connect": "^1.40.2",
@@ -86,13 +79,18 @@
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "prettier": "^3.2.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "regenerator-runtime": "^0.14.1",
     "sass": "^1.71.1",
     "standard-version": "^9.5.0",
     "terser": "^5.28.1",
     "typescript": "^5.3.3",
     "vite": "^5.1.5",
-    "vite-plugin-css-injected-by-js": "^3.4.0"
+    "vite-plugin-css-injected-by-js": "^3.4.0",
+    "y-presence": "^0.2.3",
+    "y-websocket": "^1.5.4",
+    "yjs": "^13.6.14"
   },
   "packageManager": "yarn@4.1.0"
 }
