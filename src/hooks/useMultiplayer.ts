@@ -30,6 +30,14 @@ export function useMultiplayer(
 ) {
   /* -- Custom work -- */
 
+  const { onSaveProject, onOpenProject } = useFileSystem();
+  const { doc, provider, awareness } = useYjs(websocketApiUrl, roomId);
+  const { yPersistanceApiUrl, yAssetsApiUrl, yShapes, yBindings, yAssets, undoManager } = getDocData(doc);
+  const { onSaveProject: onPSaveProject } = usePersistance(
+    yPersistanceApiUrl.toString().length > 0 ? yPersistanceApiUrl.toString() : undefined,
+  );
+  const { loadDocument } = usePersistance(initUrl);
+
   /**
    * Force rerendering
    */
@@ -39,55 +47,43 @@ export function useMultiplayer(
    * Define persistance API URL on yjs
    */
   useEffect(() => {
-    if (!owner) return;
+    setTimeout(() => {
+      if (owner) {
+        const oldValue: string = yPersistanceApiUrl.toString();
+        if (oldValue !== persistanceApiUrl) {
+          yPersistanceApiUrl.delete(0, oldValue.length);
+          if (persistanceApiUrl) yPersistanceApiUrl.insert(0, persistanceApiUrl);
+        }
+      }
+    }, 200);
 
-    const oldValue: string = yPersistanceApiUrl.toString();
-    if (oldValue != persistanceApiUrl) {
-      yPersistanceApiUrl.delete(0, oldValue.length);
-      if (persistanceApiUrl) yPersistanceApiUrl.insert(0, persistanceApiUrl);
-    }
-  }, [persistanceApiUrl, owner]);
-
-  useEffect(() => {
-    function handleChanges() {
-      setKey((value) => value + 1);
-    }
+    const handleChanges = throttle(() => setKey((value) => value + 1), 200, { trailing: true });
 
     yPersistanceApiUrl.observeDeep(handleChanges);
 
     return () => yPersistanceApiUrl.unobserveDeep(handleChanges);
-  }, []);
+  }, [persistanceApiUrl, owner]);
 
   /**
    * Define assets API URL on yjs
    */
   useEffect(() => {
-    if (!owner) return;
+    setTimeout(() => {
+      if (owner) {
+        const oldValue: string = yAssetsApiUrl.toString();
+        if (oldValue !== assetsApiUrl) {
+          yAssetsApiUrl.delete(0, oldValue.length);
+          if (assetsApiUrl) yAssetsApiUrl.insert(0, assetsApiUrl);
+        }
+      }
+    }, 200);
 
-    const oldValue: string = yAssetsApiUrl.toString();
-    if (oldValue != assetsApiUrl) {
-      yAssetsApiUrl.delete(0, oldValue.length);
-      if (assetsApiUrl) yAssetsApiUrl.insert(0, assetsApiUrl);
-    }
-  }, [assetsApiUrl, owner]);
-
-  useEffect(() => {
-    function handleChanges() {
-      setKey((value) => value + 1);
-    }
+    const handleChanges = throttle(() => setKey((value) => value + 1), 200, { trailing: true });
 
     yAssetsApiUrl.observeDeep(handleChanges);
 
     return () => yAssetsApiUrl.unobserveDeep(handleChanges);
-  }, []);
-
-  const { onSaveProject, onOpenProject } = useFileSystem();
-  const { doc, provider, awareness } = useYjs(websocketApiUrl, roomId);
-  const { yPersistanceApiUrl, yAssetsApiUrl, yShapes, yBindings, yAssets, undoManager } = getDocData(doc);
-  const { onSaveProject: onPSaveProject } = usePersistance(
-    yPersistanceApiUrl.toString().length > 0 ? yPersistanceApiUrl.toString() : undefined,
-  );
-  const { loadDocument } = usePersistance(initUrl);
+  }, [assetsApiUrl, owner]);
 
   /* -- https://github.com/nimeshnayaju/yjs-tldraw -- */
 
@@ -269,7 +265,7 @@ export function useMultiplayer(
 
   const tryAutoSave = useCallback(
     throttle(async (app: TldrawApp): Promise<void> => {
-      if (!owner || !isReady || !autoSave || yPersistanceApiUrl.toString().length == 0) return;
+      if (!owner || !isReady || !autoSave || yPersistanceApiUrl.toString().trim() == '') return;
 
       const newBlob = toBlob(app);
       if (blob.current == newBlob) return;
@@ -292,6 +288,6 @@ export function useMultiplayer(
     onRedo,
     onChangePresence,
     onExport,
-    ...useAssets(yAssetsApiUrl.toString().length > 0 ? yAssetsApiUrl.toString() : undefined),
+    ...useAssets(yAssetsApiUrl.toString().trim() != '' ? yAssetsApiUrl.toString() : undefined),
   };
 }
