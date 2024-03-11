@@ -85,12 +85,12 @@
     "sass": "^1.71.1",
     "standard-version": "^9.5.0",
     "terser": "^5.29.1",
-    "typescript": "^5.4.2",
+    "typescript": "~5.4.2",
     "vite": "^5.1.5",
     "vite-plugin-css-injected-by-js": "^3.4.0",
     "y-presence": "^0.2.3",
     "y-websocket": "^1.5.4",
     "yjs": "^13.6.14"
   },
-  "packageManager": "yarn@4.1.0"
+  "packageManager": "yarn@4.1.1"
 }
