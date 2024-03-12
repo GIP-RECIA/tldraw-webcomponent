@@ -4,7 +4,6 @@ import r2wc from '@r2wc/react-to-web-component';
 const TldrawEditor = r2wc(TldrawEditorSFC, {
   props: {
     mode: 'string',
-    wsDestroy: 'boolean',
     persistanceApiUrl: 'string',
     assetsApiUrl: 'string',
     userInfoApiUrl: 'string',
@@ -17,6 +16,8 @@ const TldrawEditor = r2wc(TldrawEditorSFC, {
     roomId: 'string',
     initUrl: 'string',
     owner: 'boolean',
+    clearOnLeave: 'boolean',
+    leave: 'boolean',
   },
 });
 

@@ -9,7 +9,6 @@ import { WebsocketProvider } from 'y-websocket';
 
 export default function TldrawEditor({
   mode,
-  wsDestroy,
   persistanceApiUrl,
   assetsApiUrl,
   userInfoApiUrl,
@@ -23,6 +22,7 @@ export default function TldrawEditor({
   initUrl,
   owner,
   clearOnLeave,
+  leave,
 }: Readonly<TldrawEditorProps>) {
   const [isSaving, setIsSaving] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -40,12 +40,10 @@ export default function TldrawEditor({
     setIsError(false);
     provider?.disconnect();
     setProvider(undefined);
-    setTimeout(() => setCMode(mode), 10); // Fix save when switching to multi mode
+    setTimeout(() => {
+      setCMode(mode);
+    }, 10); // Fix save when switching to multi mode
   }, [mode]);
-
-  useEffect(() => {
-    if (wsDestroy) provider?.destroy();
-  }, [wsDestroy]);
 
   const isSingle: boolean = cMode == 'single';
   const isMulti: boolean = cMode == 'multi' && websocketApiUrl != undefined && roomId != undefined;
@@ -77,6 +75,7 @@ export default function TldrawEditor({
     initUrl,
     owner: owner ?? false,
     clearOnLeave: clearOnLeave ?? true,
+    leave: leave ?? false,
     setProvider,
     ...common,
   };

@@ -19,6 +19,7 @@ export function useMultiplayer(
   initUrl: string | undefined,
   owner: boolean,
   clearOnLeave: boolean,
+  leave: boolean,
   autoSave: boolean,
   autoSaveDelay: number,
   open: boolean,
@@ -86,7 +87,21 @@ export function useMultiplayer(
     return () => yAssetsApiUrl.unobserveDeep(handleChanges);
   }, [assetsApiUrl, owner]);
 
-  /* -- https://github.com/nimeshnayaju/yjs-tldraw -- */
+  useEffect(() => {
+    setProvider(provider);
+  }, [provider]);
+
+  useEffect(() => {
+    if (leave) {
+      if (owner && clearOnLeave) {
+        yPersistanceApiUrl.delete(0, yPersistanceApiUrl.toString().length);
+        yAssetsApiUrl.delete(0, yAssetsApiUrl.toString().length);
+      }
+      provider.disconnect();
+    }
+  }, [owner, clearOnLeave, leave]);
+
+  /* -- https://github.com/nimeshnayaju/yjs-tldraw/blob/main/src/hooks/useMultiplayerState.ts -- */
 
   const tldrawRef = useRef<TldrawApp>();
 
@@ -230,20 +245,13 @@ export function useMultiplayer(
   }, [isReady, autoSave, owner, key]);
 
   useEffect(() => {
-    setProvider(provider);
-
     function handleDisconnect() {
-      if (owner && clearOnLeave) {
-        yPersistanceApiUrl.delete(0, yPersistanceApiUrl.toString().length);
-        yAssetsApiUrl.delete(0, yAssetsApiUrl.toString().length);
-      }
       provider.disconnect();
     }
-
     window.addEventListener('beforeunload', handleDisconnect);
 
     return () => window.removeEventListener('beforeunload', handleDisconnect);
-  }, [owner, clearOnLeave]);
+  }, []);
 
   /* -- Custom work -- */
 

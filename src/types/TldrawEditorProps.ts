@@ -1,6 +1,5 @@
 export type TldrawEditorProps = {
   mode?: 'single' | 'multi';
-  wsDestroy?: boolean;
 
   // Common properties
   persistanceApiUrl?: string;
@@ -18,4 +17,5 @@ export type TldrawEditorProps = {
   initUrl?: string;
   owner?: boolean;
   clearOnLeave?: boolean;
+  leave?: boolean;
 };

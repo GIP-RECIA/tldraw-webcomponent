@@ -40,7 +40,6 @@ document.body.appendChild(tldrawEditor);
 | Nom                   |       Type        |       Requis       | Default | Description                                                                                                 |
 | --------------------- | :---------------: | :----------------: | :-----: | ----------------------------------------------------------------------------------------------------------- |
 | `mode`                | `single \| multi` |       `true`       |         | Mode de fonctionnement                                                                                      |
-| `ws-destroy`          |     `boolean`     |      `false`       |         | Détruit la connecion YJS                                                                                    |
 | `persistance-api-url` |     `string`      |      `false`       |         | URL du fichier (GET & PUT) \| (En mode multi, permet la sauvegarde sur le fichier)                          |
 | `assets-api-url`      |     `string`      |      `false`       |         | URL des assets (GET, POST & DELETE)                                                                         |
 | `user-info-api-url`   |     `string`      |       `true`       |         | URL des informations utilisateurs                                                                           |
@@ -54,13 +53,13 @@ document.body.appendChild(tldrawEditor);
 | `init-url`            |     `string`      |      `false`       |         | URL du projet à prendre comme base de salle                                                                 |
 | `owner`               |     `boolean`     |      `false`       | `false` | Propriétaire de la salle (seul le proprétaire peux sauvegarder / définir les urls de persistance et assets) |
 | `clear-on-leave`      |     `boolean`     |      `false`       | `true`  | Efface les proprétés de la salle si le propriétaire s'en va (persistance-api-url & assets-api-url)          |
+| `leave`               |     `boolean`     |      `false`       | `false` | Permet de déconnecter le web socket (à utiliser avant de changer de quitter la page)                        |
 
 <br/>
 
 ```html
 <tldraw-editor
   mode=""
-  ws-destroy
   persistance-api-url=""
   assets-api-url=""
   user-info-api-url=""
@@ -74,5 +73,6 @@ document.body.appendChild(tldrawEditor);
   init-url=""
   owner
   clear-on-leave
+  leave
 />
 ```

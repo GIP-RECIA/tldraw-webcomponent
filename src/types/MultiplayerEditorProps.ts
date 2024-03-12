@@ -9,5 +9,6 @@ export type MultiplayerEditorProps = {
   initUrl?: string;
   owner: boolean;
   clearOnLeave: boolean;
+  leave: boolean;
   setProvider: (value: WebsocketProvider) => void;
 } & CommonProps;

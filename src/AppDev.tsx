@@ -17,21 +17,22 @@ function App() {
   const [assetsApiUrl, setAssetsApiUrl] = useState<boolean>(false);
   const [initUrl, setInitUrl] = useState<boolean>(false);
   const [owner, setOwner] = useState<boolean>(false);
+  const [clearOnLeave, setClearOnLeave] = useState<boolean>(true);
 
   const [darkMode, setDarkMode] = useState<boolean>(false);
   const [readOnly, setReadOnly] = useState<boolean>(false);
   const [autoSave, setAutoSave] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
 
-  const [wsDestroy, setWsDestroy] = useState<boolean>(false);
+  const [leave, setLeave] = useState<boolean>(false);
   const [render, setRender] = useState<boolean>(false);
 
   const toggleRender = () => {
-    if (!render) {
-      setWsDestroy(true);
-      setTimeout(() => setWsDestroy(false), 200);
+    if (render) {
+      setLeave(true);
+      setTimeout(() => setLeave(false), 200);
     }
-    setRender(!render);
+    setTimeout(() => setRender(!render), 150);
   };
 
   return (
@@ -121,6 +122,19 @@ function App() {
             />
             owner
           </div>
+          <div>
+            <input
+              type="checkbox"
+              checked={mode === 'single' ? false : clearOnLeave}
+              disabled={mode === 'single'}
+              onChange={() => setClearOnLeave(!clearOnLeave)}
+            />
+            clearOnLeave
+          </div>
+          <div>
+            <input type="checkbox" checked={mode === 'single' ? false : leave} disabled />
+            leave
+          </div>
         </div>
         <div>
           <div>
@@ -137,7 +151,6 @@ function App() {
             {render && (
               <TldrawEditor
                 mode={mode}
-                wsDestroy={wsDestroy}
                 persistanceApiUrl={persistanceApiUrl ? VITE_PERSISTANCE_API_URL : undefined}
                 assetsApiUrl={assetsApiUrl ? VITE_ASSETS_API_URL : undefined}
                 userInfoApiUrl={VITE_USER_INFO_API_URI}
@@ -149,6 +162,8 @@ function App() {
                 roomId={VITE_ROOM_ID}
                 initUrl={initUrl ? VITE_PERSISTANCE_API_URL : undefined}
                 owner={owner}
+                clearOnLeave={clearOnLeave}
+                leave={leave}
               />
             )}
           </div>
