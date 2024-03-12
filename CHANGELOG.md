@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.3.1](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v3.3.0...v3.3.1) (2024-03-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* ws-destroy become leave
+
+### Bug Fixes
+
+* ws-destroy become leave ([31772c7](https://github.com/GIP-RECIA/tldraw-webcomponent/commit/31772c77ef5a93e1b35f19bc5f7944ad77765f41))
+
 ## [3.3.0](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v3.2.2...v3.3.0) (2024-03-12)
 
 
