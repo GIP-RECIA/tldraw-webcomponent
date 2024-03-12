@@ -53,6 +53,7 @@ document.body.appendChild(tldrawEditor);
 | `room-id`             |     `string`      | Pour le mode multi |         | Identifiant de la salle                                                                                     |
 | `init-url`            |     `string`      |      `false`       |         | URL du projet à prendre comme base de salle                                                                 |
 | `owner`               |     `boolean`     |      `false`       | `false` | Propriétaire de la salle (seul le proprétaire peux sauvegarder / définir les urls de persistance et assets) |
+| `clear-on-leave`      |     `boolean`     |      `false`       | `true`  | Efface les proprétés de la salle si le propriétaire s'en va (persistance-api-url & assets-api-url)          |
 
 <br/>
 
@@ -72,5 +73,6 @@ document.body.appendChild(tldrawEditor);
   room-id=""
   init-url=""
   owner
+  clear-on-leave
 />
 ```

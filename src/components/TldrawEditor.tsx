@@ -22,6 +22,7 @@ export default function TldrawEditor({
   roomId,
   initUrl,
   owner,
+  clearOnLeave,
 }: Readonly<TldrawEditorProps>) {
   const [isSaving, setIsSaving] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -75,6 +76,7 @@ export default function TldrawEditor({
     roomId: roomId!,
     initUrl,
     owner: owner ?? false,
+    clearOnLeave: clearOnLeave ?? true,
     setProvider,
     ...common,
   };

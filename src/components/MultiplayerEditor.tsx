@@ -14,6 +14,7 @@ export default function MultiplayerEditor({
   roomId,
   initUrl,
   owner,
+  clearOnLeave,
   setProvider,
   ...params
 }: Readonly<MultiplayerEditorProps>) {
@@ -28,6 +29,7 @@ export default function MultiplayerEditor({
       roomId,
       initUrl,
       owner,
+      clearOnLeave,
       autoSave,
       autoSaveDelay,
       open,

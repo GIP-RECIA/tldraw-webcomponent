@@ -17,4 +17,5 @@ export type TldrawEditorProps = {
   roomId?: string;
   initUrl?: string;
   owner?: boolean;
+  clearOnLeave?: boolean;
 };

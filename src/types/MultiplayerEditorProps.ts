@@ -8,5 +8,6 @@ export type MultiplayerEditorProps = {
   roomId: string;
   initUrl?: string;
   owner: boolean;
+  clearOnLeave: boolean;
   setProvider: (value: WebsocketProvider) => void;
 } & CommonProps;

@@ -18,6 +18,7 @@ export function useMultiplayer(
   roomId: string,
   initUrl: string | undefined,
   owner: boolean,
+  clearOnLeave: boolean,
   autoSave: boolean,
   autoSaveDelay: number,
   open: boolean,
@@ -232,12 +233,17 @@ export function useMultiplayer(
     setProvider(provider);
 
     function handleDisconnect() {
+      if (owner && clearOnLeave) {
+        yPersistanceApiUrl.delete(0, yPersistanceApiUrl.toString().length);
+        yAssetsApiUrl.delete(0, yAssetsApiUrl.toString().length);
+      }
       provider.disconnect();
     }
+
     window.addEventListener('beforeunload', handleDisconnect);
 
     return () => window.removeEventListener('beforeunload', handleDisconnect);
-  }, []);
+  }, [owner, clearOnLeave]);
 
   /* -- Custom work -- */
 
