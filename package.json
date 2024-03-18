@@ -82,7 +82,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "regenerator-runtime": "^0.14.1",
-    "sass": "^1.71.1",
+    "sass": "^1.72.0",
     "standard-version": "^9.5.0",
     "terser": "^5.29.1",
     "typescript": "~5.4.2",
