@@ -1024,7 +1024,7 @@ __metadata:
     terser: "npm:^5.30.0"
     typescript: "npm:~5.4.3"
     vite: "npm:^5.2.7"
-    vite-plugin-css-injected-by-js: "npm:^3.4.0"
+    vite-plugin-css-injected-by-js: "npm:^3.5.0"
     y-presence: "npm:^0.2.3"
     y-websocket: "npm:^1.5.4"
     yjs: "npm:^13.6.14"
@@ -7323,12 +7323,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-css-injected-by-js@npm:^3.4.0":
-  version: 3.4.0
-  resolution: "vite-plugin-css-injected-by-js@npm:3.4.0"
+"vite-plugin-css-injected-by-js@npm:^3.5.0":
+  version: 3.5.0
+  resolution: "vite-plugin-css-injected-by-js@npm:3.5.0"
   peerDependencies:
     vite: ">2.0.0-0"
-  checksum: 10/cbe2cb0a6cb0255735a8462d1c153d0d890029da7e523d2e2240368748dc1a98ed6a40a693b24d4ffaf11e0566d6ca3aeb306165fe19432efe3b68f3e032d659
+  checksum: 10/bbf78be2043528b48ddc820fd685b26b60cac4aa8c76755da63fee452c6ce22deb7da9df9230e0e231f215ebbfa46c331dc733d5c78fd54b8b281214256f7fc5
   languageName: node
   linkType: hard
 

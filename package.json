@@ -87,7 +87,7 @@
     "terser": "^5.30.0",
     "typescript": "~5.4.3",
     "vite": "^5.2.7",
-    "vite-plugin-css-injected-by-js": "^3.4.0",
+    "vite-plugin-css-injected-by-js": "^3.5.0",
     "y-presence": "^0.2.3",
     "y-websocket": "^1.5.4",
     "yjs": "^13.6.14"
