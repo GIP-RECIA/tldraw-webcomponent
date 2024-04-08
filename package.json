@@ -83,7 +83,7 @@
     "regenerator-runtime": "^0.14.1",
     "sass": "^1.72.0",
     "standard-version": "^9.5.0",
-    "terser": "^5.30.0",
+    "terser": "^5.30.3",
     "typescript": "~5.4.3",
     "vite": "^5.2.7",
     "vite-plugin-css-injected-by-js": "^3.5.0",
