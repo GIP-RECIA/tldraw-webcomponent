@@ -1018,7 +1018,7 @@ __metadata:
     react: "npm:^18.3.1"
     react-dom: "npm:^18.2.0"
     regenerator-runtime: "npm:^0.14.1"
-    sass: "npm:^1.75.0"
+    sass: "npm:^1.77.1"
     standard-version: "npm:^9.5.0"
     terser: "npm:^5.30.3"
     typescript: "npm:~5.4.5"
@@ -6501,16 +6501,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.75.0":
-  version: 1.75.0
-  resolution: "sass@npm:1.75.0"
+"sass@npm:^1.77.1":
+  version: 1.77.1
+  resolution: "sass@npm:1.77.1"
   dependencies:
     chokidar: "npm:>=3.0.0 <4.0.0"
     immutable: "npm:^4.0.0"
     source-map-js: "npm:>=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: 10/9f2d1b5adfe0b008e7062ef2f42fd9b26672e39e36ef3d234166636a4082d1f66c01804070e4e07b50ec872cdd9485ccf10fae8f87b3c00b9de6400c6e73efe8
+  checksum: 10/df9fdd9b729786d0f637a20c3ad65e50864c00ae92d9493ea42fd5ca80a2d0852c5d1b06da49db7e0b8066a75b593a1e34d999a3af3b1e7abb417aae0a4df75c
   languageName: node
   linkType: hard
 
