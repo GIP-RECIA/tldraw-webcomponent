@@ -91,5 +91,5 @@
     "y-websocket": "^2.0.3",
     "yjs": "^13.6.15"
   },
-  "packageManager": "yarn@4.1.1"
+  "packageManager": "yarn@4.2.2"
 }
