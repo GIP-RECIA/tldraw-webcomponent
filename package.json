@@ -88,7 +88,7 @@
     "vite": "^5.2.10",
     "vite-plugin-css-injected-by-js": "^3.5.0",
     "y-presence": "^0.2.3",
-    "y-websocket": "^2.0.2",
+    "y-websocket": "^2.0.3",
     "yjs": "^13.6.14"
   },
   "packageManager": "yarn@4.1.1"
