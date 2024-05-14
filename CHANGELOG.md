@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.4.0](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v3.3.1...v3.4.0) (2024-05-14)
+
+
+### Features
+
+* choose between token or user-info-api-url ([937f6c4](https://github.com/GIP-RECIA/tldraw-webcomponent/commit/937f6c428eec55b4d98c03cd552d4b8b75579d27))
+
 ### [3.3.1](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v3.3.0...v3.3.1) (2024-03-12)
 
 
