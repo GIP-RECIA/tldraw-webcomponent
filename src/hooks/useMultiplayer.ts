@@ -1,10 +1,10 @@
 import { useAssets } from '../hooks/useAssets.ts';
 import { findLanguage } from '../utils/i18nUtils';
-import { getToken } from '../utils/soffitUtils';
-import { donwloadImageFile } from '../utils/tldrawUtils';
-import { getDocData, updateDoc } from '../utils/yjsUtils';
-import { toBlob, usePersistance } from './usePersistance';
-import { useYjs } from './useYjs';
+import { getToken } from '../utils/soffitUtils.ts';
+import { donwloadImageFile } from '../utils/tldrawUtils.ts';
+import { getDocData, updateDoc } from '../utils/yjsUtils.ts';
+import { toBlob, usePersistance } from './usePersistance.ts';
+import { useYjs } from './useYjs.ts';
 import { TDAsset, TDBinding, TDExport, TDShape, TDUser, TldrawApp, useFileSystem } from '@gip-recia/tldraw-v1';
 import debounce from 'lodash.debounce';
 import throttle from 'lodash.throttle';

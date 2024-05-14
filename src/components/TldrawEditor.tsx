@@ -1,9 +1,10 @@
-import { CommonProps } from '../types/CommonProps';
-import { TldrawEditorProps } from '../types/TldrawEditorProps';
-import { setUserInfoApiUrl } from '../utils/soffitUtils';
-import BottomContainer from './BottomContainer';
-import MultiplayerEditor from './MultiplayerEditor';
-import SingleplayerEditor from './SingleplayerEditor';
+import { CommonProps } from '../types/CommonProps.ts';
+import { TldrawEditorProps } from '../types/TldrawEditorProps.ts';
+import { setToken } from '../utils/axiosUtils.ts';
+import { setUserInfoApiUrl } from '../utils/soffitUtils.ts';
+import BottomContainer from './BottomContainer.tsx';
+import MultiplayerEditor from './MultiplayerEditor.tsx';
+import SingleplayerEditor from './SingleplayerEditor.tsx';
 import { useEffect, useState } from 'react';
 import { WebsocketProvider } from 'y-websocket';
 
@@ -11,6 +12,7 @@ export default function TldrawEditor({
   mode,
   persistanceApiUrl,
   assetsApiUrl,
+  token,
   userInfoApiUrl,
   darkMode,
   readOnly,
@@ -31,7 +33,10 @@ export default function TldrawEditor({
   const [provider, setProvider] = useState<WebsocketProvider>();
   const [cMode, setCMode] = useState<'single' | 'multi'>();
 
-  setUserInfoApiUrl(userInfoApiUrl);
+  if (!token && !userInfoApiUrl) throw new Error('Token or userInfoApiUrl is required');
+
+  if (token) setToken(token);
+  if (userInfoApiUrl) setUserInfoApiUrl(userInfoApiUrl);
 
   useEffect(() => {
     setIsSaving(false);

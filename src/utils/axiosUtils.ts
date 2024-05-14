@@ -10,6 +10,10 @@ let token: string | undefined = undefined;
 let timeout: number | undefined = undefined;
 let renewToken: any;
 
+const setToken = (newToken: string): void => {
+  token = newToken;
+};
+
 const init = async () => {
   try {
     const {
@@ -32,8 +36,8 @@ const init = async () => {
 };
 
 instance.interceptors.request.use(async (config) => {
-  if (timeout == undefined) await init();
-  else await renewToken();
+  if (!timeout && !token) await init();
+  else if (timeout) await renewToken();
   config.headers['Authorization'] = token;
 
   return config;
@@ -49,4 +53,4 @@ const errorHandler = (e: any): void => {
   }
 };
 
-export { instance, errorHandler };
+export { instance, setToken, errorHandler };

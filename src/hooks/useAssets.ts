@@ -1,4 +1,4 @@
-import { deleteAsset, saveAsset } from '../services/assetService';
+import { deleteAsset, saveAsset } from '../services/assetService.ts';
 import { TldrawApp } from '@gip-recia/tldraw-v1';
 import { useCallback } from 'react';
 

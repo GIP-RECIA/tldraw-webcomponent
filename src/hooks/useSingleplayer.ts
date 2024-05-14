@@ -1,7 +1,7 @@
 import { useAssets } from '../hooks/useAssets.ts';
-import { findLanguage } from '../utils/i18nUtils';
-import { donwloadImageFile } from '../utils/tldrawUtils';
-import { toBlob, usePersistance } from './usePersistance';
+import { findLanguage } from '../utils/i18nUtils.ts';
+import { donwloadImageFile } from '../utils/tldrawUtils.ts';
+import { toBlob, usePersistance } from './usePersistance.ts';
 import { TDExport, TldrawApp, useFileSystem } from '@gip-recia/tldraw-v1';
 import debounce from 'lodash.debounce';
 import throttle from 'lodash.throttle';

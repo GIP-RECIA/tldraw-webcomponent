@@ -6,6 +6,7 @@ const TldrawEditor = r2wc(TldrawEditorSFC, {
     mode: 'string',
     persistanceApiUrl: 'string',
     assetsApiUrl: 'string',
+    token: 'string',
     userInfoApiUrl: 'string',
     darkMode: 'boolean',
     readOnly: 'boolean',

@@ -15,6 +15,7 @@ function App() {
 
   const [persistanceApiUrl, setPersistanceApiUrl] = useState<boolean>(false);
   const [assetsApiUrl, setAssetsApiUrl] = useState<boolean>(false);
+  const [token, setToken] = useState<string>('');
   const [initUrl, setInitUrl] = useState<boolean>(false);
   const [owner, setOwner] = useState<boolean>(false);
   const [clearOnLeave, setClearOnLeave] = useState<boolean>(true);
@@ -88,7 +89,12 @@ function App() {
             assetsApiUrl : {VITE_ASSETS_API_URL}
           </div>
           <div>
-            <input type="checkbox" checked disabled />
+            <input type="checkbox" checked={token.startsWith('Bearer ')} disabled />
+            token :{' '}
+            <input type="text" value={token} onChange={(e) => setToken(e.target.value)} style={{ width: '100%' }} />
+          </div>
+          <div>
+            <input type="checkbox" checked={!token.startsWith('Bearer ')} disabled />
             userInfoApiUrl : {VITE_USER_INFO_API_URI}
           </div>
         </div>
@@ -154,6 +160,7 @@ function App() {
                 persistanceApiUrl={persistanceApiUrl ? VITE_PERSISTANCE_API_URL : undefined}
                 assetsApiUrl={assetsApiUrl ? VITE_ASSETS_API_URL : undefined}
                 userInfoApiUrl={VITE_USER_INFO_API_URI}
+                token={token.startsWith('Bearer ') ? token : undefined}
                 darkMode={darkMode}
                 readOnly={readOnly}
                 autoSave={autoSave}

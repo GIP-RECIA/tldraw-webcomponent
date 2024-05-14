@@ -1,4 +1,4 @@
-import { initProvider, newDoc } from '../utils/yjsUtils';
+import { initProvider, newDoc } from '../utils/yjsUtils.ts';
 import { useMemo } from 'react';
 
 export function useYjs(websocketApiUrl: string, roomId: string) {
