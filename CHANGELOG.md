@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.4.1](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v3.4.0...v3.4.1) (2024-05-15)
+
+
+### Bug Fixes
+
+* token for multiplayer ([13aaa4e](https://github.com/GIP-RECIA/tldraw-webcomponent/commit/13aaa4e1bcc1cf6aa488db07bc7b4a29fd87ab73))
+
 ## [3.4.0](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v3.3.1...v3.4.0) (2024-05-14)
 
 
