@@ -35,7 +35,8 @@ export default function TldrawEditor({
 
   if (!token && !userInfoApiUrl) throw new Error('Token or userInfoApiUrl is required');
 
-  if (token) setToken(token);
+  if (token?.startsWith('Bearer ')) setToken(token);
+  else throw new Error('Invalid token');
   if (userInfoApiUrl) setUserInfoApiUrl(userInfoApiUrl);
 
   useEffect(() => {
@@ -75,6 +76,7 @@ export default function TldrawEditor({
   const multiplayerProps = {
     persistanceApiUrl,
     assetsApiUrl,
+    token,
     websocketApiUrl: websocketApiUrl!,
     roomId: roomId!,
     initUrl,

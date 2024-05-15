@@ -1,4 +1,4 @@
-import { getToken } from './soffitUtils.ts';
+import { getJwt } from './soffitUtils.ts';
 import axios from 'axios';
 import throttle from 'lodash.throttle';
 
@@ -19,12 +19,12 @@ const init = async () => {
     const {
       encoded,
       decoded: { exp, iat },
-    } = await getToken();
+    } = await getJwt();
     token = `Bearer ${encoded}`;
     timeout = (exp - iat) * 1000 * 0.75;
     renewToken = throttle(async () => {
       try {
-        const { encoded } = await getToken();
+        const { encoded } = await getJwt();
         token = `Bearer ${encoded}`;
       } catch (e) {
         // nothing to do

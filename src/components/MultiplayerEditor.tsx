@@ -10,6 +10,7 @@ const components = {
 export default function MultiplayerEditor({
   persistanceApiUrl,
   assetsApiUrl,
+  token,
   websocketApiUrl,
   roomId,
   initUrl,
@@ -26,6 +27,7 @@ export default function MultiplayerEditor({
     ...useMultiplayer(
       persistanceApiUrl,
       assetsApiUrl,
+      token,
       websocketApiUrl,
       roomId,
       initUrl,

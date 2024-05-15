@@ -15,7 +15,7 @@ function App() {
 
   const [persistanceApiUrl, setPersistanceApiUrl] = useState<boolean>(false);
   const [assetsApiUrl, setAssetsApiUrl] = useState<boolean>(false);
-  const [token, setToken] = useState<string>('');
+  const [token, setToken] = useState<string>('Bearer');
   const [initUrl, setInitUrl] = useState<boolean>(false);
   const [owner, setOwner] = useState<boolean>(false);
   const [clearOnLeave, setClearOnLeave] = useState<boolean>(true);

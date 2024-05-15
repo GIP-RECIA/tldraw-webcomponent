@@ -4,6 +4,7 @@ import { WebsocketProvider } from 'y-websocket';
 export type MultiplayerEditorProps = {
   persistanceApiUrl?: string;
   assetsApiUrl?: string;
+  token?: string;
   websocketApiUrl: string;
   roomId: string;
   initUrl?: string;

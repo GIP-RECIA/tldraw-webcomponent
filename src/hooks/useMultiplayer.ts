@@ -1,6 +1,6 @@
 import { useAssets } from '../hooks/useAssets.ts';
 import { findLanguage } from '../utils/i18nUtils';
-import { getToken } from '../utils/soffitUtils.ts';
+import { getJwt, parseJwt } from '../utils/soffitUtils.ts';
 import { donwloadImageFile } from '../utils/tldrawUtils.ts';
 import { getDocData, updateDoc } from '../utils/yjsUtils.ts';
 import { toBlob, usePersistance } from './usePersistance.ts';
@@ -14,6 +14,7 @@ import { WebsocketProvider } from 'y-websocket';
 export function useMultiplayer(
   persistanceApiUrl: string | undefined,
   assetsApiUrl: string | undefined,
+  token: string | undefined,
   websocketApiUrl: string,
   roomId: string,
   initUrl: string | undefined,
@@ -127,9 +128,14 @@ export function useMultiplayer(
       tldrawRef.current = app;
 
       if (app.currentUser) {
-        const {
-          decoded: { name },
-        } = await getToken();
+        let name;
+        if (!token) {
+          const { decoded } = await getJwt();
+          name = decoded.name;
+        } else {
+          const decoded = parseJwt(token);
+          name = decoded.name;
+        }
         app.currentUser.metadata = { name: name != undefined && !name.startsWith('guest') ? name : undefined };
       }
 
@@ -141,7 +147,7 @@ export function useMultiplayer(
 
       if (!initUrl) setIsReady(true);
     }, 10),
-    [roomId],
+    [roomId, token],
   );
 
   const onChangePage = useCallback(
