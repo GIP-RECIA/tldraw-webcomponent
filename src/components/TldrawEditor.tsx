@@ -36,7 +36,7 @@ export default function TldrawEditor({
   if (!token && !userInfoApiUrl) throw new Error('Token or userInfoApiUrl is required');
 
   if (token?.startsWith('Bearer ')) setToken(token);
-  else throw new Error('Invalid token');
+  else if (token) throw new Error('Invalid token');
   if (userInfoApiUrl) setUserInfoApiUrl(userInfoApiUrl);
 
   useEffect(() => {

@@ -4,8 +4,8 @@ export type TldrawEditorProps = {
   // Common properties
   persistanceApiUrl?: string;
   assetsApiUrl?: string;
-  userInfoApiUrl?: string;
   token?: string;
+  userInfoApiUrl?: string;
   darkMode?: boolean;
   readOnly?: boolean;
   autoSave?: boolean;

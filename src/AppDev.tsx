@@ -159,8 +159,8 @@ function App() {
                 mode={mode}
                 persistanceApiUrl={persistanceApiUrl ? VITE_PERSISTANCE_API_URL : undefined}
                 assetsApiUrl={assetsApiUrl ? VITE_ASSETS_API_URL : undefined}
-                userInfoApiUrl={VITE_USER_INFO_API_URI}
                 token={token.startsWith('Bearer ') ? token : undefined}
+                userInfoApiUrl={VITE_USER_INFO_API_URI}
                 darkMode={darkMode}
                 readOnly={readOnly}
                 autoSave={autoSave}
