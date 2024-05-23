@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.5.2](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v3.5.1...v3.5.2) (2024-05-23)
+
+
+### Bug Fixes
+
+* dark theme ([90643c4](https://github.com/GIP-RECIA/tldraw-webcomponent/commit/90643c42d95f3868763e8359b98d25491b4e7148))
+
 ### [3.5.1](https://github.com/GIP-RECIA/tldraw-webcomponent/compare/v3.5.0...v3.5.1) (2024-05-23)
 
 
