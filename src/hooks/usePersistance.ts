@@ -26,8 +26,8 @@ export function usePersistance(persistanceApiUrl: string | undefined) {
       if (!persistanceApiUrl) return;
 
       const response = await getFile(persistanceApiUrl);
-      if (response.data.blob != '') {
-        app.loadDocument(JSON.parse(response.data.blob).document as TDDocument);
+      if (response.data.data != '') {
+        app.loadDocument(JSON.parse(response.data.data).document as TDDocument);
         app.document.name = response.data.title;
       }
     },
