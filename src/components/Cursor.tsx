@@ -45,9 +45,10 @@ export const CustomCursor: CursorComponent = ({ color, metadata }) => {
         <div
           style={{
             // whiteSpace: "nowrap",
-            background: 'white',
+            background: 'var(--colors-panel)',
             padding: '4px 8px',
             borderRadius: 4,
+            color: 'var(--colors-text)',
           }}
         >
           {metadata.name}

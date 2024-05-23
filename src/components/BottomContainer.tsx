@@ -8,11 +8,18 @@ type BottomContainerProps = {
   isError: boolean;
   isSaving: boolean;
   provider?: WebsocketProvider;
+  darkMode: boolean | undefined;
 };
 
-export default function BottomContainer({ isLoading, isError, isSaving, provider }: Readonly<BottomContainerProps>) {
+export default function BottomContainer({
+  isLoading,
+  isError,
+  isSaving,
+  provider,
+  darkMode,
+}: Readonly<BottomContainerProps>) {
   return (
-    <div className="bottom-container">
+    <div className="bottom-container" style={{ color: darkMode ? '#f8f9fa' : 'var(--colors-text)' }}>
       {provider && <UserCounter provider={provider} />}
       {isLoading && !isError && <FontAwesomeIcon icon={faCircleNotch} spin />}
       {isError && !isSaving && <FontAwesomeIcon icon={faTriangleExclamation} shake />}
