@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { WebsocketProvider } from 'y-websocket';
 
 export default function TldrawEditor({
+  debug,
   mode,
   persistanceApiUrl,
   assetsApiUrl,
@@ -55,6 +56,7 @@ export default function TldrawEditor({
   const isMulti: boolean = cMode == 'multi' && websocketApiUrl != undefined && roomId != undefined;
 
   const common: CommonProps = {
+    debug: debug ?? false,
     darkMode: darkMode ?? false,
     autoSave: autoSave ?? true,
     autoSaveDelay: autoSaveDelay ?? 3000,

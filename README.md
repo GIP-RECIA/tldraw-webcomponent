@@ -39,6 +39,7 @@ document.body.appendChild(tldrawEditor);
 
 | Nom                   |       Type        |           Requis           | Default | Description                                                                                                 |
 | --------------------- | :---------------: | :------------------------: | :-----: | ----------------------------------------------------------------------------------------------------------- |
+| `debug`               |     `boolean`     |          `false`           | `false` | Active les logs de debug                                                                                    |
 | `mode`                | `single \| multi` |           `true`           |         | Mode de fonctionnement                                                                                      |
 | `persistance-api-url` |     `string`      |          `false`           |         | URL du fichier (GET & PUT) \| (En mode multi, permet la sauvegarde sur le fichier)                          |
 | `assets-api-url`      |     `string`      |          `false`           |         | URL des assets (GET, POST & DELETE)                                                                         |
@@ -60,6 +61,7 @@ document.body.appendChild(tldrawEditor);
 
 ```html
 <tldraw-editor
+  debug
   mode=""
   persistance-api-url=""
   assets-api-url=""

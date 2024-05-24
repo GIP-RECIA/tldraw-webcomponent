@@ -1,4 +1,6 @@
 export type CommonProps = {
+  debug: boolean;
+
   // Tldraw props
   darkMode: boolean;
   readOnly: boolean;

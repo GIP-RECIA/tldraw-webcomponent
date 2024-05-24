@@ -20,11 +20,12 @@ export default function MultiplayerEditor({
   setProvider,
   ...params
 }: Readonly<MultiplayerEditorProps>) {
-  const { autoSave, autoSaveDelay, open, isReady, setIsSaving, setIsLoading, setIsError, setIsReady } = params;
+  const { debug, autoSave, autoSaveDelay, open, isReady, setIsSaving, setIsLoading, setIsError, setIsReady } = params;
 
   const props = {
     ...params,
     ...useMultiplayer(
+      debug,
       persistanceApiUrl,
       assetsApiUrl,
       token,

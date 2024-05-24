@@ -3,6 +3,7 @@ import r2wc from '@r2wc/react-to-web-component';
 
 const TldrawEditor = r2wc(TldrawEditorSFC, {
   props: {
+    debug: 'boolean',
     mode: 'string',
     persistanceApiUrl: 'string',
     assetsApiUrl: 'string',

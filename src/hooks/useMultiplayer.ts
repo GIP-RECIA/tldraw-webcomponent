@@ -12,6 +12,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { WebsocketProvider } from 'y-websocket';
 
 export function useMultiplayer(
+  debug: boolean,
   persistanceApiUrl: string | undefined,
   assetsApiUrl: string | undefined,
   token: string | undefined,
@@ -41,6 +42,10 @@ export function useMultiplayer(
   );
   const { loadDocument } = usePersistance(initUrl);
 
+  const log = (message: string, variable: object): void => {
+    if (debug) console.debug(`Multiplayer - ${message}`, { ...variable });
+  };
+
   /**
    * Force rerendering
    */
@@ -55,14 +60,20 @@ export function useMultiplayer(
         const oldValue: string = yPersistanceApiUrl.toString();
         if (oldValue !== persistanceApiUrl) {
           yPersistanceApiUrl.delete(0, oldValue.length);
-          setTimeout(() => {
-            if (persistanceApiUrl) yPersistanceApiUrl.insert(0, persistanceApiUrl);
-          }, 200);
+          if (persistanceApiUrl) yPersistanceApiUrl.insert(0, persistanceApiUrl);
+          log('persistance API URL has been set', { newValue: yPersistanceApiUrl.toString(), oldValue });
         }
       }
-    }, 200);
+    }, 500);
 
-    const handleChanges = throttle(() => setKey((value) => value + 1), 200, { trailing: true });
+    const handleChanges = throttle(
+      () => {
+        log('persistance API URL has changed', { newValue: yPersistanceApiUrl.toString() });
+        setKey((value) => value + 1);
+      },
+      200,
+      { trailing: true },
+    );
 
     yPersistanceApiUrl.observeDeep(handleChanges);
 
@@ -78,14 +89,20 @@ export function useMultiplayer(
         const oldValue: string = yAssetsApiUrl.toString();
         if (oldValue !== assetsApiUrl) {
           yAssetsApiUrl.delete(0, oldValue.length);
-          setTimeout(() => {
-            if (assetsApiUrl) yAssetsApiUrl.insert(0, assetsApiUrl);
-          }, 200);
+          if (assetsApiUrl) yAssetsApiUrl.insert(0, assetsApiUrl);
+          log('assets API URL has been set', { newValue: yAssetsApiUrl.toString(), oldValue });
         }
       }
-    }, 200);
+    }, 500);
 
-    const handleChanges = throttle(() => setKey((value) => value + 1), 200, { trailing: true });
+    const handleChanges = throttle(
+      () => {
+        log('assets API URL has changed', { newValue: yAssetsApiUrl.toString() });
+        setKey((value) => value + 1);
+      },
+      200,
+      { trailing: true },
+    );
 
     yAssetsApiUrl.observeDeep(handleChanges);
 

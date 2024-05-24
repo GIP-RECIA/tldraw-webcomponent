@@ -171,6 +171,7 @@ function App() {
                 owner={owner}
                 clearOnLeave={clearOnLeave}
                 leave={leave}
+                debug={true}
               />
             )}
           </div>

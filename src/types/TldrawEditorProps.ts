@@ -1,4 +1,5 @@
 export type TldrawEditorProps = {
+  debug?: boolean;
   mode?: 'single' | 'multi';
 
   // Common properties
