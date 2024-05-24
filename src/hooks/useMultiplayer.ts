@@ -55,7 +55,9 @@ export function useMultiplayer(
         const oldValue: string = yPersistanceApiUrl.toString();
         if (oldValue !== persistanceApiUrl) {
           yPersistanceApiUrl.delete(0, oldValue.length);
-          if (persistanceApiUrl) yPersistanceApiUrl.insert(0, persistanceApiUrl);
+          setTimeout(() => {
+            if (persistanceApiUrl) yPersistanceApiUrl.insert(0, persistanceApiUrl);
+          }, 200);
         }
       }
     }, 200);
@@ -76,7 +78,9 @@ export function useMultiplayer(
         const oldValue: string = yAssetsApiUrl.toString();
         if (oldValue !== assetsApiUrl) {
           yAssetsApiUrl.delete(0, oldValue.length);
-          if (assetsApiUrl) yAssetsApiUrl.insert(0, assetsApiUrl);
+          setTimeout(() => {
+            if (assetsApiUrl) yAssetsApiUrl.insert(0, assetsApiUrl);
+          }, 200);
         }
       }
     }, 200);
