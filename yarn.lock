@@ -1022,7 +1022,7 @@ __metadata:
     standard-version: "npm:^9.5.0"
     terser: "npm:^5.31.1"
     typescript: "npm:~5.5.2"
-    vite: "npm:^5.3.1"
+    vite: "npm:^5.3.2"
     vite-plugin-css-injected-by-js: "npm:^3.5.1"
     y-presence: "npm:^0.2.3"
     y-websocket: "npm:^2.0.3"
@@ -7206,9 +7206,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^5.3.1":
-  version: 5.3.1
-  resolution: "vite@npm:5.3.1"
+"vite@npm:^5.3.2":
+  version: 5.3.2
+  resolution: "vite@npm:5.3.2"
   dependencies:
     esbuild: "npm:^0.21.3"
     fsevents: "npm:~2.3.3"
@@ -7242,7 +7242,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10/180ca1795389f1ebc0b09f2ce61846943d34df597c4719e68d1d5ecba3e6cbd5b3313a4a321119b18290de3ef543df433659ba8b678de84df152e0386342697f
+  checksum: 10/77b284938921da6c2c4055a5edd916ab221a973aa1403dba2aef303db1bd54ac7325db13f3fad13d77a7ac55cac7ffef49dffaa69bcadcc3caf2cae32ca03127
   languageName: node
   linkType: hard
 
