@@ -10,11 +10,6 @@ export default ({ mode }: { mode: string }) => {
   return defineConfig({
     base: process.env.VITE_BASE_URI,
     plugins: [react(), cssInjectedByJsPlugin()],
-    server: {
-      hmr: {
-        path: 'ws',
-      },
-    },
     build: {
       lib: {
         entry: './src/main.tsx',
