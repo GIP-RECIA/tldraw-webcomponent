@@ -1,5 +1,7 @@
 # tldraw-webcomponent
 
+> ⚠️ migration du projet vers https://github.com/GIP-RECIA/recia-webcomponents/tree/main/packages/tldraw
+
 tldraw WebComponent
 
 - [tldraw-webcomponent](#tldraw-webcomponent)
