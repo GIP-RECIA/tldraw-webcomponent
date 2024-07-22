@@ -85,7 +85,7 @@
     "standard-version": "^9.5.0",
     "terser": "^5.31.2",
     "typescript": "~5.5.3",
-    "vite": "^5.3.3",
+    "vite": "^5.3.4",
     "vite-plugin-css-injected-by-js": "^3.5.1",
     "y-presence": "^0.2.3",
     "y-websocket": "^2.0.3",
