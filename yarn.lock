@@ -1027,7 +1027,7 @@ __metadata:
     regenerator-runtime: "npm:^0.14.1"
     sass: "npm:^1.77.8"
     standard-version: "npm:^9.5.0"
-    terser: "npm:^5.31.2"
+    terser: "npm:^5.31.3"
     typescript: "npm:~5.5.3"
     vite: "npm:^5.3.4"
     vite-plugin-css-injected-by-js: "npm:^3.5.1"
@@ -6953,9 +6953,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"terser@npm:^5.31.2":
-  version: 5.31.2
-  resolution: "terser@npm:5.31.2"
+"terser@npm:^5.31.3":
+  version: 5.31.3
+  resolution: "terser@npm:5.31.3"
   dependencies:
     "@jridgewell/source-map": "npm:^0.3.3"
     acorn: "npm:^8.8.2"
@@ -6963,7 +6963,7 @@ __metadata:
     source-map-support: "npm:~0.5.20"
   bin:
     terser: bin/terser
-  checksum: 10/dab8d0a7e2845f14535433795aa8dcf1b80a33e75749f5dbd67ee97aa66c1dec37191afa46dd88dad8472c9ff0bf16a812dd4388cb30d8675a6a95a7ead0421b
+  checksum: 10/7f66d93a1157f66f5eda16515ed45e6eb485d3c4acbc46e78a5e62922f5b4643d9212abc586f791021fafc71563a93475a986c52f4270a5e0b3ee50a70507d9e
   languageName: node
   linkType: hard
 
