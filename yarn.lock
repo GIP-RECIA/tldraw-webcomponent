@@ -1009,7 +1009,7 @@ __metadata:
     eslint: "npm:^8.57.0"
     eslint-config-prettier: "npm:^9.1.0"
     eslint-plugin-react-hooks: "npm:^4.6.2"
-    eslint-plugin-react-refresh: "npm:^0.4.8"
+    eslint-plugin-react-refresh: "npm:^0.4.9"
     husky: "npm:^8.0.3"
     lint-staged: "npm:^15.2.7"
     lodash.debounce: "npm:^4.0.8"
@@ -3744,12 +3744,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-refresh@npm:^0.4.8":
-  version: 0.4.8
-  resolution: "eslint-plugin-react-refresh@npm:0.4.8"
+"eslint-plugin-react-refresh@npm:^0.4.9":
+  version: 0.4.9
+  resolution: "eslint-plugin-react-refresh@npm:0.4.9"
   peerDependencies:
     eslint: ">=7"
-  checksum: 10/f502cd803a43dac83db43a924defe543a3ed57b545a4b5a9fc74c578c05903ffcb4f2988848b8d02672cf9443e390ef831ba5a1577f64617b68b3746229172b4
+  checksum: 10/4a8fad22270ff2bba86bc34973228334194739b3b64dab0a13e35f1a55f8e0a66ab8861520c86f3acc3ecb3701c5bb68eca9f1f8f8a6144c17ef511ab07e02bc
   languageName: node
   linkType: hard
 
